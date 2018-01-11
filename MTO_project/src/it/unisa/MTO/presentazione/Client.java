@@ -9,6 +9,7 @@ public class Client {
 		Facade f = new Facade();
 		boolean res = f.login("r.napo12", "ciao");
 		
+		System.out.println("Prova");
 		System.out.println(res);
 	}
 
