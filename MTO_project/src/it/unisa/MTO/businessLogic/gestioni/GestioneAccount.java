@@ -1,6 +1,11 @@
 package it.unisa.MTO.businessLogic.gestioni;
 
-import it.unisa.MTO.storage.connection.*;
+import java.sql.Date;
+
+import it.unisa.MTO.common.Utente;
+import it.unisa.MTO.common.UtenteType;
+import it.unisa.MTO.storage.connection.ConnessioneException;
+import it.unisa.MTO.storage.test.*;
 
 public class GestioneAccount {
 
@@ -22,5 +27,20 @@ public class GestioneAccount {
 	
 	public void logout(){}
 	
-	public void registrazione(){}
+	public boolean registrazione(Utente utente){
+		
+		TestAccessUser test;
+		try {
+			test = new TestAccessUser();
+			return test.getRegistrazione(utente);
+		} catch (ConnessioneException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
+		
+		
+	
 }
