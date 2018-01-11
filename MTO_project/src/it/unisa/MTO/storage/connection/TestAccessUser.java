@@ -1,11 +1,9 @@
-package it.unisa.MTO.storage.test;
+package it.unisa.MTO.storage.connection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import it.unisa.MTO.common.*;
 
 public class TestAccessUser {
 

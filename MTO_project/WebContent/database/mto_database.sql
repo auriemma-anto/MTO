@@ -49,6 +49,7 @@ CREATE TABLE IF NOT EXISTS Documento
     utenteUsername 			varchar(15) not null,
     nome					varchar(20) not null,
     tirocinioCodiceID		integer(15) not null,
+    file					mediumblob,
     
     primary key(codiceID),
     foreign key (tirocinioCodiceID) references Tirocinio(codiceID),

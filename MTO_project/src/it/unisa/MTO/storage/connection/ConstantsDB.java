@@ -1,4 +1,4 @@
-package it.unisa.MTO.storage.test;
+package it.unisa.MTO.storage.connection;
 
 public interface ConstantsDB {
 	

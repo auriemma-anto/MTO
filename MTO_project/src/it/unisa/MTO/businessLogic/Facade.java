@@ -1,5 +1,7 @@
 package it.unisa.MTO.businessLogic;
 
+import java.io.InputStream;
+
 import it.unisa.MTO.businessLogic.gestioni.*;
 
 public class Facade {
@@ -59,8 +61,8 @@ public class Facade {
 		gestioneRichiesteTirocinio.visualizzaRichiesta();
 	}
 	
-	public void aggiungiDomandaRichiesta(){
-		gestioneRichiesteTirocinio.aggiungiRichiesta();
+	public boolean aggiungiDomandaRichiesta(String utenteUsername, String nomeFile, Integer codiceTirocinio, InputStream file){
+		return gestioneRichiesteTirocinio.aggiungiRichiesta(utenteUsername, nomeFile, codiceTirocinio, file);
 	}
 	
 	public void eliminaDomandaRichiesta(){

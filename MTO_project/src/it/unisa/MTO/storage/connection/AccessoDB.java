@@ -1,4 +1,4 @@
-package it.unisa.MTO.storage.test;
+package it.unisa.MTO.storage.connection;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -17,7 +17,7 @@ public class AccessoDB {
 			throw new ConnessioneException(" - AccessoDatabase: Impossibile Creare La Connessione!! ");
 		}
 	}
-	public static Connection getConnessione(){
+	public Connection getConnessione(){
 		return connessione;
 	}
 	private static Connection connessione;	
