@@ -1,6 +1,7 @@
 package it.unisa.MTO.storage.DAO;
 
 import java.io.InputStream;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -52,9 +53,40 @@ public class GestioneRichiesteTirocinioDAO implements IGRichiestaTirocinioDAO{
 	}
 
 	@Override
-	public boolean getDocument(String utenteUsername, String nomeFile, Integer codiceTirocinio) {
+	public InputStream getDocument(String utenteUsername, String nomeFile, Integer codiceTirocinio) {
 		// TODO Auto-generated method stub
-		return false;
+		InputStream inputStream = null;
+		boolean st = false;
+		Connection conn = db.getConnessione();
+		String query = "SELECT * FROM Documento WHERE utenteUsername=? AND nome =? AND tirocinioCodiceID=?" ;
+
+		try {
+			PreparedStatement statement = conn.prepareStatement(query);
+			statement.setString(1, utenteUsername);
+			statement.setString(2, nomeFile);
+			statement.setInt(3, codiceTirocinio);
+
+			
+			ResultSet res = statement.executeQuery(query);
+			st = res.next();
+			
+			if(st) {
+				Blob blob = res.getBlob("file");
+				inputStream = blob.getBinaryStream();
+			}
+
+		} catch (SQLException ex) {
+			if (conn != null) {
+				// closes the database connection
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return inputStream;
+
 	}
 
 	@Override
