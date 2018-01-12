@@ -3,7 +3,9 @@ package it.unisa.MTO.businessLogic.gestioni;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 
+import it.unisa.MTO.common.Tirocinio;
 import it.unisa.MTO.storage.DAO.GestioneRichiesteTirocinioDAO;
 import it.unisa.MTO.storage.connection.ConnessioneException;
 
@@ -11,7 +13,19 @@ public class GestioneRichiesteTirocinio {
 
 	public GestioneRichiesteTirocinio(){}
 
-	public void visualizzaLista(){}
+	public ArrayList<Tirocinio> visualizzaLista(String utenteUsername){
+		GestioneRichiesteTirocinioDAO grtDAO;
+		ArrayList<Tirocinio> lista = new ArrayList<Tirocinio>();
+		try {
+			grtDAO = new GestioneRichiesteTirocinioDAO();
+			lista = grtDAO.getList(utenteUsername );
+		} catch (ConnessioneException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return lista;
+	}
+	
 
 	public boolean aggiungiRichiesta(String utenteUsername, String nomeFile, Integer codiceTirocinio, InputStream file){
 		GestioneRichiesteTirocinioDAO grtDAO;
@@ -48,10 +62,22 @@ public class GestioneRichiesteTirocinio {
 			e.printStackTrace();
 		}
 
-		return false;
+		return true;
 	}
 
-	public void eliminaRichiesta(){}
+	public void eliminaRichiesta(String aziendaUsername, String studenteUsername){
+		GestioneRichiesteTirocinioDAO grtDAO;
+		try {
+			grtDAO = new GestioneRichiesteTirocinioDAO();
+			
+			
+			
+		} catch (ConnessioneException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 
 	public void firma(){}
 

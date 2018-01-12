@@ -6,7 +6,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
+import it.unisa.MTO.common.Tirocinio;
 import it.unisa.MTO.storage.connection.AccessoDB;
 import it.unisa.MTO.storage.connection.ConnessioneException;
 import it.unisa.MTO.storage.interfaces.IGRichiestaTirocinioDAO;
@@ -90,9 +92,45 @@ public class GestioneRichiesteTirocinioDAO implements IGRichiestaTirocinioDAO{
 	}
 
 	@Override
-	public boolean getList(String utenteUsername) {
+	public ArrayList<Tirocinio> getList(String utenteUsername) {
 		// TODO Auto-generated method stub
-		return false;
+		
+		
+		Connection conn = db.getConnessione();
+		ArrayList<Tirocinio> lista = new ArrayList<Tirocinio>();
+		String query = "SELECT * FROM Tirocinio WHERE rif_utente=? " ;
+
+		try {
+			PreparedStatement statement = conn.prepareStatement(query);
+			statement.setString(1, utenteUsername);
+
+			
+			ResultSet res = statement.executeQuery(query);
+
+			while(res.next()) {
+				Tirocinio t = new Tirocinio();
+				t.setAzienda(res.getString("azienda"));
+				t.setCodiceID(res.getInt("codiceID"));
+				t.setDataFine(res.getDate("data_fine"));
+				t.setDataInizio(res.getDate("data_inizio"));
+				t.setDescizione(res.getString("descrizione"));
+				t.setLuogo(res.getString("luogo"));
+				t.setTematica(res.getString("tematica"));
+				lista.add(t);
+			}
+			
+
+		} catch (SQLException ex) {
+			if (conn != null) {
+				// closes the database connection
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return lista;
 	}
 
 	@Override

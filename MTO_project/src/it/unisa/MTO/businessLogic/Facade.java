@@ -2,8 +2,10 @@ package it.unisa.MTO.businessLogic;
 
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 
 import it.unisa.MTO.businessLogic.gestioni.*;
+import it.unisa.MTO.common.*;
 
 public class Facade {
 	private GestioneAccount gestioneAccount;
@@ -54,8 +56,8 @@ public class Facade {
 	}
 	
 	//----------GESTIONE DOMANDE RICHIESTA
-	public void listaDomandeRichiesta(){
-		gestioneRichiesteTirocinio.visualizzaLista();
+	public ArrayList<Tirocinio> listaDomandeRichiesta(String utenteUsername){
+		return gestioneRichiesteTirocinio.visualizzaLista(utenteUsername);
 	}
 	
 	public boolean getDomandaRichiesta(OutputStream outputStream, String utenteUsername, String nomeFile, Integer codiceTirocinio){

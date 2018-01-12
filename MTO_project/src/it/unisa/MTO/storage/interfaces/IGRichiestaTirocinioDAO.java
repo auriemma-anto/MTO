@@ -1,12 +1,15 @@
 package it.unisa.MTO.storage.interfaces;
 
 import java.io.InputStream;
+import java.util.ArrayList;
+
+import it.unisa.MTO.common.Tirocinio;
 
 public interface IGRichiestaTirocinioDAO {
 	
 	public boolean setDocument(String utenteUsername, String nomeFile, Integer codiceTirocinio, InputStream file);
 	public InputStream getDocument(String utenteUsername, String nomeFile, Integer codiceTirocinio);
-	public boolean getList(String utenteUsername);
+	public ArrayList<Tirocinio> getList(String utenteUsername);
 	public boolean delDocument(String utenteUsername, String nomeFile, Integer codiceTirocinio);
 	public boolean markDocument(String utenteUsername, String nomeFile, Integer codiceTirocinio);
 	public boolean checkDocState(String utenteUsername);
