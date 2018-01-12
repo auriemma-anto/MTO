@@ -23,7 +23,23 @@ public class Utente {
 	/*COSTRUTTORE CON TUTTI GLI ATTRIBUTI*/
 	public Utente(String username, String password, String email, UtenteType tipo, 
 			String nome, String cognome, String dataNascita, String annoImmatricolazione,
-			int cfu, String universita, String dipartimento, String azienda) {}
+			int cfu, String universita, String dipartimento, String azienda) {
+		
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		this.tipo = tipo;
+		this.nome = nome;
+		this.cognome = cognome;
+		this.dataNascita = dataNascita;
+		this.annoImmatricolazione = annoImmatricolazione;
+		this.cfu = cfu;
+		this.universita = universita;
+		this.dipartimento = dipartimento;
+		this.azienda = azienda;
+	}
+
+	
 
 	public String getUsername() {
 		return username;
@@ -121,6 +137,12 @@ public class Utente {
 		this.azienda = azienda;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "Utente [username=" + username + ", password=" + password + ", email=" + email + ", tipo=" + tipo
+				+ ", nome=" + nome + ", cognome=" + cognome + ", dataNascita=" + dataNascita + ", annoImmatricolazione="
+				+ annoImmatricolazione + ", cfu=" + cfu + ", universita=" + universita + ", dipartimento="
+				+ dipartimento + ", azienda=" + azienda + "]";
+	}
 	
 }

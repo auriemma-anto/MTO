@@ -1,8 +1,10 @@
 package it.unisa.MTO.businessLogic;
 
 import java.io.InputStream;
+import java.text.ParseException;
 
 import it.unisa.MTO.businessLogic.gestioni.*;
+import it.unisa.MTO.common.Utente;
 
 public class Facade {
 	private GestioneAccount gestioneAccount;
@@ -23,8 +25,8 @@ public class Facade {
 		gestioneAccount.logout();
 	}
 	
-	public void registrazione(){
-		gestioneAccount.registrazione();
+	public boolean registrazione(Utente utente) throws ParseException{
+		return gestioneAccount.registrazione(utente);
 	}
 	
 	//----------GESTIONE TIROCINIO

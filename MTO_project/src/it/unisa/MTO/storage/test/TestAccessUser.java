@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import it.unisa.MTO.common.*;
 import it.unisa.MTO.storage.connection.AccessoDB;
@@ -13,7 +16,7 @@ public class TestAccessUser {
 
 	private AccessoDB db;
 	
-	public TestAccessUser() throws ConnessioneException {
+	public TestAccessUser() throws ConnessioneException{
 		db = new AccessoDB();
 	}
 	
@@ -35,7 +38,7 @@ public class TestAccessUser {
 	}
 	
 	
-		public boolean getRegistrazione(Utente utente) {
+		public boolean getRegistrazione(Utente utente) throws ParseException {
 		Connection conn = db.getConnessione();
 		
 		String username = utente.getUsername();
@@ -51,16 +54,26 @@ public class TestAccessUser {
 		String dipartimento = utente.getDipartimento();
 		String azienda = utente.getAzienda();
 		
-		/*  String query = "INSERT INTO utente ( username, password, email, tipo, nome, cognome, data_nascita, annoImmatricolazione, CFU, universita, dipartimento, azienda) VALUES ( '"+cliente.getUsername()+"',"
-				+ " '"+cliente.getPassword()+"', '"+cliente.getNome()+"', '"+cliente.getCognome()+"', '"+cliente.getDataNascita()+"', '"+cliente.getPaese()+"', '"+cliente.getInd()+"', '"+cliente.getCF()+"' , '"+cliente.getCI()+"', '"+cliente.getPassaporto()+"', '"+cliente.getMail()+"', '"+cliente.getTel()+"');";
-		*/
-		String query ="INSERT INTO utente VALUES ()";
+		/**
+		 * format.parse(dataNascita) gli passo una Stringa e alla fine mi da.
+		 * @param sql è di tipo yyyy-mm-dd
+		 */
+		SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+        Date parsed = format.parse(dataNascita);
+      
+        java.sql.Date sql_date = new java.sql.Date(parsed.getTime());
+        
+		String query = "INSERT INTO utente (username, password, email, tipo, nome, cognome, "
+				+ "data_nascita, annoImmatricolazione, CFU, universita, dipartimento, azienda)"
+				+ " VALUES('"+username+"',"+ " '"+password+"', '"+email+"', '"+tipo+"', '"
+				+nome+"', '"+cognome+"', '"+sql_date+"', '"+annoImmatricolazione+"' , "
+				+cfu+", '"+universita+"', '"+dipartimento+"', '"+azienda+"');";
 		
 		try {
 			PreparedStatement statement = conn.prepareStatement(query);
-			ResultSet res = statement.executeQuery(query);
-			res.next();
-			return res.getInt(1) == 1;
+			statement.executeUpdate(query);
+			statement.close();
+			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

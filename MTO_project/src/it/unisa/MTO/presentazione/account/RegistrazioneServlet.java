@@ -2,6 +2,7 @@ package it.unisa.MTO.presentazione.account;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.text.ParseException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import it.unisa.MTO.businessLogic.Facade;
 import it.unisa.MTO.common.Utente;
 import it.unisa.MTO.common.UtenteType;
 
@@ -53,7 +55,14 @@ public class RegistrazioneServlet extends HttpServlet {
 								   request.getParameter("dipartimento"),
 								   request.getParameter("azienda")  );
 		
+	Facade facade = new Facade();
 	
+	try {
+		facade.registrazione(utente);
+	} catch (ParseException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
 	
 	}
 
