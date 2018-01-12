@@ -8,7 +8,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import it.unisa.MTO.common.DocumentoRichiesta;
 import it.unisa.MTO.common.Tirocinio;
+import it.unisa.MTO.common.Utente;
 import it.unisa.MTO.storage.connection.AccessoDB;
 import it.unisa.MTO.storage.connection.ConnessioneException;
 import it.unisa.MTO.storage.interfaces.IGRichiestaTirocinioDAO;
@@ -21,25 +23,43 @@ public class GestioneRichiesteTirocinioDAO implements IGRichiestaTirocinioDAO{
 		db = new AccessoDB();
 	}
 
-	public boolean setDocument(String utenteUsername, String nomeFile, Integer codiceTirocinio, InputStream file){
-		boolean st = false;
+	public boolean setDocument(DocumentoRichiesta documento){
+		
 		Connection conn = db.getConnessione();
-		String query = "INSERT INTO Documento (utenteUsername, nome, "
-				+ "tirocinioCodiceID, file) values (?, ?, ?, ?)";
+		
+		Utente studente = documento.getStudente();
+		String username = studente.getUsername();
+		
+		Tirocinio tirocinio = documento.getTirocinio();
+		int codiceTir = tirocinio.getCodiceID();
+		
+		String nomeFile = documento.getNome();
+		InputStream file = documento.getFile();
+		
+		System.out.println(""+username);
+		System.out.println(""+codiceTir);
+		System.out.println(""+file);
+		
+		String query = "INSERT INTO documento (nome, rif_utente, rif_tirocinio, file) VALUES (?,?,?,?);";
 
 		try {
 			PreparedStatement statement = conn.prepareStatement(query);
-			statement.setString(1, utenteUsername);
-			statement.setString(2, nomeFile);
-			statement.setInt(3, codiceTirocinio);
-
+			statement.setString(1, nomeFile);
+			statement.setString(2, username);
+			statement.setInt(3, codiceTir);
+	
 			if (file != null) {
 				// Inserisce l'inputStream per l'upload dei file nella colonna blob
 				statement.setBlob(4, file);
 			}
 
-			ResultSet res = statement.executeQuery(query);
-			st = res.next();
+			System.out.println(""+statement);
+			
+			statement.executeUpdate();
+			
+			System.out.println("Update fatta");
+			
+			return true;
 
 		} catch (SQLException ex) {
 			if (conn != null) {
@@ -50,8 +70,10 @@ public class GestioneRichiesteTirocinioDAO implements IGRichiestaTirocinioDAO{
 					e.printStackTrace();
 				}
 			}
+			
+			ex.printStackTrace();
 		}
-		return st;
+		return false;
 	}
 
 	@Override

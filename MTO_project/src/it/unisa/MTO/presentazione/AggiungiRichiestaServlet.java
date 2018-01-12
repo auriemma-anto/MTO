@@ -3,6 +3,7 @@ package it.unisa.MTO.presentazione;
 import java.io.IOException;
 import java.io.InputStream;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -12,6 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 import it.unisa.MTO.businessLogic.Facade;
+import it.unisa.MTO.common.DocumentoRichiesta;
+import it.unisa.MTO.common.Tirocinio;
+import it.unisa.MTO.common.Utente;
 
 /**
  * Servlet implementation class AggiungiRichiestaServlet
@@ -20,35 +24,51 @@ import it.unisa.MTO.businessLogic.Facade;
 @MultipartConfig(maxFileSize = 16177215)
 public class AggiungiRichiestaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-	private boolean checkF;
-       
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String username = request.getParameter("username");
-	    String docName = "progettoformativo_"+username+".pdf";
-	    Integer tirocinio = Integer.parseInt(request.getParameter("tirocinio"));
-	    
-	    InputStream inputStream = null;  // input stream of the upload file
-	    
-	    // obtains the upload file part in this multipart request
-	    Part filePart = request.getPart("doc");
-	    if (filePart != null) {
-	      // prints out some information for debugging
-	      System.out.println(filePart.getName());
-	      System.out.println(filePart.getSize());
-	      System.out.println(filePart.getContentType());
-	      
-	      // obtains input stream of the upload file
-	      inputStream = filePart.getInputStream();
-	    }
-	    
-	    Facade f = new Facade();
-		checkF = f.aggiungiDomandaRichiesta(username, docName, tirocinio, inputStream);
+
+		// gets values of text fields
+		Utente studente = new Utente();
+		studente.setUsername(request.getParameter("username"));
 		
-		getServletContext().getRequestDispatcher("/DownloadDemo.jsp").forward(request, response);
+		Tirocinio tirocinio = new Tirocinio();
+		tirocinio.setCodiceID(Integer.parseInt(request.getParameter("tirocinio")));
+		
+		DocumentoRichiesta documento = new DocumentoRichiesta();
+		
+		documento.setStudente(studente);
+		documento.setTirocinio(tirocinio);
+		documento.setNome("pf_"+studente.getUsername()+".pdf");
+		
+		System.out.println(""+documento.getStudente().toString());
+		System.out.println(""+documento.getNome());
+		System.out.println(""+documento.getTirocinio().toString());
+
+		InputStream inputStream = null;	// input stream of the upload file
+
+		// obtains the upload file part in this multipart request
+		Part filePart = request.getPart("documento");
+		if (filePart != null) {
+			// prints out some information for debugging
+			System.out.println(filePart.getName());
+			System.out.println(filePart.getSize());
+			System.out.println(filePart.getContentType());
+
+			// obtains input stream of the upload file
+			inputStream = filePart.getInputStream();
+			documento.setFile(inputStream);
+		}
+		
+		Facade f = new Facade();
+		boolean res = f.aggiungiDomandaRichiesta(documento);
+
+		System.out.println(res);
+
+		RequestDispatcher redispatcher = getServletContext().getRequestDispatcher("/DownloadDemo.jsp");
+		redispatcher.forward(request, response);
+
 		
 	}
-
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);

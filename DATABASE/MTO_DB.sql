@@ -41,15 +41,15 @@ CREATE TABLE IF NOT EXISTS tirocinio(
   
 DROP TABLE IF EXISTS documento;
 CREATE TABLE IF NOT EXISTS documento(
- codiceID int(25) not null,
- nome varchar(20) not NULL,
- rif_utente varchar(15) not null,
- rif_tirocinio int(15) not null,
- file mediumblob,
- primary key (codiceID),
- foreign key(rif_utente) references utente(username),
- foreign key(rif_tirocinio) references tirocinio(codiceID)
-  );  
+ codiceID 		int(25) AUTO_INCREMENT,
+ nome 			varchar(20) not NULL,
+ rif_utente 	varchar(15) not null,
+ rif_tirocinio 	int(15) not null,
+ file 			mediumblob ,
+ primary key (codiceID)
+ /*foreign key(rif_utente) references utente(username),
+ foreign key(rif_tirocinio) references tirocinio(codiceID)*/
+  )ENGINE=InnoDB DEFAULT CHARSET=latin1;  
   
   
 DROP TABLE IF EXISTS firma;
@@ -59,7 +59,8 @@ rif_documento int(25) not null,
 foreign key(rif_utente) references utente(username),
 foreign key(rif_documento) references documento(codiceID)
 );
-  
+
+ALTER TABLE documento AUTO_INCREMENT=0;
   
 INSERT INTO utente VALUES ('r.napo12', 'ciao', 'r.napo12@studenti.unisa.it', 'studente', 'Rita', 'Napo', '1996-05-27', '2009/2010', '102', 'Unisa', 'Matematica', '');
 

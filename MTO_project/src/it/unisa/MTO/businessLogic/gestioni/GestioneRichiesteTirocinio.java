@@ -5,9 +5,11 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 
+import it.unisa.MTO.common.DocumentoRichiesta;
 import it.unisa.MTO.common.Tirocinio;
 import it.unisa.MTO.storage.DAO.GestioneRichiesteTirocinioDAO;
 import it.unisa.MTO.storage.connection.ConnessioneException;
+import it.unisa.MTO.storage.interfaces.IGRichiestaTirocinioDAO;
 
 public class GestioneRichiesteTirocinio {
 
@@ -27,11 +29,11 @@ public class GestioneRichiesteTirocinio {
 	}
 	
 
-	public boolean aggiungiRichiesta(String utenteUsername, String nomeFile, Integer codiceTirocinio, InputStream file){
-		GestioneRichiesteTirocinioDAO grtDAO;
+	public boolean aggiungiRichiesta(DocumentoRichiesta documento){
+		IGRichiestaTirocinioDAO grtDAO;
 		try {
 			grtDAO = new GestioneRichiesteTirocinioDAO();
-			return grtDAO.setDocument(utenteUsername, nomeFile, codiceTirocinio, file);
+			return grtDAO.setDocument(documento);
 		} catch (ConnessioneException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

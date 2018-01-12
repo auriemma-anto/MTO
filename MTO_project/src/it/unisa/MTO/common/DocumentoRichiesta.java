@@ -1,5 +1,7 @@
 package it.unisa.MTO.common;
 
+import java.io.InputStream;
+
 public class DocumentoRichiesta {
 
 	private int codiceID;
@@ -7,6 +9,7 @@ public class DocumentoRichiesta {
 	private Utente[] firme;
 	private Tirocinio tirocinio;
 	private Utente studente;
+	private InputStream file;
 	
 	public DocumentoRichiesta(){}
 	
@@ -45,6 +48,13 @@ public class DocumentoRichiesta {
 		this.studente = studente;
 	}
 	
+	public InputStream getFile(){
+		return file;
+	}
+	
+	public void setFile(InputStream file){
+		this.file = file;
+	}
 	
 	
 }
