@@ -11,14 +11,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import it.unisa.MTO.businessLogic.Facade;
+import it.unisa.MTO.common.DocumentoRichiesta;
+import it.unisa.MTO.common.Tirocinio;
+import it.unisa.MTO.common.Utente;
 
 /**
  * Servlet implementation class VisualizzaRichiestaServlet
  */
-@WebServlet("/VisualizzaRichiestaServlet")
+@WebServlet("/downloadServlet")
 public class VisualizzaRichiestaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+
 	public boolean checkF;
 
 	public VisualizzaRichiestaServlet() {
@@ -26,35 +29,47 @@ public class VisualizzaRichiestaServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//Il get dell'username deve venire alla sessione
-		String username = request.getParameter("username");
-		Integer tirocinio = Integer.parseInt(request.getParameter("tirocinio"));
-		String docName = "progettoformativo_"+username+".pdf";
-		
-		ServletContext context = getServletContext();
-		
-		//setta il mime type per il download dei file
-		String mimeType = context.getMimeType(docName);
-		if (mimeType == null) {
-			mimeType = "application/octet-stream";
-		}
-		
-		//settare le proprietà del content e gli attributi dell'header per la response
-		
-		response.setContentType(mimeType);
-		String headerKey = "Content-Disposition";
-		String headerValue = String.format("attachment; fileName=\"%s\"", docName);
-		response.setHeader(headerKey,  headerValue);
-		
-		OutputStream outStream = response.getOutputStream();
-		
-		Facade f = new Facade();
-		checkF = f.getDomandaRichiesta(outStream, username, docName, tirocinio);
-		
+		doGet(request,response);
+
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		Utente studente = new Utente();
+		studente.setUsername(request.getParameter("username"));
+
+		Tirocinio tirocinio = new Tirocinio();
+		tirocinio.setCodiceID(Integer.parseInt(request.getParameter("tirocinio")));
+
+		DocumentoRichiesta documento = new DocumentoRichiesta();
+
+		documento.setStudente(studente);
+		documento.setTirocinio(tirocinio);
+		documento.setNome("pf_"+studente.getUsername()+".pdf");
+
+		System.out.println(""+documento.getStudente().toString());
+		System.out.println(""+documento.getNome());
+		System.out.println(""+documento.getTirocinio().toString());
+
+		ServletContext context = getServletContext();
+
+		//setta il mime type per il download dei file
+		String mimeType = context.getMimeType(documento.getNome());
+		if (mimeType == null) {
+			mimeType = "application/octet-stream";
+		}
+
+		//settare le proprietà del content e gli attributi dell'header per la response
+
+		response.setContentType(mimeType);
+		String headerKey = "Content-Disposition";
+		String headerValue = String.format("attachment; fileName=\"%s\"", documento.getNome());
+		response.setHeader(headerKey,  headerValue);
+
+		OutputStream outStream = response.getOutputStream();
+
+		Facade f = new Facade();
+		checkF = f.getDomandaRichiesta(documento, outStream);
 	}
 
 }

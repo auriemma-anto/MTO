@@ -59,8 +59,8 @@ public class Facade {
 		return gestioneRichiesteTirocinio.visualizzaLista(utenteUsername);
 	}
 	
-	public boolean getDomandaRichiesta(OutputStream outputStream, String utenteUsername, String nomeFile, Integer codiceTirocinio){
-		return gestioneRichiesteTirocinio.visualizzaRichiesta(outputStream, utenteUsername, nomeFile, codiceTirocinio);
+	public boolean getDomandaRichiesta(DocumentoRichiesta doc, OutputStream outputStream){
+		return gestioneRichiesteTirocinio.visualizzaRichiesta(doc, outputStream);
 	}
 	
 	public boolean aggiungiDomandaRichiesta(DocumentoRichiesta documento){

@@ -41,11 +41,11 @@ public class GestioneRichiesteTirocinio {
 		return false;
 	}
 
-	public boolean visualizzaRichiesta(OutputStream out, String utenteUsername, String nomeFile, Integer codiceTirocinio){
+	public boolean visualizzaRichiesta(DocumentoRichiesta doc, OutputStream out){
 		GestioneRichiesteTirocinioDAO grtDAO;
 		try {
 			grtDAO = new GestioneRichiesteTirocinioDAO();
-			InputStream in = grtDAO.getDocument(utenteUsername, nomeFile, codiceTirocinio);
+			InputStream in = grtDAO.getDocument(doc);
 
 			byte[] buffer = new byte[4096];
 			int bytesRead = -1;

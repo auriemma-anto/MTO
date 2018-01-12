@@ -24,22 +24,22 @@ public class GestioneRichiesteTirocinioDAO implements IGRichiestaTirocinioDAO{
 	}
 
 	public boolean setDocument(DocumentoRichiesta documento){
-		
+
 		Connection conn = db.getConnessione();
-		
+
 		Utente studente = documento.getStudente();
 		String username = studente.getUsername();
-		
+
 		Tirocinio tirocinio = documento.getTirocinio();
 		int codiceTir = tirocinio.getCodiceID();
-		
+
 		String nomeFile = documento.getNome();
 		InputStream file = documento.getFile();
-		
+
 		System.out.println(""+username);
 		System.out.println(""+codiceTir);
 		System.out.println(""+file);
-		
+
 		String query = "INSERT INTO documento (nome, rif_utente, rif_tirocinio, file) VALUES (?,?,?,?);";
 
 		try {
@@ -47,18 +47,18 @@ public class GestioneRichiesteTirocinioDAO implements IGRichiestaTirocinioDAO{
 			statement.setString(1, nomeFile);
 			statement.setString(2, username);
 			statement.setInt(3, codiceTir);
-	
+
 			if (file != null) {
 				// Inserisce l'inputStream per l'upload dei file nella colonna blob
 				statement.setBlob(4, file);
 			}
 
 			System.out.println(""+statement);
-			
+
 			statement.executeUpdate();
-			
+
 			System.out.println("Update fatta");
-			
+
 			return true;
 
 		} catch (SQLException ex) {
@@ -70,30 +70,37 @@ public class GestioneRichiesteTirocinioDAO implements IGRichiestaTirocinioDAO{
 					e.printStackTrace();
 				}
 			}
-			
+
 			ex.printStackTrace();
 		}
 		return false;
 	}
 
 	@Override
-	public InputStream getDocument(String utenteUsername, String nomeFile, Integer codiceTirocinio) {
+	public InputStream getDocument(DocumentoRichiesta doc) {
 		// TODO Auto-generated method stub
 		InputStream inputStream = null;
+		Utente studente = doc.getStudente();
+		String username = studente.getUsername();
+
+		Tirocinio tirocinio = doc.getTirocinio();
+		int codiceTir = tirocinio.getCodiceID();
+
+		String nomeFile = doc.getNome();
 		boolean st = false;
 		Connection conn = db.getConnessione();
-		String query = "SELECT * FROM Documento WHERE utenteUsername=? AND nome =? AND tirocinioCodiceID=?" ;
+		String query = "SELECT * FROM documento WHERE (rif_utente = ? AND rif_tirocinio = ? AND nome = ?);" ;
 
 		try {
 			PreparedStatement statement = conn.prepareStatement(query);
-			statement.setString(1, utenteUsername);
-			statement.setString(2, nomeFile);
-			statement.setInt(3, codiceTirocinio);
+			statement.setString(1, username);
+			statement.setInt(2, codiceTir);
+			statement.setString(3, nomeFile);
 
-			
+
 			ResultSet res = statement.executeQuery(query);
 			st = res.next();
-			
+
 			if(st) {
 				Blob blob = res.getBlob("file");
 				inputStream = blob.getBinaryStream();
@@ -108,16 +115,16 @@ public class GestioneRichiesteTirocinioDAO implements IGRichiestaTirocinioDAO{
 					e.printStackTrace();
 				}
 			}
+			ex.printStackTrace();
 		}
 		return inputStream;
-
 	}
 
 	@Override
 	public ArrayList<Tirocinio> getList(String utenteUsername) {
 		// TODO Auto-generated method stub
-		
-		
+
+
 		Connection conn = db.getConnessione();
 		ArrayList<Tirocinio> lista = new ArrayList<Tirocinio>();
 		String query = "SELECT * FROM Tirocinio WHERE rif_utente=? " ;
@@ -126,7 +133,7 @@ public class GestioneRichiesteTirocinioDAO implements IGRichiestaTirocinioDAO{
 			PreparedStatement statement = conn.prepareStatement(query);
 			statement.setString(1, utenteUsername);
 
-			
+
 			ResultSet res = statement.executeQuery(query);
 
 			while(res.next()) {
@@ -140,7 +147,7 @@ public class GestioneRichiesteTirocinioDAO implements IGRichiestaTirocinioDAO{
 				t.setTematica(res.getString("tematica"));
 				lista.add(t);
 			}
-			
+
 
 		} catch (SQLException ex) {
 			if (conn != null) {

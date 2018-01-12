@@ -58,6 +58,7 @@ public class AggiungiRichiestaServlet extends HttpServlet {
 			inputStream = filePart.getInputStream();
 			documento.setFile(inputStream);
 		}
+		inputStream.close();
 		
 		Facade f = new Facade();
 		boolean res = f.aggiungiDomandaRichiesta(documento);
