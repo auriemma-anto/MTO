@@ -40,10 +40,10 @@
 			%>
 
 			<tr>
-				<td><%=docR.getCodiceID()%></td>
-				<td><%=docR.getNome()%></td>
-				<td><%=docR.getStudente().getUsername()%></td>
-				<td><%=docR.getTirocinio().getCodiceID()%></td>
+				<td style="text-align: center;"><%=docR.getCodiceID()%></td>
+				<td style="text-align: center;"><%=docR.getNome()%></td>
+				<td style="text-align: center;"><%=docR.getStudente().getUsername()%></td>
+				<td style="text-align: center;"><%=docR.getTirocinio().getCodiceID()%></td>
 			</tr>
 
 

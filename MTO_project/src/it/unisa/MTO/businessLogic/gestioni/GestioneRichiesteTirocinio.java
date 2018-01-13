@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import it.unisa.MTO.common.DocumentoRichiesta;
 import it.unisa.MTO.common.Tirocinio;
+import it.unisa.MTO.common.Utente;
 import it.unisa.MTO.storage.DAO.GestioneRichiesteTirocinioDAO;
 import it.unisa.MTO.storage.connection.ConnessioneException;
 import it.unisa.MTO.storage.interfaces.IGRichiestaTirocinioDAO;
@@ -26,7 +27,7 @@ public class GestioneRichiesteTirocinio {
 		}
 		return null;
 	}
-	
+
 
 	public boolean aggiungiRichiesta(DocumentoRichiesta documento){
 		IGRichiestaTirocinioDAO grtDAO;
@@ -54,7 +55,7 @@ public class GestioneRichiesteTirocinio {
 
 			out.close();
 			in.close();
-			
+
 		} catch (ConnessioneException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -70,15 +71,25 @@ public class GestioneRichiesteTirocinio {
 		GestioneRichiesteTirocinioDAO grtDAO;
 		try {
 			grtDAO = new GestioneRichiesteTirocinioDAO();
-			
+
 		} catch (ConnessioneException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
 
-	public void firma(){}
+	public boolean firma(DocumentoRichiesta documento, Utente utente, boolean firma){
+		IGRichiestaTirocinioDAO grtDAO;
+		try{
+			grtDAO = new GestioneRichiesteTirocinioDAO();
+			return grtDAO.markDocument(documento, utente, firma);
+		}catch (ConnessioneException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
 
 	public void visualizzaStato(){}
 }

@@ -166,8 +166,30 @@ public class GestioneRichiesteTirocinioDAO implements IGRichiestaTirocinioDAO{
 	}
 
 	@Override
-	public boolean markDocument(String utenteUsername, String nomeFile, Integer codiceTirocinio) {
-		// TODO Auto-generated method stub
+	public boolean markDocument(DocumentoRichiesta documento, Utente utente, boolean firma) {
+
+		Connection conn = db.getConnessione(); 
+		String query = "INSERT INTO firma (rif_utente, rif_documento, valore) VALUES ('"+utente.getUsername()+"', '"+documento.getCodiceID()+"', "+firma+");";
+
+		try{
+
+			PreparedStatement statement = conn.prepareStatement(query);
+			statement.executeUpdate();
+			return true;
+
+		}catch (SQLException ex) {
+			if (conn != null) {
+				// closes the database connection
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+
+			ex.printStackTrace();
+		}
+
 		return false;
 	}
 

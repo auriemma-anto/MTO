@@ -71,8 +71,8 @@ public class Facade {
 		gestioneRichiesteTirocinio.eliminaRichiesta(null, null);
 	}
 	
-	public void firmaDomandaRichiesta(){
-		gestioneRichiesteTirocinio.firma();
+	public boolean firmaDomandaRichiesta(DocumentoRichiesta documento, Utente utente, boolean firma){
+		return gestioneRichiesteTirocinio.firma(documento, utente, firma);
 	}
 	
 	public void statoDomandaRichiesta(){

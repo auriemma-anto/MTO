@@ -1,12 +1,13 @@
 package it.unisa.MTO.common;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 
 public class DocumentoRichiesta {
 
 	private int codiceID;
 	private String nome;
-	private Utente[] firme;
+	private ArrayList<Utente> firme;
 	private Tirocinio tirocinio;
 	private Utente studente;
 	private InputStream file;
@@ -32,11 +33,11 @@ public class DocumentoRichiesta {
 		this.tirocinio = tirocinio;
 	}
 
-	public Utente[] getFirma() {
+	public ArrayList<Utente> getFirma() {
 		return firme;
 	}
 
-	public void setFirma(Utente[] firma) {
+	public void setFirma(ArrayList<Utente> firma) {
 		this.firme = firma;
 	}
 

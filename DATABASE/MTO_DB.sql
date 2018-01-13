@@ -56,8 +56,9 @@ DROP TABLE IF EXISTS firma;
 CREATE TABLE IF NOT EXISTS firma(
 rif_utente varchar(15) not null,
 rif_documento int(25) not null,
-foreign key(rif_utente) references utente(username),
-foreign key(rif_documento) references documento(codiceID)
+valore boolean
+/*foreign key(rif_utente) references utente(username),
+foreign key(rif_documento) references documento(codiceID)*/
 );
 
 ALTER TABLE documento AUTO_INCREMENT=0;
