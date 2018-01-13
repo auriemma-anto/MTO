@@ -49,12 +49,13 @@ public class GestioneRichiesteTirocinio {
 
 			byte[] buffer = new byte[4096];
 			int bytesRead = -1;
-			while ((bytesRead = in.read(buffer)) != 1) {
+			while ((bytesRead = in.read(buffer)) != -1) {
+				System.out.println("eheh" + bytesRead);
 				out.write(buffer, 0, bytesRead);
 			}
 
-			in.close();
-			out.close();
+			//in.close();
+			//out.close();
 			
 		} catch (ConnessioneException e) {
 			// TODO Auto-generated catch block

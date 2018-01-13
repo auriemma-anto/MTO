@@ -89,13 +89,10 @@ public class GestioneRichiesteTirocinioDAO implements IGRichiestaTirocinioDAO{
 		String nomeFile = doc.getNome();
 		boolean st = false;
 		Connection conn = db.getConnessione();
-		String query = "SELECT * FROM documento WHERE (rif_utente = ? AND rif_tirocinio = ? AND nome = ?);" ;
+		String query = "SELECT * FROM documento WHERE (rif_utente = '"+username+"') AND (rif_tirocinio = "+ codiceTir+") AND (nome = '"+ nomeFile+"');" ;
 
 		try {
 			PreparedStatement statement = conn.prepareStatement(query);
-			statement.setString(1, username);
-			statement.setInt(2, codiceTir);
-			statement.setString(3, nomeFile);
 
 
 			ResultSet res = statement.executeQuery(query);
