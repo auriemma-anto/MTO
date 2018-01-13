@@ -89,12 +89,12 @@ public class GestioneRichiesteTirocinioDAO implements IGRichiestaTirocinioDAO{
 		String nomeFile = doc.getNome();
 		boolean st = false;
 		Connection conn = db.getConnessione();
-		String query = "SELECT * FROM documento WHERE (rif_utente = '"+username+"') AND (rif_tirocinio = "+ codiceTir+") AND (nome = '"+ nomeFile+"');" ;
+		String query = "SELECT * FROM documento WHERE nome = '"+nomeFile+"' AND rif_utente = '"+username+"' AND rif_tirocinio = "+codiceTir+";";
 
 		try {
 			PreparedStatement statement = conn.prepareStatement(query);
 
-
+			System.out.println(""+statement);
 			ResultSet res = statement.executeQuery(query);
 			st = res.next();
 
@@ -118,34 +118,32 @@ public class GestioneRichiesteTirocinioDAO implements IGRichiestaTirocinioDAO{
 	}
 
 	@Override
-	public ArrayList<Tirocinio> getList(String utenteUsername) {
+	public ArrayList<DocumentoRichiesta> getList(Tirocinio tirocinio) {
 		// TODO Auto-generated method stub
 
-
 		Connection conn = db.getConnessione();
-		ArrayList<Tirocinio> lista = new ArrayList<Tirocinio>();
-		String query = "SELECT * FROM Tirocinio WHERE rif_utente=? " ;
+		int codiceID = tirocinio.getCodiceID();
+		ArrayList<DocumentoRichiesta> lista = new ArrayList<DocumentoRichiesta>();
+		String query = "SELECT * FROM documento WHERE rif_tirocinio='"+codiceID+"';";
 
 		try {
 			PreparedStatement statement = conn.prepareStatement(query);
-			statement.setString(1, utenteUsername);
-
-
 			ResultSet res = statement.executeQuery(query);
 
 			while(res.next()) {
-				Tirocinio t = new Tirocinio();
-				t.setAzienda(res.getString("azienda"));
-				t.setCodiceID(res.getInt("codiceID"));
-				t.setDataFine(res.getDate("data_fine"));
-				t.setDataInizio(res.getDate("data_inizio"));
-				t.setDescizione(res.getString("descrizione"));
-				t.setLuogo(res.getString("luogo"));
-				t.setTematica(res.getString("tematica"));
-				lista.add(t);
+				DocumentoRichiesta doc = new DocumentoRichiesta();
+				doc.setCodiceID(res.getInt("codiceID"));
+				doc.setNome(res.getString("nome"));
+				doc.setTirocinio(tirocinio);
+				Utente st = new Utente();
+				st.setUsername(res.getString("rif_utente"));
+				doc.setStudente(st);
+				lista.add(doc);
+				System.out.println("DAO: "+doc.getCodiceID());
+				System.out.println("DAO: "+doc.getNome());
+				System.out.println("DAO: "+doc.getTirocinio().getCodiceID());
+				System.out.println("DAO: "+doc.getStudente().getUsername());
 			}
-
-
 		} catch (SQLException ex) {
 			if (conn != null) {
 				// closes the database connection
@@ -155,6 +153,8 @@ public class GestioneRichiesteTirocinioDAO implements IGRichiestaTirocinioDAO{
 					e.printStackTrace();
 				}
 			}
+
+			ex.printStackTrace();
 		}
 		return lista;
 	}

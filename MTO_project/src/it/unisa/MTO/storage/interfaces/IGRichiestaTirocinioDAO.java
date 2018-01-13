@@ -10,7 +10,7 @@ public interface IGRichiestaTirocinioDAO {
 	
 	public boolean setDocument(DocumentoRichiesta documento);
 	public InputStream getDocument(DocumentoRichiesta doc);
-	public ArrayList<Tirocinio> getList(String utenteUsername);
+	public ArrayList<DocumentoRichiesta> getList(Tirocinio tirocinio);
 	public boolean delDocument(String utenteUsername, String nomeFile, Integer codiceTirocinio);
 	public boolean markDocument(String utenteUsername, String nomeFile, Integer codiceTirocinio);
 	public boolean checkDocState(String utenteUsername);

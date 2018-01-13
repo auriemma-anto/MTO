@@ -55,6 +55,5 @@ public class DocumentoRichiesta {
 	public void setFile(InputStream file){
 		this.file = file;
 	}
-	
-	
+		
 }

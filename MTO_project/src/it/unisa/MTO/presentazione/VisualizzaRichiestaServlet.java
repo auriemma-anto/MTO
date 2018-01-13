@@ -70,6 +70,8 @@ public class VisualizzaRichiestaServlet extends HttpServlet {
 
 		Facade f = new Facade();
 		checkF = f.getDomandaRichiesta(documento, outStream);
+		
+		System.out.println(""+checkF);
 	}
 
 }
