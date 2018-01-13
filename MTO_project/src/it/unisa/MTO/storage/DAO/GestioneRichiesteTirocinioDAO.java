@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import it.unisa.MTO.common.DocumentoRichiesta;
+import it.unisa.MTO.common.Firma;
 import it.unisa.MTO.common.Tirocinio;
 import it.unisa.MTO.common.Utente;
 import it.unisa.MTO.storage.connection.AccessoDB;
@@ -194,9 +195,45 @@ public class GestioneRichiesteTirocinioDAO implements IGRichiestaTirocinioDAO{
 	}
 
 	@Override
-	public boolean checkDocState(String utenteUsername) {
+	public DocumentoRichiesta checkDocState(DocumentoRichiesta documento) {
 		// TODO Auto-generated method stub
-		return false;
+		Connection conn = db.getConnessione(); 
+		String query = "SELECT * FROM firma WHERE rif_documento = '"+documento.getCodiceID()+"';";
+		ArrayList<Firma> firme = new ArrayList<Firma>();
+		try{
+
+			PreparedStatement statement = conn.prepareStatement(query);
+			ResultSet res = statement.executeQuery(query);
+			
+			while(res.next()) {
+				Utente utente = new Utente();
+				utente.setUsername(res.getString("rif_utente"));
+				
+				Firma firma = new Firma();
+				firma.setUtente(utente);
+				
+				firma.setValore(res.getBoolean("valore"));
+				
+				firme.add(firma);
+				
+			}
+			documento.setFirma(firme);
+			
+			return documento;
+
+		}catch (SQLException ex) {
+			if (conn != null) {
+				// closes the database connection
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+
+			ex.printStackTrace();
+		}
+		return null;
 	}
 }
 

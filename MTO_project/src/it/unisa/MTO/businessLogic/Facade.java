@@ -75,8 +75,8 @@ public class Facade {
 		return gestioneRichiesteTirocinio.firma(documento, utente, firma);
 	}
 	
-	public void statoDomandaRichiesta(){
-		gestioneRichiesteTirocinio.visualizzaStato();
+	public DocumentoRichiesta statoDomandaRichiesta(DocumentoRichiesta documento){
+		return gestioneRichiesteTirocinio.visualizzaStato(documento);
 	}
 	
 }

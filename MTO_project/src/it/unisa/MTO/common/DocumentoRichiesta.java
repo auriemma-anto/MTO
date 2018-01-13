@@ -7,7 +7,7 @@ public class DocumentoRichiesta {
 
 	private int codiceID;
 	private String nome;
-	private ArrayList<Utente> firme;
+	private ArrayList<Firma> firme;
 	private Tirocinio tirocinio;
 	private Utente studente;
 	private InputStream file;
@@ -33,11 +33,11 @@ public class DocumentoRichiesta {
 		this.tirocinio = tirocinio;
 	}
 
-	public ArrayList<Utente> getFirma() {
+	public ArrayList<Firma> getFirma() {
 		return firme;
 	}
 
-	public void setFirma(ArrayList<Utente> firma) {
+	public void setFirma(ArrayList<Firma> firma) {
 		this.firme = firma;
 	}
 

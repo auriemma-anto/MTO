@@ -91,5 +91,16 @@ public class GestioneRichiesteTirocinio {
 		return false;
 	}
 
-	public void visualizzaStato(){}
+	public DocumentoRichiesta visualizzaStato(DocumentoRichiesta documento){
+		IGRichiestaTirocinioDAO grtDAO;
+		try{
+			grtDAO = new GestioneRichiesteTirocinioDAO();
+			return grtDAO.checkDocState(documento);
+		}catch (ConnessioneException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return documento;
+		
+	}
 }
