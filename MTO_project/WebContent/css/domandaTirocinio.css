@@ -7,7 +7,7 @@ h2 {
 	width: 100%;
 }
 
-a.download{
+a.button{
 	-webkit-appearance: button;
     -moz-appearance: button;
     appearance: button;
@@ -19,17 +19,17 @@ a.download{
     width: 80px;
 }
 
-a.download:link {
+a.button:link {
 	text-decoration: none;
 	color: #000;
 }
 
-a.download:visited {
+a.button:visited {
 	text-decoration: none;
 	color: #000;
 }
 
-a.download:hover {
+a.button:hover {
 	text-decoration: none;
 	color: #800000;
 }

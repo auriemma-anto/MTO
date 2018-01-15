@@ -40,18 +40,20 @@ public class GestioneRichiesteTirocinioDAO implements IGRichiestaTirocinioDAO{
 		System.out.println(""+username);
 		System.out.println(""+codiceTir);
 		System.out.println(""+file);
-
-		String query = "INSERT INTO documento (nome, rif_utente, rif_tirocinio, file) VALUES (?,?,?,?);";
+		
+		
+		String select1 = "(SELECT username FROM utente WHERE username='"+username+"')";
+		String select2 = "(SELECT codiceID FROM tirocinio WHERE codiceID="+codiceTir+")";
+		String query = "INSERT INTO documento (nome, rif_utente, rif_tirocinio, file) "
+				+ "VALUES (?,"+select1+","+select2+",?);";
 
 		try {
 			PreparedStatement statement = conn.prepareStatement(query);
 			statement.setString(1, nomeFile);
-			statement.setString(2, username);
-			statement.setInt(3, codiceTir);
 
 			if (file != null) {
 				// Inserisce l'inputStream per l'upload dei file nella colonna blob
-				statement.setBlob(4, file);
+				statement.setBlob(2, file);
 			}
 
 			System.out.println(""+statement);
@@ -193,7 +195,10 @@ public class GestioneRichiesteTirocinioDAO implements IGRichiestaTirocinioDAO{
 	public boolean markDocument(DocumentoRichiesta documento, Utente utente, boolean firma) {
 
 		Connection conn = db.getConnessione(); 
-		String query = "INSERT INTO firma (rif_utente, rif_documento, valore) VALUES ('"+utente.getUsername()+"', '"+documento.getCodiceID()+"', "+firma+");";
+		
+		String select1 = "(SELECT username FROM utente WHERE username='"+utente.getUsername()+"')";
+		String select2 = "(SELECT codiceID FROM documento WHERE codiceID="+documento.getCodiceID()+")";
+		String query = "INSERT INTO firma (rif_utente, rif_documento, valore) VALUES ("+select1+", "+select2+", "+firma+");";
 
 		try{
 

@@ -27,10 +27,15 @@ public class VisualizzaStatoRichiestaServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 
-		// l'utente deve essere passato dalla sessione
-		Utente user = new Utente();
-		user.setUsername("r.napo12");
+		// Dichiarazioni di prova: stringa loggedUser 
+		
+		String loggedUser = "c.desantis";	
+		request.getSession().setAttribute("loggedUser", loggedUser);
 
+		Utente user = new Utente();
+		String username = (String) request.getSession().getAttribute("loggedUser");
+		user.setUsername(username);
+		
 		Facade f = new Facade();
 
 		ArrayList<DocumentoRichiesta> documenti = f.listaDomandeRichiesta(new Tirocinio(), user);
@@ -39,8 +44,12 @@ public class VisualizzaStatoRichiestaServlet extends HttpServlet {
 		
 		while(it.hasNext()){
 			DocumentoRichiesta doc = (DocumentoRichiesta) it.next();
+			
+			/*Tirocinio tirocinio = new Tirocinio;
+			 *f.getTirocinio(doc.getTirocinio().getCodiceID());
+			 *doc.setTirocinio(tirocinio);*/
+			
 			ArrayList<Firma> listaFirme = f.statoDomandaRichiesta(doc).getFirma();			
-
 			doc.setFirma(listaFirme);
 			docFirmati.add(doc);
 		}

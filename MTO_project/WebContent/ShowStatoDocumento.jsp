@@ -7,6 +7,7 @@
 	if (documents == null) {
 		response.sendRedirect("./visualizzaStato");
 	}
+
 %>
 
 <!DOCTYPE html>
@@ -15,7 +16,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Stato domande - MTO.unisa.it</title>
 <link type="text/css" rel="stylesheet" href="css/header.css">
-<link type="text/css" rel="stylesheet" href="css/StatoDomanda.css">
+<link type="text/css" rel="stylesheet" href="css/domandaTirocinio.css">
 </head>
 <body>
 
@@ -76,7 +77,7 @@
 				</td>
 				<td><a
 					href="./downloadServlet?username=<%=docR.getStudente().getUsername()%>&tirocinio=<%=docR.getTirocinio().getCodiceID()%>"
-					class="download">Scarica Qui</a></td>
+					class="button">Scarica Qui</a></td>
 
 				<%
 					}

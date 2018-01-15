@@ -20,35 +20,20 @@ public class FirmaRichiestaServlet extends HttpServlet {
        
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	
-    	DocumentoRichiesta documento = new DocumentoRichiesta();
-    	documento.setCodiceID(1);
+    	boolean firma = Boolean.parseBoolean(request.getParameter("firma"));
     	
-    	boolean[] firme = new boolean[4];
-		firme[0] = Boolean.parseBoolean(request.getParameter("firma1"));
-		firme[1] = Boolean.parseBoolean(request.getParameter("firma2"));
-		firme[2] = Boolean.parseBoolean(request.getParameter("firma3"));
-		firme[3] = Boolean.parseBoolean(request.getParameter("firma4"));
+    	Utente user = new Utente();
+		user.setUsername(request.getParameter("username"));
 		
-		Utente u1 = new Utente();
-		u1.setUsername(request.getParameter("username1"));
-		Utente u2 = new Utente();
-		u2.setUsername(request.getParameter("username2"));
-		Utente u3 = new Utente();
-		u3.setUsername(request.getParameter("username3"));
-		Utente u4 = new Utente();
-		u4.setUsername(request.getParameter("username4"));
-		
+    	
+    	DocumentoRichiesta documento = new DocumentoRichiesta();
+    	documento.setCodiceID(Integer.parseInt(request.getParameter("documento")));
+    	
 		Facade f1 = new Facade();
-		Facade f2 = new Facade();
-		Facade f3 = new Facade();
-		Facade f4 = new Facade();
 		
-		f1.firmaDomandaRichiesta(documento, u1, firme[0]);
-		f2.firmaDomandaRichiesta(documento, u2, firme[1]);
-		f3.firmaDomandaRichiesta(documento, u3, firme[2]);
-		f4.firmaDomandaRichiesta(documento, u4, firme[3]);
+		f1.firmaDomandaRichiesta(documento, user, firma);
 		
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Firme.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ShowLista.jsp");
 		dispatcher.forward(request, response);	
 		
 	}

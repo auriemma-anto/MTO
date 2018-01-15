@@ -23,8 +23,18 @@ public class ListaRichiesteTirociniServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		// Dichiarazioni di prova: stringa loggedUser & int codiceID 
+		
+		String loggedUser = "ericsson.resp";	
+		request.getSession().setAttribute("loggedUser", loggedUser);
+		
+		int idTirocinio = 1;
+		//request.getSession().setAttribute("idTirocinio", idTirocinio);
+		
 		Tirocinio tirocinio = new Tirocinio();
-		tirocinio.setCodiceID(12);
+		//int codiceID = Integer.parseInt((String) request.getSession().getAttribute("idTirocinio"));
+		//tirocinio.setCodiceID(codiceID);
+		tirocinio.setCodiceID(idTirocinio);
 
 		Facade f = new Facade();
 		ArrayList<DocumentoRichiesta> docs = f.listaDomandeRichiesta(tirocinio, null);
