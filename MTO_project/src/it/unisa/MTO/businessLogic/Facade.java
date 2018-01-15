@@ -55,8 +55,8 @@ public class Facade {
 	}
 	
 	//----------GESTIONE DOMANDE RICHIESTA
-	public ArrayList<DocumentoRichiesta> listaDomandeRichiesta(Tirocinio tirocinio){
-		return gestioneRichiesteTirocinio.visualizzaLista(tirocinio);
+	public ArrayList<DocumentoRichiesta> listaDomandeRichiesta(Tirocinio tirocinio, Utente studente){
+		return gestioneRichiesteTirocinio.visualizzaLista(tirocinio, studente);
 	}
 	
 	public boolean getDomandaRichiesta(DocumentoRichiesta doc, OutputStream outputStream){

@@ -2,7 +2,9 @@ package it.unisa.MTO.presentazione;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import it.unisa.MTO.businessLogic.Facade;
 import it.unisa.MTO.common.DocumentoRichiesta;
 import it.unisa.MTO.common.Firma;
+import it.unisa.MTO.common.Tirocinio;
+import it.unisa.MTO.common.Utente;
 
 /**
  * Servlet implementation class VisualizzaStatoRichiestaServlet
@@ -19,36 +23,34 @@ import it.unisa.MTO.common.Firma;
 @WebServlet("/visualizzaStato")
 public class VisualizzaStatoRichiestaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public VisualizzaStatoRichiestaServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-        
-    }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		DocumentoRichiesta doc = new DocumentoRichiesta();
-		doc.setCodiceID(Integer.parseInt(request.getParameter("codice")));
-		
-		System.out.println(doc.getCodiceID());
-		
+
+
+		// l'utente deve essere passato dalla sessione
+		Utente user = new Utente();
+		user.setUsername("r.napo12");
+
 		Facade f = new Facade();
-		doc = f.statoDomandaRichiesta(doc);
+
+		ArrayList<DocumentoRichiesta> documenti = f.listaDomandeRichiesta(new Tirocinio(), user);
+		Iterator<?> it = documenti.iterator();
+		ArrayList<DocumentoRichiesta> docFirmati = new ArrayList<DocumentoRichiesta>();		
 		
-		ArrayList<Firma> listaFirme= doc.getFirma();
-		
-		System.out.println(listaFirme.get(0).getValore() + " " + listaFirme.get(0).getUtente().getUsername());
-		System.out.println(listaFirme.get(1).getValore() + " " + listaFirme.get(1).getUtente().getUsername());
-		System.out.println(listaFirme.get(2).getValore() + " " + listaFirme.get(2).getUtente().getUsername());
-		System.out.println(listaFirme.get(3).getValore() + " " + listaFirme.get(3).getUtente().getUsername());
-		
+		while(it.hasNext()){
+			DocumentoRichiesta doc = (DocumentoRichiesta) it.next();
+			ArrayList<Firma> listaFirme = f.statoDomandaRichiesta(doc).getFirma();			
+
+			doc.setFirma(listaFirme);
+			docFirmati.add(doc);
+		}
+
+		request.removeAttribute("documenti");
+		request.setAttribute("documenti", docFirmati);	
+
+		RequestDispatcher redispatcher = getServletContext().getRequestDispatcher("/ShowStatoDocumento.jsp");
+		redispatcher.forward(request, response);
+
 	}
 
 	/**

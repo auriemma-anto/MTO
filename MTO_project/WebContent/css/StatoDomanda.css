@@ -1,0 +1,90 @@
+body {
+	margin-top: 200px;
+}
+
+h2 {
+	text-align: center;
+	width: 100%;
+}
+
+a.download{
+	-webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+
+	padding: 1.5%;
+    text-decoration: none;
+    color: initial;
+    height: 20px;
+    width: 80px;
+}
+
+a.download:link {
+	text-decoration: none;
+	color: #000;
+}
+
+a.download:visited {
+	text-decoration: none;
+	color: #000;
+}
+
+a.download:hover {
+	text-decoration: none;
+	color: #800000;
+}
+
+div.container {
+	margin-left: 23%;
+	margin-right: 23%;
+	text-align: center;
+	height: 300px;
+	width: 700px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: black;
+	overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+	width: 0px;
+}
+
+::-webkit-scrollbar-track-piece {
+	background-color: transparent;
+	-webkit-border-radius: 6px;
+}
+
+table.docTable {
+	width: 100%;
+}
+
+table.docTable td, table.docTable th {
+	border: 1px solid #FFFFFF;
+	padding: 3px 4px;
+}
+
+table.docTable tbody td {
+	font-size: 13px;
+}
+
+table.docTable td:nth-child(even) {
+	background: #EBEBEB;
+}
+
+table.docTable thead {
+	background: #FFFFFF;
+	border-bottom: 4px solid #CFEEFC;
+}
+
+table.docTable thead th {
+	font-size: 15px;
+	font-weight: bold;
+	color: #333333;
+	text-align: center;
+	border-left: 2px solid #CFEEFC;
+}
+
+table.docTable thead th:first-child {
+	border-left: none;
+}

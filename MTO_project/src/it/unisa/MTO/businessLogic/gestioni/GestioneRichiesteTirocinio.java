@@ -16,11 +16,11 @@ public class GestioneRichiesteTirocinio {
 
 	public GestioneRichiesteTirocinio(){}
 
-	public ArrayList<DocumentoRichiesta> visualizzaLista(Tirocinio tirocinio){
+	public ArrayList<DocumentoRichiesta> visualizzaLista(Tirocinio tirocinio, Utente studente){
 		IGRichiestaTirocinioDAO grtDAO;
 		try {
 			grtDAO = new GestioneRichiesteTirocinioDAO();
-			return grtDAO.getList(tirocinio);
+			return grtDAO.getList(tirocinio, studente);
 		} catch (ConnessioneException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -45,7 +45,7 @@ public class GestioneRichiesteTirocinio {
 		IGRichiestaTirocinioDAO grtDAO;
 		try {
 			grtDAO = new GestioneRichiesteTirocinioDAO();
-			InputStream in = grtDAO.getDocument(doc);
+			InputStream in = grtDAO.getDocument(doc).getFile();
 
 			byte[] buffer = new byte[4096];
 			int bytesRead = -1;

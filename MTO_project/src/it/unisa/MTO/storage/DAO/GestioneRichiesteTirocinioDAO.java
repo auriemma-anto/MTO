@@ -78,30 +78,34 @@ public class GestioneRichiesteTirocinioDAO implements IGRichiestaTirocinioDAO{
 	}
 
 	@Override
-	public InputStream getDocument(DocumentoRichiesta doc) {
+	public DocumentoRichiesta getDocument(DocumentoRichiesta doc) {
 		// TODO Auto-generated method stub
 		InputStream inputStream = null;
 		Utente studente = doc.getStudente();
 		String username = studente.getUsername();
 
-		Tirocinio tirocinio = doc.getTirocinio();
-		int codiceTir = tirocinio.getCodiceID();
 
-		String nomeFile = doc.getNome();
-		boolean st = false;
 		Connection conn = db.getConnessione();
-		String query = "SELECT * FROM documento WHERE nome = '"+nomeFile+"' AND rif_utente = '"+username+"' AND rif_tirocinio = "+codiceTir+";";
+
+		String query = "SELECT * FROM documento WHERE rif_utente = '"+username+"';";
 
 		try {
 			PreparedStatement statement = conn.prepareStatement(query);
 
 			System.out.println(""+statement);
 			ResultSet res = statement.executeQuery(query);
-			st = res.next();
 
-			if(st) {
+			if(res.next()) {
+				doc.setCodiceID(res.getInt("codiceID"));
+				doc.setNome(res.getString("nome"));
+
+				Tirocinio tirocinio = new Tirocinio();
+				tirocinio.setCodiceID(res.getInt("rif_tirocinio"));
+				doc.setTirocinio(tirocinio);
+
 				Blob blob = res.getBlob("file");
 				inputStream = blob.getBinaryStream();
+				doc.setFile(inputStream);
 			}
 
 		} catch (SQLException ex) {
@@ -115,27 +119,46 @@ public class GestioneRichiesteTirocinioDAO implements IGRichiestaTirocinioDAO{
 			}
 			ex.printStackTrace();
 		}
-		return inputStream;
+		return doc;
 	}
 
 	@Override
-	public ArrayList<DocumentoRichiesta> getList(Tirocinio tirocinio) {
+	public ArrayList<DocumentoRichiesta> getList(Tirocinio tirocinio, Utente studente) {
 		// TODO Auto-generated method stub
 
 		Connection conn = db.getConnessione();
-		int codiceID = tirocinio.getCodiceID();
+
 		ArrayList<DocumentoRichiesta> lista = new ArrayList<DocumentoRichiesta>();
-		String query = "SELECT * FROM documento WHERE rif_tirocinio='"+codiceID+"';";
+
+		String query = null;
 
 		try {
+
+			if(tirocinio.getCodiceID()>0){
+				int codiceID = tirocinio.getCodiceID();
+				query = "SELECT * FROM documento WHERE rif_tirocinio='"+codiceID+"';";
+			}
+
+			else if(!studente.getUsername().isEmpty()){
+				String username = studente.getUsername();
+				query = "SELECT * FROM documento WHERE rif_utente='"+username+"';";
+
+			}
+
 			PreparedStatement statement = conn.prepareStatement(query);
 			ResultSet res = statement.executeQuery(query);
+
+			System.out.println(""+statement);
 
 			while(res.next()) {
 				DocumentoRichiesta doc = new DocumentoRichiesta();
 				doc.setCodiceID(res.getInt("codiceID"));
 				doc.setNome(res.getString("nome"));
-				doc.setTirocinio(tirocinio);
+
+				Tirocinio tir = new Tirocinio();
+				tir.setCodiceID(res.getInt("rif_tirocinio"));
+				doc.setTirocinio(tir);
+
 				Utente st = new Utente();
 				st.setUsername(res.getString("rif_utente"));
 				doc.setStudente(st);
@@ -196,29 +219,38 @@ public class GestioneRichiesteTirocinioDAO implements IGRichiestaTirocinioDAO{
 
 	@Override
 	public DocumentoRichiesta checkDocState(DocumentoRichiesta documento) {
-		// TODO Auto-generated method stub
+
+		System.out.println("CheckDocState");
+		System.out.println(""+documento.getCodiceID());
+
 		Connection conn = db.getConnessione(); 
-		String query = "SELECT * FROM firma WHERE rif_documento = '"+documento.getCodiceID()+"';";
+		String query = "SELECT * FROM firma WHERE rif_documento = "+documento.getCodiceID()+";";
 		ArrayList<Firma> firme = new ArrayList<Firma>();
+
 		try{
 
 			PreparedStatement statement = conn.prepareStatement(query);
 			ResultSet res = statement.executeQuery(query);
-			
-			while(res.next()) {
+			System.out.println(""+statement);
+			System.out.println(res.equals(null));
+
+			while(res.next()){
 				Utente utente = new Utente();
 				utente.setUsername(res.getString("rif_utente"));
-				
+
 				Firma firma = new Firma();
 				firma.setUtente(utente);
-				
+
 				firma.setValore(res.getBoolean("valore"));
-				
+
+				System.out.println("DAO: "+firma.getUtente().getUsername());
+				System.out.println("DAO: "+firma.getValore());
+
 				firme.add(firma);
-				
 			}
+
 			documento.setFirma(firme);
-			
+
 			return documento;
 
 		}catch (SQLException ex) {

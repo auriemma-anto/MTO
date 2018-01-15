@@ -21,7 +21,7 @@ public class FirmaRichiestaServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	
     	DocumentoRichiesta documento = new DocumentoRichiesta();
-    	documento.setCodiceID(9);
+    	documento.setCodiceID(1);
     	
     	boolean[] firme = new boolean[4];
 		firme[0] = Boolean.parseBoolean(request.getParameter("firma1"));

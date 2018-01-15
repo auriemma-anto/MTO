@@ -58,13 +58,15 @@ public class AggiungiRichiestaServlet extends HttpServlet {
 			inputStream = filePart.getInputStream();
 			documento.setFile(inputStream);
 		}
-		inputStream.close();
+		
 		
 		Facade f = new Facade();
 		boolean res = f.aggiungiDomandaRichiesta(documento);
 
 		System.out.println(res);
 
+		inputStream.close();
+		
 		RequestDispatcher redispatcher = getServletContext().getRequestDispatcher("/DownloadDemo.jsp");
 		redispatcher.forward(request, response);
 

@@ -27,7 +27,7 @@ public class ListaRichiesteTirociniServlet extends HttpServlet {
 		tirocinio.setCodiceID(12);
 
 		Facade f = new Facade();
-		ArrayList<DocumentoRichiesta> docs = f.listaDomandeRichiesta(tirocinio);
+		ArrayList<DocumentoRichiesta> docs = f.listaDomandeRichiesta(tirocinio, null);
 
 		request.removeAttribute("documenti");
 		request.setAttribute("documenti", docs);
