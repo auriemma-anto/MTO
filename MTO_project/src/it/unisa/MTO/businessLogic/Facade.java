@@ -1,8 +1,10 @@
 package it.unisa.MTO.businessLogic;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 
 import it.unisa.MTO.businessLogic.gestioni.*;
+import it.unisa.MTO.common.Tirocinio;
 
 public class Facade {
 	private GestioneAccount gestioneAccount;
@@ -28,28 +30,28 @@ public class Facade {
 	}
 	
 	//----------GESTIONE TIROCINIO
-	public void modificaTirocinio(){
-		gestioneTirocinio.modificaTirocinio();
+	public boolean modificaTirocinio(Tirocinio tirocinio){
+		return gestioneTirocinio.modificaTirocinio(tirocinio);
 	}
 	
-	public void aggiungiTirocinio(){
-		gestioneTirocinio.aggiungiTirocinio();
+	public boolean aggiungiTirocinio(Tirocinio tirocinio){
+		return gestioneTirocinio.aggiungiTirocinio(tirocinio);
 	}
 	
-	public void eliminaTirocinio(){
-		gestioneTirocinio.eliminaTirocinio();
+	public boolean eliminaTirocinio(int id){
+		return gestioneTirocinio.eliminaTirocinio(id);
 	}
 	
-	public void listaTirocinio(){
-		gestioneTirocinio.listaTirocini();
+	public ArrayList<Tirocinio> listaTirocinio(){
+		return gestioneTirocinio.listaTirocini();
 	}
 	
 	public void ricercaTirociniPerParametri(){
 		gestioneTirocinio.ricerchePerParametri();
 	}
 	
-	public void getTirocinio(){
-		gestioneTirocinio.getTirocini();
+	public Tirocinio getTirocinio(int id){
+		return gestioneTirocinio.getTirocinio(id);
 	}
 	
 	//----------GESTIONE DOMANDE RICHIESTA
