@@ -1,7 +1,12 @@
 package it.unisa.MTO.businessLogic.gestioni;
 
+import java.io.IOException;
 import java.sql.Date;
 import java.text.ParseException;
+
+import javax.servlet.ServletException;
+
+import org.json.JSONException;
 
 import it.unisa.MTO.common.Utente;
 import it.unisa.MTO.common.UtenteType;
@@ -28,7 +33,7 @@ public class GestioneAccount {
 	
 	public void logout(){}
 	
-	public boolean registrazione(Utente utente) throws ParseException{
+	public boolean registrazione(Utente utente) throws ParseException, ServletException, IOException, JSONException{
 		
 		TestAccessUser test;
 		try {

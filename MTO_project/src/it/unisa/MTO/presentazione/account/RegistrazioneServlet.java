@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONException;
+
 import it.unisa.MTO.businessLogic.Facade;
 import it.unisa.MTO.common.Utente;
 import it.unisa.MTO.common.UtenteType;
@@ -56,12 +58,13 @@ public class RegistrazioneServlet extends HttpServlet {
 								   request.getParameter("azienda")  );
 		
 	Facade facade = new Facade();
-	
+
 	try {
 		facade.registrazione(utente);
 	} catch (ParseException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
+	} catch (JSONException e) {
+		throw new ServletException("Fallimento");
 	}
 	
 	}

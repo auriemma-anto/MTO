@@ -1,7 +1,12 @@
 package it.unisa.MTO.businessLogic;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.text.ParseException;
+
+import javax.servlet.ServletException;
+
+import org.json.JSONException;
 
 import it.unisa.MTO.businessLogic.gestioni.*;
 import it.unisa.MTO.common.Utente;
@@ -25,7 +30,7 @@ public class Facade {
 		gestioneAccount.logout();
 	}
 	
-	public boolean registrazione(Utente utente) throws ParseException{
+	public boolean registrazione(Utente utente) throws ParseException, ServletException, IOException, JSONException{
 		return gestioneAccount.registrazione(utente);
 	}
 	

@@ -1,0 +1,103 @@
+@charset "ISO-8859-1";
+body{
+	margin: 0;
+}
+
+a {
+	text-decoration: none;
+}
+
+ul {
+	list-style: none;
+}
+
+ul li {
+	text-decoration: none;
+	list-style: none;
+}
+
+header{
+	background-color:aqua;
+	display: inline-block;
+	width: 100%;
+}
+
+.logo{
+	width: 20%;
+	height: 20%;
+	float: left;
+}
+
+.login{
+	float: right;
+	/*height: 110%;*/
+	margin-right: 1%;
+	
+}
+
+.im_login{
+	margin-top: 30%;
+		
+}
+/*********************************** NAV INFERIORE *********************************************/
+/******nav****/
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: lime;
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 20px;
+}
+
+nav li {
+    
+    text-align: center;
+    display: inline-block;
+}
+
+nav li a, .dropbtn {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+nav li a:hover, .dropdown:hover .dropbtn {
+    background-color: red;
+}
+
+nav li.dropdown {
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: green;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {background-color: fuchsia;}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/*********************************** NAV INFERIORE-FINE ***************************************/
+
+
+/*****fine nav****/
