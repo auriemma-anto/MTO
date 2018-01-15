@@ -59,7 +59,7 @@ public class LoginServlet extends HttpServlet {
 			String tipo = (String) session.getAttribute("tipo");
 			
 			session.setMaxInactiveInterval(60*5);
-			
+			 
 			out.println(Response.OK.getValue());
 
 			
