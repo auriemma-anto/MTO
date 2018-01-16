@@ -83,14 +83,13 @@ public class TirociniDAO implements ITirociniDAO {
 			utente.setTipo(UtenteType.valueOf(res.getString(4)));
 			utente.setNome(res.getString(5));
 			utente.setCognome(res.getString(6));
-			utente.setDataNascita(res.getDate(7));
+			utente.setDataNascita(res.getDate(7).toString());//TODO: vedi formato data
 			utente.setAnnoImmatricolazione(res.getString(8));
 			utente.setCfu(res.getInt(9));
 			utente.setAzienda(res.getString(12));
 			
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

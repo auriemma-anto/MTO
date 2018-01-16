@@ -11,74 +11,35 @@ public class GestioneTirocinio {
 	
 	public GestioneTirocinio(){}
 	
-	public boolean modificaTirocinio(Tirocinio tirocinio){
-		boolean toReturn = false;
-		ITirociniDAO connection;
-		try {
-			connection = new TirociniDAO();
-			toReturn = connection.modifyTirocinio(tirocinio);
-		} catch (ConnessioneException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return toReturn;
+	public boolean modificaTirocinio(Tirocinio tirocinio) throws ConnessioneException{
+		ITirociniDAO connection = new TirociniDAO();
+		return connection.modifyTirocinio(tirocinio);
 	}
 	
-	public boolean aggiungiTirocinio(Tirocinio tirocinio){
-		boolean toReturn = false;
-		ITirociniDAO connection;
-		try {
-			connection = new TirociniDAO();
-			toReturn = connection.addTirocinio(tirocinio);
-		} catch (ConnessioneException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return toReturn;
+	public boolean aggiungiTirocinio(Tirocinio tirocinio) throws ConnessioneException{
+		ITirociniDAO connection = new TirociniDAO();
+		return connection.addTirocinio(tirocinio);
 	}
 	
-	public boolean eliminaTirocinio(int id){
-		boolean toReturn = false;
-		ITirociniDAO connection;
-		try {
-			connection = new TirociniDAO();
-			toReturn = connection.deleteTirocinio(id);
-		} catch (ConnessioneException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return toReturn;
+	public boolean eliminaTirocinio(int id) throws ConnessioneException{
+		ITirociniDAO connection = new TirociniDAO();
+		return connection.deleteTirocinio(id);
 	}
 	
-	public ArrayList<Tirocinio> listaTirocini(){
+	public ArrayList<Tirocinio> listaTirocini() throws ConnessioneException{
 		ArrayList<Tirocinio> toReturn = new ArrayList<Tirocinio>();
-		ITirociniDAO connection;
-		try {
-			connection = new TirociniDAO();
-			toReturn = connection.getTirocinioList();
-		} catch (ConnessioneException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		ITirociniDAO connection = new TirociniDAO();
+		toReturn = connection.getTirocinioList();;
 		
 		return toReturn;
 	}
 	
-	public void ricerchePerParametri(){}
+	public void ricerchePerParametri(){}//TODO: fare ricerca per parametri
 	
-	public Tirocinio getTirocinio(int id){
+	public Tirocinio getTirocinio(int id) throws ConnessioneException{
 		Tirocinio toReturn = new Tirocinio();
-		ITirociniDAO connection;
-		try {
-			connection = new TirociniDAO();
-			toReturn = connection.getTirocinio(id);
-		} catch (ConnessioneException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		ITirociniDAO connection = new TirociniDAO();
+		toReturn = connection.getTirocinio(id);
 		
 		return toReturn;
 	}

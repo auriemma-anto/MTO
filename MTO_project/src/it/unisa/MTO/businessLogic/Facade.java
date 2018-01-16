@@ -5,6 +5,8 @@ import java.util.ArrayList;
 
 import it.unisa.MTO.businessLogic.gestioni.*;
 import it.unisa.MTO.common.Tirocinio;
+import it.unisa.MTO.common.Utente;
+import it.unisa.MTO.storage.connection.ConnessioneException;
 
 public class Facade {
 	private GestioneAccount gestioneAccount;
@@ -17,7 +19,7 @@ public class Facade {
 		gestioneRichiesteTirocinio = new GestioneRichiesteTirocinio();
 	}
 	//----------GESTIONE ACCOUNT
-	public boolean login(String username, String password){
+	public boolean login(String username, String password) throws ConnessioneException{
 		return gestioneAccount.login(username, password);
 	}
 	
@@ -25,24 +27,24 @@ public class Facade {
 		gestioneAccount.logout();
 	}
 	
-	public void registrazione(){
-		gestioneAccount.registrazione();
+	public boolean registrazione(Utente utente) throws ConnessioneException{
+		return gestioneAccount.registrazione(utente);
 	}
 	
 	//----------GESTIONE TIROCINIO
-	public boolean modificaTirocinio(Tirocinio tirocinio){
+	public boolean modificaTirocinio(Tirocinio tirocinio) throws ConnessioneException{
 		return gestioneTirocinio.modificaTirocinio(tirocinio);
 	}
 	
-	public boolean aggiungiTirocinio(Tirocinio tirocinio){
+	public boolean aggiungiTirocinio(Tirocinio tirocinio) throws ConnessioneException{
 		return gestioneTirocinio.aggiungiTirocinio(tirocinio);
 	}
 	
-	public boolean eliminaTirocinio(int id){
+	public boolean eliminaTirocinio(int id) throws ConnessioneException{
 		return gestioneTirocinio.eliminaTirocinio(id);
 	}
 	
-	public ArrayList<Tirocinio> listaTirocinio(){
+	public ArrayList<Tirocinio> listaTirocinio() throws ConnessioneException{
 		return gestioneTirocinio.listaTirocini();
 	}
 	
@@ -50,7 +52,7 @@ public class Facade {
 		gestioneTirocinio.ricerchePerParametri();
 	}
 	
-	public Tirocinio getTirocinio(int id){
+	public Tirocinio getTirocinio(int id) throws ConnessioneException{
 		return gestioneTirocinio.getTirocinio(id);
 	}
 	
