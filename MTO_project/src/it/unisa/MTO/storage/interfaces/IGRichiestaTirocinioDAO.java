@@ -14,3 +14,6 @@ public interface IGRichiestaTirocinioDAO {
 	public DocumentoRichiesta checkDocState(DocumentoRichiesta documento);
 
 }
+
+
+//select * from documento where AND (NOT exists (SELECT rif_documento, rif_utente from firma))

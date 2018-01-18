@@ -40,8 +40,8 @@ public class GestioneRichiesteTirocinioDAO implements IGRichiestaTirocinioDAO{
 		System.out.println(""+username);
 		System.out.println(""+codiceTir);
 		System.out.println(""+file);
-		
-		
+
+
 		String select1 = "(SELECT username FROM utente WHERE username='"+username+"')";
 		String select2 = "(SELECT codiceID FROM tirocinio WHERE codiceID="+codiceTir+")";
 		String query = "INSERT INTO documento (nome, rif_utente, rif_tirocinio, file) "
@@ -110,6 +110,8 @@ public class GestioneRichiesteTirocinioDAO implements IGRichiestaTirocinioDAO{
 				doc.setFile(inputStream);
 			}
 
+
+
 		} catch (SQLException ex) {
 			if (conn != null) {
 				// closes the database connection
@@ -138,7 +140,7 @@ public class GestioneRichiesteTirocinioDAO implements IGRichiestaTirocinioDAO{
 
 			if(tirocinio.getCodiceID()>0){
 				int codiceID = tirocinio.getCodiceID();
-				query = "SELECT * FROM documento WHERE rif_tirocinio='"+codiceID+"';";
+				query = "SELECT * FROM documento WHERE rif_tirocinio="+codiceID+";";
 			}
 
 			else if(!studente.getUsername().isEmpty()){
@@ -155,6 +157,12 @@ public class GestioneRichiesteTirocinioDAO implements IGRichiestaTirocinioDAO{
 			while(res.next()) {
 				DocumentoRichiesta doc = new DocumentoRichiesta();
 				doc.setCodiceID(res.getInt("codiceID"));
+				
+				// Per avere unicamente i documenti non ancora firmati la query è: 
+				/*	String s = "SELECT * FROM documento WHERE (NOT EXISTS "
+						+ "(SELECT * FROM firma WHERE rif_utente = '"+utente.getUsername()+"' AND rif_documento = "+doc.getCodiceID()+"));";
+				 */
+
 				doc.setNome(res.getString("nome"));
 
 				Tirocinio tir = new Tirocinio();
@@ -170,6 +178,7 @@ public class GestioneRichiesteTirocinioDAO implements IGRichiestaTirocinioDAO{
 				System.out.println("DAO: "+doc.getTirocinio().getCodiceID());
 				System.out.println("DAO: "+doc.getStudente().getUsername());
 			}
+
 		} catch (SQLException ex) {
 			if (conn != null) {
 				// closes the database connection
@@ -195,7 +204,7 @@ public class GestioneRichiesteTirocinioDAO implements IGRichiestaTirocinioDAO{
 	public boolean markDocument(DocumentoRichiesta documento, Utente utente, boolean firma) {
 
 		Connection conn = db.getConnessione(); 
-		
+
 		String select1 = "(SELECT username FROM utente WHERE username='"+utente.getUsername()+"')";
 		String select2 = "(SELECT codiceID FROM documento WHERE codiceID="+documento.getCodiceID()+")";
 		String query = "INSERT INTO firma (rif_utente, rif_documento, valore) VALUES ("+select1+", "+select2+", "+firma+");";

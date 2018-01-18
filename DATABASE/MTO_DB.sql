@@ -41,7 +41,7 @@ DROP TABLE IF EXISTS documento;
 CREATE TABLE IF NOT EXISTS documento(
 codiceID 		int(25) AUTO_INCREMENT,
 nome 			varchar(20) not null,
-rif_utente 	varchar(15) not null,
+rif_utente 		varchar(15) not null,
 rif_tirocinio 	int(25) not null,
 file 			mediumblob,
 primary key (codiceID),
@@ -54,6 +54,7 @@ CREATE TABLE IF NOT EXISTS firma(
 rif_utente varchar(15) not null,
 rif_documento int(25) not null,
 valore boolean,
+unique(rif_utente, rif_documento),
 foreign key(rif_utente) references utente(username),
 foreign key(rif_documento) references documento(codiceID)
 );

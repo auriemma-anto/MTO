@@ -16,30 +16,32 @@ import it.unisa.MTO.common.Utente;
 @WebServlet("/firmaRichiesta")
 public class FirmaRichiestaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-       
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	
-    	boolean firma = Boolean.parseBoolean(request.getParameter("firma"));
-    	
-    	Utente user = new Utente();
+
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		boolean firma = Boolean.parseBoolean(request.getParameter("firma"));
+
+		Utente user = new Utente();
 		user.setUsername(request.getParameter("username"));
-		
-    	
-    	DocumentoRichiesta documento = new DocumentoRichiesta();
-    	documento.setCodiceID(Integer.parseInt(request.getParameter("documento")));
-    	
+
+
+		DocumentoRichiesta documento = new DocumentoRichiesta();
+		documento.setCodiceID(Integer.parseInt(request.getParameter("documento")));
+
 		Facade f1 = new Facade();
-		
+
+		documento = f1.statoDomandaRichiesta(documento);	
+
 		f1.firmaDomandaRichiesta(documento, user, firma);
-		
+
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ShowLista.jsp");
 		dispatcher.forward(request, response);	
-		
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		doGet(request, response);
 	}
 

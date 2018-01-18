@@ -7,7 +7,6 @@
 	if (documents == null) {
 		response.sendRedirect("./visualizzaStato");
 	}
-
 %>
 
 <!DOCTYPE html>
@@ -48,31 +47,34 @@
 				<td style="text-align: center;">
 					<%
 						ArrayList<Firma> firma = docR.getFirma();
-								if (firma.size() < 4) {
+								boolean rejected = false;
+								Iterator<?> i = firma.iterator();
+								while (i.hasNext()) {
+									Firma f = (Firma) i.next();
+									if (f.getValore() == false) {
+										rejected = true;
 					%>
-					<div>
-						<img style="float: right;" src="img/orange-circle.png"
-							alt="In elaborazione" height="10" width="10">
-						<p>In elaborazione</p>
-					</div> <%
+
+					<p>
+						<img alt="Rifiutata" src="img/red-circle.png" width="10px"
+							height="10px"> Rifiutata
+					</p> <%
  	}
- 			for (int i = 0; i < firma.size(); i++) {
- 				if (firma.get(i).getValore() == false) {
- %>
-					<div>
-						<img style="float: right;" src="img/red-circle.png"
-							alt="Rifiutata" height="10" width="10">
-						<p>Rifiutata</p>
-					</div> <%
- 	} else {
- %>
-					<div>
-						<img style="float: right;" src="img/green-circle.png"
-							alt="In elaborazione" height="10" width="10">
-						<p>Accettata</p>
-					</div> <%
- 	}
+
  			}
+ 			if (firma.size() == 4 && rejected == false) {
+ %>
+					<p>
+						<img alt="Accettata" src="img/green-circle.png" width="10px"
+							height="10px"> Accettata
+					</p> <%
+ 	} else if (firma.size() < 4 && rejected == false) {
+ %>
+					<p>
+						<img alt="In Elaborazione" src="img/orange-circle.png"
+							width="10px" height="10px"> In elaborazione
+					</p> <%
+ 	}
  %>
 				</td>
 				<td><a
@@ -83,13 +85,11 @@
 					}
 					} else {
 				%>
-
 				<td><h2>Nessuna domanda da visualizzare</h2></td>
+				<%
+					}
+				%>
 			</tr>
-			<%
-				}
-			%>
-
 		</table>
 	</div>
 </body>
