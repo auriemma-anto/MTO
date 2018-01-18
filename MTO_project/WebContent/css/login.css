@@ -1,5 +1,11 @@
 @charset "ISO-8859-1";
 
+#form label.error {
+        color: red;
+        font-weight: bold;
+    }
+     
+
 input[type=text],input[type=password]{
     width: 70%;
     padding: 12px;

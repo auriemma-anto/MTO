@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import Login.Response;
 import it.unisa.MTO.storage.connection.ConnessioneException;
 import it.unisa.MTO.storage.connection.exe.LoginFailedException;
 import it.unisa.MTO.businessLogic.Facade;
@@ -60,34 +59,42 @@ public class LoginServlet extends HttpServlet {
 			
 			session.setMaxInactiveInterval(60*5);
 			 
-			out.println(Response.OK.getValue());
-
+			//out.println(Response.OK.getValue());
 			
+		}finally {
 			
-			
-			out.println(Response.OK.getValue());
-		} catch (LoginFailedException e) {
-			out.println(Response.KO.getValue());
-		} catch (SQLException e) {
-			out.println(Response.KO.getValue());
-		} catch (ConnessioneException e) {
-			out.println(Response.KO.getValue());
-		}
-	}
-
-	enum Response {
-		OK(1),KO(0);
-		
-		private int value;
-
-		private Response(int value) {
-			this.value = value;
 		}
 		
-		public int getValue() {
-			return value;
-		}
+		
 	}
-	
 
 }
+			
+			
+			
+		
+//		} catch (LoginFailedException e) {
+//			out.println(Response.KO.getValue());
+//		} catch (SQLException e) {
+//			out.println(Response.KO.getValue());
+//		} catch (ConnessioneException e) {
+//			out.println(Response.KO.getValue());
+//		}
+	
+
+//	enum Response {
+//		OK(1),KO(0);
+//		
+//		private int value;
+//
+//		private Response(int value) {
+//			this.value = value;
+//		}
+//		
+//		public int getValue() {
+//			return value;
+//		}
+//	}
+	
+
+

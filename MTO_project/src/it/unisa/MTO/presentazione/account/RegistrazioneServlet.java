@@ -11,10 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import it.unisa.MTO.businessLogic.Facade;
 import it.unisa.MTO.common.Utente;
 import it.unisa.MTO.common.UtenteType;
+import it.unisa.MTO.storage.connection.ConnessioneException;
 
 /**
  * Servlet implementation class RegistrazioneServlet
@@ -54,19 +56,35 @@ public class RegistrazioneServlet extends HttpServlet {
 								   request.getParameter("annoImmatricolazione"),
 								   Integer.parseInt(request.getParameter("cfu")),
 								   request.getParameter("universita"),
-								   request.getParameter("dipartimento"),
-								   request.getParameter("azienda")  );
-		
+								   request.getParameter("dipartimento"));
+	
+	
+	Response result = Response.KO;
+	String description = "Username già presente";
+    JSONObject json = new JSONObject();
 	Facade facade = new Facade();
 
 	try {
 		facade.registrazione(utente);
-	} catch (ParseException e) {
-		e.printStackTrace();
-	} catch (JSONException e) {
-		throw new ServletException("Fallimento");
+	} catch (ConnessioneException e) {
+		result = Response.KO;
+		description = e.getMessage();
 	}
 	
 	}
 
+	
+	enum Response {
+		OK(1),KO(0);
+		
+		private int value;
+
+		private Response(int value) {
+			this.value = value;
+		}
+		
+		public int getValue() {
+			return value;
+		}
+	}
 }

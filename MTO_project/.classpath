@@ -12,5 +12,7 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/SQL Connect"/>
 	<classpathentry kind="lib" path="C:/PROGETTI WEB/MTO_1condiviso/MTO/MTO_project/WebContent/WEB-INF/lib/mysql-connector-java-5.1.43-bin.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mysql-connector-java-5.1.43-bin.jar"/>
+	<classpathentry kind="lib" path="C:/PROGETTI WEB/MTO_1condiviso/MTO/MTO_project/WebContent/WEB-INF/lib/java-json.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/java-json.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

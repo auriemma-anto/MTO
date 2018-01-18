@@ -21,7 +21,7 @@ public class GestioneRichiesteTirocinioDAO implements IGRichiestaTirocinioDAO{
 	public boolean setDocument(String utenteUsername, String nomeFile, Integer codiceTirocinio, InputStream file){
 		boolean st = false;
 		Connection conn = db.getConnessione();
-		String query = "INSERT INTO Documento (utenteUsername, nome, "
+		String query = "INSERT INTO documento (utenteUsername, nome, "
 				+ "tirocinioCodiceID, file) values (?, ?, ?, ?)";
 
 		try {

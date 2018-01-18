@@ -1,6 +1,5 @@
 package it.unisa.MTO.common;
 
-import java.sql.Date;
 
 public class Utente {
 	
@@ -17,13 +16,10 @@ public class Utente {
 	private String dipartimento;
 	private String azienda;
 	
-	/*COSTRUTTORE VUOTO*/
-	public Utente(){}
-	
-	/*COSTRUTTORE CON TUTTI GLI ATTRIBUTI*/
-	public Utente(String username, String password, String email, UtenteType tipo, 
-			String nome, String cognome, String dataNascita, String annoImmatricolazione,
-			int cfu, String universita, String dipartimento, String azienda) {
+	public Utente(String username, String password, String email, UtenteType tipo,
+			      String nome, String cognome, String dataNascita,
+			      String annoImmatricolazione, int cfu, String universita, 
+			      String dipartimento){
 		
 		this.username = username;
 		this.password = password;
@@ -36,10 +32,8 @@ public class Utente {
 		this.cfu = cfu;
 		this.universita = universita;
 		this.dipartimento = dipartimento;
-		this.azienda = azienda;
+		
 	}
-
-	
 
 	public String getUsername() {
 		return username;
@@ -137,12 +131,6 @@ public class Utente {
 		this.azienda = azienda;
 	}
 	
-	@Override
-	public String toString() {
-		return "Utente [username=" + username + ", password=" + password + ", email=" + email + ", tipo=" + tipo
-				+ ", nome=" + nome + ", cognome=" + cognome + ", dataNascita=" + dataNascita + ", annoImmatricolazione="
-				+ annoImmatricolazione + ", cfu=" + cfu + ", universita=" + universita + ", dipartimento="
-				+ dipartimento + ", azienda=" + azienda + "]";
-	}
+	
 	
 }

@@ -1,29 +1,21 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE HTML>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>M.T.O.-Login</title>
- 
- <!--Ultima versione di jQuery (minified) -->
+  <title>Esempio di validazione con JQuery</title>
+  <!--Ultima versione di jQuery (minified) -->
   <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
- 
   <!-- Ultima versione di jquery.validate (minfied) -->
   <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
- 
 
-<link rel="stylesheet" href="css/nav.css" type="text/css" media="all">
 <link rel="stylesheet" href="css/login.css" type="text/css" media="all">
 </head>
+
 <body>
-	<%@ include file="header.jsp"%>
-	
-<!-- Form container -->
+  <!-- Form container -->
   <div class="container">
  
     <!-- form da validare -->
-    <form action="LoginServlet" method="post" id="form">
+    <form action="#" id="form">
        <div class="row">
       <div class="col-25">
         <label for="username">Username</label>
@@ -44,16 +36,13 @@
     </div>
        
          <div class="row">
-        <input type="submit" value="Accedi" class="submit" >
+        <input type="submit" value="Registrati" class="submit" >
       </div>
     </form>
  
   </div>
 </body>
-
 <script type="text/javascript">
-
-//funzione per mostrare i essaggi di errore
 $().ready(function() {
     // Selezione form e definizione dei metodi di validazione
     $("#form").validate({
@@ -66,14 +55,19 @@ $().ready(function() {
             },
             
             password : {
-                required : true
+                required : true,
+                // Settiamo la lunghezza minima e massima per il campo password
+                minlength : 5,
+                maxlength : 8
             }
         },
         // Personalizzimao i mesasggi di errore
         messages: {
-        	username: "Inserisci il tuo username",
+        	username: "Inserisci la username",
             password: {
-                required: "Inserisci la password",
+                required: "Inserisci una password password",
+                minlength: "La password deve essere lunga minimo 5 caratteri",
+                maxlength: "La password deve essere lunga al massimo 8 caratteri"
             },
         },
         // Settiamo il submit handler per la form
@@ -83,5 +77,4 @@ $().ready(function() {
     });
 });
 </script>
-
 </html>

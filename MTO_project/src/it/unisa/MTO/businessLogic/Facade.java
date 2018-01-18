@@ -1,15 +1,12 @@
 package it.unisa.MTO.businessLogic;
 
-import java.io.IOException;
 import java.io.InputStream;
-import java.text.ParseException;
-
-import javax.servlet.ServletException;
-
-import org.json.JSONException;
+import java.util.ArrayList;
 
 import it.unisa.MTO.businessLogic.gestioni.*;
+import it.unisa.MTO.common.Tirocinio;
 import it.unisa.MTO.common.Utente;
+import it.unisa.MTO.storage.connection.ConnessioneException;
 
 public class Facade {
 	private GestioneAccount gestioneAccount;
@@ -22,7 +19,7 @@ public class Facade {
 		gestioneRichiesteTirocinio = new GestioneRichiesteTirocinio();
 	}
 	//----------GESTIONE ACCOUNT
-	public boolean login(String username, String password){
+	public boolean login(String username, String password) throws ConnessioneException{
 		return gestioneAccount.login(username, password);
 	}
 	
@@ -30,33 +27,33 @@ public class Facade {
 		gestioneAccount.logout();
 	}
 	
-	public boolean registrazione(Utente utente) throws ParseException, ServletException, IOException, JSONException{
+	public boolean registrazione(Utente utente) throws ConnessioneException{
 		return gestioneAccount.registrazione(utente);
 	}
 	
 	//----------GESTIONE TIROCINIO
-	public void modificaTirocinio(){
-		gestioneTirocinio.modificaTirocinio();
+	public boolean modificaTirocinio(Tirocinio tirocinio) throws ConnessioneException{
+		return gestioneTirocinio.modificaTirocinio(tirocinio);
 	}
 	
-	public void aggiungiTirocinio(){
-		gestioneTirocinio.aggiungiTirocinio();
+	public boolean aggiungiTirocinio(Tirocinio tirocinio) throws ConnessioneException{
+		return gestioneTirocinio.aggiungiTirocinio(tirocinio);
 	}
 	
-	public void eliminaTirocinio(){
-		gestioneTirocinio.eliminaTirocinio();
+	public boolean eliminaTirocinio(int id) throws ConnessioneException{
+		return gestioneTirocinio.eliminaTirocinio(id);
 	}
 	
-	public void listaTirocinio(){
-		gestioneTirocinio.listaTirocini();
+	public ArrayList<Tirocinio> listaTirocinio() throws ConnessioneException{
+		return gestioneTirocinio.listaTirocini();
 	}
 	
 	public void ricercaTirociniPerParametri(){
 		gestioneTirocinio.ricerchePerParametri();
 	}
 	
-	public void getTirocinio(){
-		gestioneTirocinio.getTirocini();
+	public Tirocinio getTirocinio(int id) throws ConnessioneException{
+		return gestioneTirocinio.getTirocinio(id);
 	}
 	
 	//----------GESTIONE DOMANDE RICHIESTA

@@ -5,6 +5,7 @@ import java.sql.Date;
 public class Tirocinio {
 
 	private int codiceID;
+	private Utente responsabileAziendale;
 	private String azienda;
 	private Date dataInizio;
 	private Date dataFine;
@@ -68,6 +69,14 @@ public class Tirocinio {
 
 	public void setDescizione(String descizione) {
 		this.descizione = descizione;
+	}
+
+	public Utente getResponsabileAziendale() {
+		return responsabileAziendale;
+	}
+
+	public void setResponsabileAziendale(Utente responsabileAziendale) {
+		this.responsabileAziendale = responsabileAziendale;
 	}
 	
 }
