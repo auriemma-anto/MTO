@@ -30,16 +30,16 @@ public class AggiungiRichiestaServlet extends HttpServlet {
 		// gets values of text fields
 		Utente studente = new Utente();
 		studente.setUsername(request.getParameter("username"));
-		
+
 		Tirocinio tirocinio = new Tirocinio();
 		tirocinio.setCodiceID(Integer.parseInt(request.getParameter("tirocinio")));
-		
+
 		DocumentoRichiesta documento = new DocumentoRichiesta();
-		
+
 		documento.setStudente(studente);
 		documento.setTirocinio(tirocinio);
 		documento.setNome("pf_"+studente.getUsername()+".pdf");
-		
+
 		System.out.println(""+documento.getStudente().toString());
 		System.out.println(""+documento.getNome());
 		System.out.println(""+documento.getTirocinio().toString());
@@ -54,23 +54,20 @@ public class AggiungiRichiestaServlet extends HttpServlet {
 			System.out.println(filePart.getSize());
 			System.out.println(filePart.getContentType());
 
-			// obtains input stream of the upload file
 			inputStream = filePart.getInputStream();
 			documento.setFile(inputStream);
+			Facade f = new Facade();
+			boolean res = f.aggiungiDomandaRichiesta(documento);
+
+			System.out.println(res);
+
+			inputStream.close();
+
 		}
-		
-		
-		Facade f = new Facade();
-		boolean res = f.aggiungiDomandaRichiesta(documento);
-
-		System.out.println(res);
-
-		inputStream.close();
 		
 		RequestDispatcher redispatcher = getServletContext().getRequestDispatcher("/UploadDemo.jsp");
 		redispatcher.forward(request, response);
 
-		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
