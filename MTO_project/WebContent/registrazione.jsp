@@ -28,7 +28,7 @@
         <label for="username">Username</label>
       </div>
       <div class="col-75">
-        <input type="text" id="username" name="username" placeholder="Username" required>
+        <input type="text" id="username" name="username" placeholder="Username">
       </div>
     </div>
     
@@ -37,7 +37,7 @@
         <label for="password">Password</label>
       </div>
       <div class="col-75">
-        <input type="password" id="password" name="password" placeholder="Password" required>
+        <input type="password" id="password" name="password" placeholder="Password" >
       </div>
     </div>
     
@@ -46,7 +46,7 @@
         <label for="conferma">Conferma password</label>
       </div>
       <div class="col-75">
-        <input type="password" id="conferma" name="conferma" placeholder="Conferma password" required>
+        <input type="password" id="conferma" name="conferma" placeholder="Conferma password" >
       </div>
     </div>
     
@@ -55,26 +55,11 @@
         <label for="email">E-mail</label>
       </div>
       <div class="col-75">
-        <input type="text" id="email" name="email" placeholder="E-mail" required>
+        <input type="text" id="email" name="email" placeholder="E-mail" >
       </div>
     </div>
      
-    <div class="row">
-      <div class="col-25">
-        <label for="tipo">Tipologia di utente</label>
-      </div>
-      <div class="col-75">
-        <select id="tipo" name="tipo">
-          <option value=""> </option>
-          <option value="studente">Studente</option>
-          <option value="responsabileAzienda">Responsabile azienda</option>
-          <option value="tutorEsterno">Tutor esterno</option>
-          <option value="tutorAccademico">Tutor accademico</option>
-        </select>
-      </div>
-    </div>
-    
-       
+          
     <div class="row">
       <div class="col-25">
         <label for="nome">Nome</label>
@@ -149,55 +134,16 @@
     </div>
    
     
+    
   </form>
 </div>
 
-</body>
-
-<!-- 
-<script type="text/javascript">
-function Modulo() {
-	
-	var username = document.modulo.username.value;
-	var password = document.modulo.password.value;
-	var conferma = document.modulo.conferma.value;
-	var email = document.modulo.email.value;
-	var tipo = document.modulo.tipo.options[document.modulo.tipo.selectedIndex].value; 
-	var nome = document.modulo.nome.value;
-	var cognome = document.modulo.cognome.value;
-	var dataNascita = document.modulo.dataNascita.value;
-	var annoImmatricolazione = document.modulo.annoImmatricolazione.value;
-	var cfu = document.modulo.cfu.value;
-	var universita = document.modulo.universita.value;
-	var dipartimento = document.modulo.dipartimento.value;
-	var azienda = document.modulo.azienda.value;
-
-
-	//controllo della password
-	if (password != conferma) {
-		   alert("La password confermata è diversa da quella scelta, controllare.");
-		   document.modulo.conferma.value = "";
-		   document.modulo.conferma.focus();
-		   return false;
-		}
-	
-	 //INVIA IL MODULO
-    else {
-        document.modulo.action = "RegistrazioneServlet";
-        document.modulo.submit();
-    }
-
-}
-
-
-</script>
- -->
 
 <script type="text/javascript">
 
 function invio() {
 	$.ajax({
-		url : 'MTO_project/registrazione',
+		url : '/MTO_project/RegistrazioneServlet',
 		dataType : 'json',
 		type : 'POST',
 		data : {
@@ -206,7 +152,6 @@ function invio() {
 			password :  $('#password').val(),
 			conferma :  $('#conferma').val(),
 			email :  $('#email').val(),
-			tipo :  $('#tipo').val(),
 			nome :  $('#nome').val(),
 			cognome :  $('#cognome').val(),
 			dataNascita :  $('#dataNascita').val(),
@@ -218,14 +163,15 @@ function invio() {
 		},
 		success : function(result) {
 			if (parseInt(result['result'])) {
+				alert("Registrazione effettuate con successo!");
 				 window.location.replace(encodeURIComponent("login.jsp"));
 			} else {
 				alert("Si è verificato il seguente errore: "+ result['description']);
 			}
 		},
 		//error : function() {
-			//alert("Si è verificato un errore!!");
-		}
+		//	alert("Si è verificato un errore!!");
+		//}
 	});
 	return false;
 	
@@ -233,6 +179,11 @@ function invio() {
 
 
 </script> 
+
+
+</body>
+
+
 
 
 <script type="text/javascript">
@@ -254,7 +205,6 @@ $().ready(function() {
                 required: true,
                 email: true
             },
-    		tipo : { required: true }, 
     		nome : { required: true },
     		cognome : { required: true },
     		dataNascita : { required: true },
@@ -274,9 +224,8 @@ $().ready(function() {
             conferma: " * Le password non corrispondono!",
             email: {
             	required:" * Inserisci un indirizzo email valido!",
-            	email: " * L'email deve essere nel formato name@email.com"
+            	email: " * L'email deve essere nel formato name@studenti.unisa.it"
             	},
-            tipo : " * Scegli la tipologia di utente.", 
     		nome : " * Inserisci il tuo nome.",
     		cognome : " * Inserisci il tuo cognome.",
     		dataNascita : " * Inserisci la data di nascita.",
@@ -294,7 +243,7 @@ $().ready(function() {
       
 	submitHandler : function(form) {
 		alert('I dati sono stati inseriti correttamente');
-		form.submit();
+	//	form.submit();
 	},
 	invalidHandler : function() {
 		alert('I dati inseriti non sono corretti, ricontrollali....');

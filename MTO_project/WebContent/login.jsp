@@ -44,44 +44,13 @@
     </div>
        
          <div class="row">
-        <input type="submit" value="Accedi" class="submit" >
+         <input type="submit" value="Login" id="submitLogin"class="submit">
       </div>
     </form>
  
   </div>
 </body>
 
-<script type="text/javascript">
 
-//funzione per mostrare i essaggi di errore
-$().ready(function() {
-    // Selezione form e definizione dei metodi di validazione
-    $("#form").validate({
-        // Definiamo le nostre regole di validazione
-        rules : {
-            // login - nome del campo di input da validare
-            username : {
-              // Definiamo il campo login come obbligatorio
-              required : true
-            },
-            
-            password : {
-                required : true
-            }
-        },
-        // Personalizzimao i mesasggi di errore
-        messages: {
-        	username: "Inserisci il tuo username",
-            password: {
-                required: "Inserisci la password",
-            },
-        },
-        // Settiamo il submit handler per la form
-        submitHandler: function(form) {
-            form.submit();
-        }
-    });
-});
-</script>
 
 </html>

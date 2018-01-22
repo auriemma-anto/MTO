@@ -1,6 +1,7 @@
 package it.unisa.MTO.presentazione.account;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Date;
 import java.text.ParseException;
 
@@ -42,14 +43,18 @@ public class RegistrazioneServlet extends HttpServlet {
 	}
 
 	/**
+	 * @throws IOException 
+	 * @throws ServletException 
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-	Utente utente = new Utente(request.getParameter("username"),
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		response.setContentType("application/json;charset=utf-8");
+		PrintWriter out = response.getWriter(); 
+		
+		Utente utente = new Utente(request.getParameter("username"),
 								   request.getParameter("password"), 
 								   request.getParameter("email"),
- /*converte la stringa nell'enumerazione*/  UtenteType.valueOf(request.getParameter("tipo")),
+ /*imposta il tipo studente*/      UtenteType.studente,
 								   request.getParameter("nome"),
 								   request.getParameter("cognome"),
 								   request.getParameter("dataNascita"),
@@ -58,21 +63,41 @@ public class RegistrazioneServlet extends HttpServlet {
 								   request.getParameter("universita"),
 								   request.getParameter("dipartimento"));
 	
+	//System.out.println("Reg"+utente.toString());	
 	
 	Response result = Response.KO;
-	String description = "Username già presente";
-    JSONObject json = new JSONObject();
-	Facade facade = new Facade();
+	String description = "Username esistente!";
+	JSONObject json = new JSONObject();
+	
+	
 
 	try {
-		facade.registrazione(utente);
+		Facade facade = new Facade();
+		if (facade.registrazione(utente) == true) {
+			result = Response.OK;
+			description = null;
+			//response.sendRedirect("login.jsp");
+		} 
+		
 	} catch (ConnessioneException e) {
 		result = Response.KO;
 		description = e.getMessage();
+	} catch (ParseException e) {
+		result = Response.KO;
+		description = e.getMessage();
 	}
+	try {
+		json.put("result", result.getValue());
+		json.put("description", description);
+    	out.print(json.toString());
+    	out.close();
+	} catch (JSONException e) {
+		throw new ServletException("Fallimento");
+		
+	}        
+
 	
 	}
-
 	
 	enum Response {
 		OK(1),KO(0);

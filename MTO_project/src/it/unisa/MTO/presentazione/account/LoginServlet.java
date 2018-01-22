@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import it.unisa.MTO.storage.connection.ConnessioneException;
 import it.unisa.MTO.storage.connection.exe.LoginFailedException;
 import it.unisa.MTO.businessLogic.Facade;
+import it.unisa.MTO.common.UtenteType;
 
 /**
  * Servlet implementation class LoginServlet
@@ -53,48 +54,61 @@ public class LoginServlet extends HttpServlet {
 		
 		try {
 			Facade facade = new Facade();
-			facade.login(username, password);
-			String nome = (String) session.getAttribute("nome");
-			String tipo = (String) session.getAttribute("tipo");
+			if(facade.login(username, password) == true) {
+			
+				session.setAttribute("username", username);
+				
+				String tipo = facade.getTipo(username, password);
+				session.setAttribute("tipo", tipo);
 			
 			session.setMaxInactiveInterval(60*5);
 			 
-			//out.println(Response.OK.getValue());
+		//	out.println(Response.OK.getValue());
 			
-		}finally {
+			if(tipo.equals("studente") ) {
+				//out.println(Response.OK.getValue());
+				response.sendRedirect("studente.jsp");
+				
+			}
+			if(tipo.equals("responsabileAzienda" ) ) {
+				//out.println(Response.OK.getValue());
+				response.sendRedirect("responsabileAzienda.jsp");
+			}
+			if(tipo.equals("tutorEsterno") ) {
+				//out.println(Response.OK.getValue());
+				response.sendRedirect("tutorEsterno.jsp");
+			}
+			if(tipo.equals("tutorAccademico") ) {
+				//out.println(Response.OK.getValue());
+				response.sendRedirect("tutorAccademico.jsp");
+			}
 			
+			} else {
+				response.sendRedirect("ERROR_Login.jsp");
+			}
+			
+		}catch (ConnessioneException e) {
+			response.sendRedirect("ERROR.jsp");
 		}
 		
-		
 	}
+	
+	enum Response {
+		OK(1),KO(0);
+		
+		private int value;
+
+		private Response(int value) {
+			this.value = value;
+		}
+		
+		public int getValue() {
+			return value;
+		}
+	}
+	
 
 }
 			
 			
 			
-		
-//		} catch (LoginFailedException e) {
-//			out.println(Response.KO.getValue());
-//		} catch (SQLException e) {
-//			out.println(Response.KO.getValue());
-//		} catch (ConnessioneException e) {
-//			out.println(Response.KO.getValue());
-//		}
-	
-
-//	enum Response {
-//		OK(1),KO(0);
-//		
-//		private int value;
-//
-//		private Response(int value) {
-//			this.value = value;
-//		}
-//		
-//		public int getValue() {
-//			return value;
-//		}
-//	}
-	
-
-

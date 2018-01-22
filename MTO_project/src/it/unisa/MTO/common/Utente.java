@@ -35,6 +35,10 @@ public class Utente {
 		
 	}
 
+	public Utente() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getUsername() {
 		return username;
 	}
@@ -129,6 +133,14 @@ public class Utente {
 
 	public void setAzienda(String azienda) {
 		this.azienda = azienda;
+	}
+
+	@Override
+	public String toString() {
+		return "Utente [username=" + username + ", password=" + password + ", email=" + email + ", tipo=" + tipo
+				+ ", nome=" + nome + ", cognome=" + cognome + ", dataNascita=" + dataNascita + ", annoImmatricolazione="
+				+ annoImmatricolazione + ", cfu=" + cfu + ", universita=" + universita + ", dipartimento="
+				+ dipartimento + ", azienda=" + azienda + "]";
 	}
 	
 	

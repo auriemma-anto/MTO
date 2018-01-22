@@ -9,12 +9,44 @@
 
 </head>
 <header>
-	
-	<div class="logo"><a href="HomePage.jsp"><img src="immagini\LOGO.png" alt="Logo"
+
+<div class="logo"><a href="HomePage.jsp"><img src="immagini\LOGO.png" alt="Logo"
 		class="logo"> </a></div>
-		
+
+<%
+      String username = (String) session.getAttribute("username");
+     if (username != null) {
+    %>
+	<%-- Welcome: <%=name%> --%>
+
+	<!-- <form action="Logout" method="post" class="Login">
+
+     <input type="submit" value="logout" onclick="myFunction()">
+     </form>  -->
+   <ul>
+		<li>
+			<div class="down">
+				<button onclick="myFunct()" class="btn">
+					<!-- <img class="im_login" src="immagini/user.png" alt="utente" /> -->
+				</button>
+				<div id="mydown" class="down-cont">
+				<a href="#" class="welcome">Welcome : <%=username%> </a>
+					<!--  <a href="cliente.jsp">Opzioni</a>-->
+					<form action="LogoutServlet" method="post" class="Login">
+						<a href="#"><input type="submit" class="logout" value="Logout" onclick="myFunction()"></a>
+					</form>
+				</div>
+			</div>
+		</li>
+	</ul>
+
+	<%	} else { %>
 	<div class="login"><a href="login.jsp"><img class="im_login" src="immagini/user.png"
 			alt="utente" /></a></div>
+	<%
+  }
+ %>
+
 </header>
 
 <nav>
@@ -33,5 +65,30 @@
 </ul>
     
   </nav>
+<script>
+/* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+function myFunct() {
+    document.getElementById("mydown").classList.toggle("show");
+}
 
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.btn')) {
+
+    var dropdowns = document.getElementsByClassName("down-cont");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script>
+
+
+<script src="http://code.jquery.com/jquery-1.6.4.min.js"
+	type="text/javascript"> </script>
 </html>

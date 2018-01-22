@@ -22,6 +22,98 @@ header{
 	width: 100%;
 }
 
+
+/**menu utente***/
+#mydown{
+	padding: 2px;
+	background:rgba(255, 255, 230, 0.9);
+	text-align: center;
+}
+
+#mydown a.welcome{
+	background:rgba(26, 26, 255, 0.8);
+	font-family: serif;
+    font-size: large;
+	color: white;
+	padding: 5%;
+}
+
+#mydown a{
+	font-family: serif;
+    font-size: large;
+	text-align: center;
+	padding: 6%;
+}
+
+
+#mydown a:hover, .logout:hover{
+	background:rgba(0, 134, 179, 0.8);
+	color: white;
+}
+
+#mydown a:focus, .logout:focus{
+	background:rgba(26, 26, 255, 0.8);
+	color: white;
+}
+
+.logout{
+	width: 100%;
+	height: 100%;
+    background:rgba(255, 255, 230, 0.2);
+    font-family: serif;
+    font-size: large;
+    color: black;
+    padding: 0px 0px;
+    margin: 0px 0px;
+    border: none;
+    cursor: pointer;
+}
+
+
+.btn {
+    border: none;
+    cursor: pointer;
+     background: rgba(190, 214, 243, 0.1);
+     background-image:url("../immagini/icone/user.png");
+     background-repeat: no-repeat;
+     width: 30px;
+   height: 30px;
+   margin-left: 35%; 
+}
+
+.btn:hover, .dropbtn:focus {
+}
+
+.down {
+    float: right;
+    position: relative;
+    display: inline-block;
+    
+}
+
+.down-cont {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    right: 0;
+    z-index: 1;
+}
+
+.down-cont a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.down a:hover {background-color: #f1f1f1}
+
+.show {display:block;}
+
+
 .logo{
 	width: 20%;
 	height: 20%;
