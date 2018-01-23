@@ -1,6 +1,7 @@
 package it.unisa.MTO.storage.DAO;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -50,6 +51,29 @@ public class AccountDAO implements IAccountDAO {
 		
 		return toReturn;
 	}
+	
+	public String trovaTipo(String username, String password) {
+		String queryTipo ="SELECT tipo FROM utente WHERE username ='"+ username + "' AND password = '" + password + "';";
+		
+		String tipo="";
+		
+		try {
+			PreparedStatement pStatement = conn.prepareStatement(queryTipo);
+			ResultSet rs = pStatement.executeQuery(queryTipo);
+			rs.next();
+			tipo = rs.getString("tipo");
+			rs.close();
+			pStatement.close();
+			
+			return tipo;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+				return null;
+	}
+
 
 	/**
 	 * Questo metodo registra un utente nel db
@@ -59,8 +83,7 @@ public class AccountDAO implements IAccountDAO {
 	@Override
 	public boolean registrazione(Utente utente) {
 		boolean toReturn = false;
-		String query = "INSET INTO utente (username, password, email, tipo, nome, cognome, "
-				+ "data_nascita, annoImmatricolazione, CFU, universita, dipartimento, azienda) "
+		String query = "INSERT INTO utente (username, password, email, tipo, nome, cognome, data_nascita, annoImmatricolazione, CFU, universita, dipartimento, azienda) "
 				+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		try {
@@ -70,8 +93,8 @@ public class AccountDAO implements IAccountDAO {
 			pStatement.setString(3, utente.getEmail());
 			pStatement.setString(4, utente.getTipo().toString());
 			pStatement.setString(5, utente.getNome());
-			pStatement.setString(6, utente.getCognome());
-			//TODO:data
+			pStatement.setString(6, utente.getCognome());	
+			pStatement.setString(7, utente.getDataNascita());
 			pStatement.setString(8, utente.getAnnoImmatricolazione());
 			pStatement.setInt(9, utente.getCfu());
 			pStatement.setString(10, utente.getUniversita());
@@ -114,4 +137,6 @@ public class AccountDAO implements IAccountDAO {
 		return toReturn;
 	}
 
+
+	
 }

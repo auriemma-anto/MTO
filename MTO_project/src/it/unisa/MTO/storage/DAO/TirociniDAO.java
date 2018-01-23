@@ -1,9 +1,11 @@
 package it.unisa.MTO.storage.DAO;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import it.unisa.MTO.common.*;
@@ -11,6 +13,12 @@ import it.unisa.MTO.storage.connection.AccessoDB;
 import it.unisa.MTO.storage.connection.ConnessioneException;
 import it.unisa.MTO.storage.interfaces.ITirociniDAO;
 
+/**
+ * Classe che si occupa della connessione ad <b>DataBase</b> relativamente alle azioni eseguite sull'entità <b>Tirocinio</b>
+ * 
+ * @author Maurizio
+ *
+ */
 public class TirociniDAO implements ITirociniDAO {
 
 	private AccessoDB db;
@@ -21,10 +29,15 @@ public class TirociniDAO implements ITirociniDAO {
 		conn = db.getConnessione();
 	}
 	
+	/**
+	 * Metodo che restituisce un {@link Tirocinio} dato il suo codice id
+	 * @param id del tirocinio
+	 * @return restituisce un {@link Tirocinio}
+	 */
 	@Override
 	public Tirocinio getTirocinio(int id) {
 		Tirocinio tirocinio = new Tirocinio();
-		String query = "SELECT * FROM tirocio WHERE codiceID = " + id + ";";
+		String query = "SELECT * FROM tirocinio WHERE codiceID = " + id + ";";
 		
 		try {
 			PreparedStatement statement = conn.prepareStatement(query);
@@ -33,15 +46,16 @@ public class TirociniDAO implements ITirociniDAO {
 			res.next();
 			
 			tirocinio.setCodiceID(res.getInt(1));
-			tirocinio.setResponsabileAziendale(getUtente(res.getString(2)));
+			tirocinio.setRif_utente(res.getString(2));
 			tirocinio.setAzienda(res.getString(3));
-			tirocinio.setDataInizio(res.getDate(4));
-			tirocinio.setDataFine(res.getDate(5));
+			tirocinio.setDataInizio(res.getString(4));
+			tirocinio.setDataFine(res.getString(5));
 			tirocinio.setLuogo(res.getString(6));
 			tirocinio.setTematica(res.getString(7));
-			tirocinio.setDescizione(res.getString(8));
+			tirocinio.setDescrizione(res.getString(8));
 			
-			
+			res.close();
+			statement.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -50,6 +64,11 @@ public class TirociniDAO implements ITirociniDAO {
 		return tirocinio;
 	}
 
+	/**
+	 * Metodo che elimina un <b>Tirocinio</b> nel <b>DataBase</b> dato il suo id
+	 * @param id del tirocinio
+	 * @return <b>true</b> in caso di avvenuta cancellazione, <b>false</b> altrimenti
+	 */
 	@Override
 	public boolean deleteTirocinio(int id) {
 		boolean toReturn = false;
@@ -59,6 +78,87 @@ public class TirociniDAO implements ITirociniDAO {
 			PreparedStatement statement = conn.prepareStatement(query);
 			int res = statement.executeUpdate();
 			toReturn = res > 0;
+			
+			statement.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return toReturn;
+	}
+	
+	/**
+	 * Restituisce la lista completa dei <b>Tirocini</b> presente nel <b>Database</b>
+	 * @return restituisce un {@link java.util.ArrayList} di {@link Tirocinio}
+	 */
+	@Override
+	public ArrayList<Tirocinio> getTirocinioList() {
+		return ricercaPerParametri(ParamType.none, "");
+	}
+
+	/**
+	 * Metodo che aggiunge un <b>Tirocinio</b> nel <b>DataBase</b>
+	 * @param tirocinio {@link Tirocinio} da aggiungere
+	 * @return <b>true</b> in caso di avvenuta aggiunta, <b>false</b> altrimenti
+	 */
+	@Override
+	public boolean addTirocinio(Tirocinio tirocinio) {
+		boolean toReturn = false;
+		String query = "INSERT INTO tirocinio (rif_utente, azienda, data_inizio, data_fine, luogo, tematica, descrizione)"
+				+ " values (?, ?, ?, ?, ?, ?, ?)";
+		
+		try {
+			PreparedStatement statement = conn.prepareStatement(query);
+			
+			statement.setString(1, tirocinio.getRif_utente());
+			statement.setString(2, tirocinio.getAzienda());
+			statement.setString(3, tirocinio.getDataInizio());
+			statement.setString(4, tirocinio.getDataFine());
+			statement.setString(5, tirocinio.getLuogo());
+			statement.setString(6, tirocinio.getTematica());
+			statement.setString(7, tirocinio.getDescrizione());
+			
+			int res = statement.executeUpdate();
+			toReturn = res > 0;
+			
+			statement.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return toReturn;
+	}
+
+	/**
+	 * Metodo che modifica un <b>Tirocinio</b> nel <b>DataBase</b>
+	 * @param tirocinio {@link Tirocinio} da modificare
+	 * @return <b>true</b> in caso di avvenuta modifica, <b>false</b> altrimenti
+	 */
+	@Override
+	public boolean modifyTirocinio(Tirocinio tirocinio) {
+		boolean toReturn = false;
+		String query = "UPDATE tirocinio SET rif_utente = ?, azienda = ?, data_inizio = ?, "
+				+ "data_fine = ?, luogo = ?, tematica = ?, descrizione = ? WHERE codiceID = ?";
+		
+		try {
+			PreparedStatement statement = conn.prepareStatement(query);
+			
+			statement.setString(1, tirocinio.getRif_utente());
+			statement.setString(2, tirocinio.getAzienda());
+			statement.setString(3, tirocinio.getDataInizio());
+			statement.setString(4, tirocinio.getDataFine());
+			statement.setString(5, tirocinio.getLuogo());
+			statement.setString(6, tirocinio.getTematica());
+			statement.setString(7, tirocinio.getDescrizione());
+			statement.setInt(8, tirocinio.getCodiceID());
+			
+			int res = statement.executeUpdate();
+			toReturn = res > 0;
+			
+			statement.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -67,39 +167,31 @@ public class TirociniDAO implements ITirociniDAO {
 		return toReturn;
 	}
 
-	private Utente getUtente(String id){
-		Utente utente = new Utente();
-		String query = "SELECT * FROM utente WHERE username = " + id + ";";
-		
-		try {
-			PreparedStatement statement = conn.prepareStatement(query);
-			ResultSet res = statement.executeQuery();
-			
-			res.next();
-			
-			utente.setUsername(res.getString(1));
-			utente.setPassword(res.getString(2));
-			utente.setEmail(res.getString(3));
-			utente.setTipo(UtenteType.valueOf(res.getString(4)));
-			utente.setNome(res.getString(5));
-			utente.setCognome(res.getString(6));
-			utente.setDataNascita(res.getDate(7).toString());//TODO: vedi formato data
-			utente.setAnnoImmatricolazione(res.getString(8));
-			utente.setCfu(res.getInt(9));
-			utente.setAzienda(res.getString(12));
-			
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
+	private String getParamQuery(ParamType type, String param){		
+		switch(type){
+		case nomeResponsabileAzienda:
+			return "SELECT * FROM tirocinio WHERE rif_utente = '" + param + "';";
+		case nomeAzienda:
+			return "SELECT * FROM tirocinio WHERE azienda = '" + param + "';";
+		case luogo:
+			return "SELECT * FROM tirocinio WHERE luogo = '" + param + "';";
+		case none:
+			return "SELECT * FROM tirocinio";
+		default:
+			return "SELECT * FROM tirocinio";
 		}
-		
-		return utente;
 	}
 	
+	/**
+	 * Restituisce la lista filtrata dei <b>Tirocini</b> presente nel <b>Database</b>
+	 * @param type tipo di filtro da applicare alla ricerca ({@link ParamType})
+	 * @param param parametro
+	 * @return restituisce un {@link java.util.ArrayList} di {@link Tirocinio}
+	 */
 	@Override
-	public ArrayList<Tirocinio> getTirocinioList() {
+	public ArrayList<Tirocinio> ricercaPerParametri(ParamType type, String param) {
 		ArrayList<Tirocinio> toReturn = new ArrayList<Tirocinio>();
-		String query = "SELECT * FROM tirocio";
+		String query = getParamQuery(type, param);
 		
 		try {
 			PreparedStatement statement = conn.prepareStatement(query);
@@ -108,76 +200,19 @@ public class TirociniDAO implements ITirociniDAO {
 			while(res.next()){
 				Tirocinio tirocinio = new Tirocinio();
 				tirocinio.setCodiceID(res.getInt(1));
-				tirocinio.setResponsabileAziendale(getUtente(res.getString(2)));
+				tirocinio.setRif_utente(res.getString(2));
 				tirocinio.setAzienda(res.getString(3));
-				tirocinio.setDataInizio(res.getDate(4));
-				tirocinio.setDataFine(res.getDate(5));
+				tirocinio.setDataInizio(res.getString(4));
+				tirocinio.setDataFine(res.getString(5));
 				tirocinio.setLuogo(res.getString(6));
 				tirocinio.setTematica(res.getString(7));
-				tirocinio.setDescizione(res.getString(8));
+				tirocinio.setDescrizione(res.getString(8));
 				
 				toReturn.add(tirocinio);
 			}
 			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return toReturn;
-	}
-
-	@Override
-	public boolean addTirocinio(Tirocinio tirocinio) {
-		boolean toReturn = false;
-		String query = "INSERT INTO tirocinio (codiceID, rif_utente, azienda, data_inizio, data_fine, luogo, tematica, descrizione)"
-				+ " values (?, ?, ?, ?, ?, ?, ?, ?)";
-		
-		try {
-			PreparedStatement statement = conn.prepareStatement(query);
-			
-			//codice auto incrementale---riferimento ad utente nel db?
-			statement.setInt(1, tirocinio.getCodiceID());
-			statement.setString(2, tirocinio.getResponsabileAziendale().getUsername());
-			statement.setString(3, tirocinio.getAzienda());
-			statement.setDate(4, tirocinio.getDataInizio());
-			statement.setDate(5, tirocinio.getDataFine());
-			statement.setString(6, tirocinio.getLuogo());
-			statement.setString(7, tirocinio.getTematica());
-			statement.setString(8, tirocinio.getDescizione());
-			
-			int res = statement.executeUpdate();
-			toReturn = res > 0;
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
-		return toReturn;
-	}
-
-	@Override
-	public boolean modifyTirocinio(Tirocinio tirocinio) {
-		boolean toReturn = false;
-		String query = "UPDATE tirocinio SET rif_utente = ?, azienda = ?, data_inizio = ?, "
-				+ "data_fine = ?, luogo = ?, tematica = ?, descrizione = ?)";
-		
-		try {
-			PreparedStatement statement = conn.prepareStatement(query);
-			
-			statement.setString(1, tirocinio.getResponsabileAziendale().getUsername());
-			statement.setString(2, tirocinio.getAzienda());
-			statement.setDate(3, tirocinio.getDataInizio());
-			statement.setDate(4, tirocinio.getDataFine());
-			statement.setString(5, tirocinio.getLuogo());
-			statement.setString(6, tirocinio.getTematica());
-			statement.setString(7, tirocinio.getDescizione());
-			
-			int res = statement.executeUpdate();
-			toReturn = res > 0;
-			
+			res.close();
+			statement.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -19,7 +19,7 @@ public class GestioneAccount {
 		return connection.login(username, password);
 	}
 	
-	public String carcaTipo(String username, String password) throws ConnessioneException {
+    public String cercaTipo(String username, String password) throws ConnessioneException {
 		IAccountDAO connection = new AccountDAO();
 		return connection.trovaTipo(username, password);
 	}

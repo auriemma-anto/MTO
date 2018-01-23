@@ -4,12 +4,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>M.T.O.-Studente</title>
+<title>Insert title here</title>
 </head>
 <body>
-
-studente
-
+responsabile azienda
 <%@ include file="header.jsp"%>
+
 </body>
 </html>

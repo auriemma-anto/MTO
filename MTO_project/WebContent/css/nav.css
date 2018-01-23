@@ -74,7 +74,7 @@ header{
     border: none;
     cursor: pointer;
      background: rgba(190, 214, 243, 0.1);
-     background-image:url("../immagini/icone/user.png");
+     background-image:url("..immagini/user.png");
      background-repeat: no-repeat;
      width: 30px;
    height: 30px;

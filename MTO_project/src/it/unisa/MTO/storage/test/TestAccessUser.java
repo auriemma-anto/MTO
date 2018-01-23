@@ -34,7 +34,7 @@ public class TestAccessUser {
 
 	public boolean getLogin(String user, String pass){
 		Connection conn = db.getConnessione();
-		String query = "select count(username) from utente where username = '" + user + "' and password = '" + pass + "';";
+		String query = "select count(username) from utente where username = '" + usern + "' and password = '" + pass + "';";
 
 		try {
 			PreparedStatement statement = conn.prepareStatement(query);

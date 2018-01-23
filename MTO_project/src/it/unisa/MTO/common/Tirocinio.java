@@ -5,16 +5,39 @@ import java.sql.Date;
 public class Tirocinio {
 
 	private int codiceID;
-	private Utente responsabileAziendale;
+	private String rif_utente;
 	private String azienda;
-	private Date dataInizio;
-	private Date dataFine;
+	private String dataInizio;
+	private String dataFine;
 	private String luogo;
 	private String tematica;
-	private String descizione;
+	private String descrizione;
 	
 	public Tirocinio(){}
 	
+	public Tirocinio(int codiceID, String rif_utente, String azienda, String dataInizio, String dataFine,
+			String luogo, String tematica, String descizione) {
+		this.codiceID = codiceID;
+		this.rif_utente = rif_utente;
+		this.azienda = azienda;
+		this.dataInizio = dataInizio;
+		this.dataFine = dataFine;
+		this.luogo = luogo;
+		this.tematica = tematica;
+		this.descrizione = descizione;
+	}
+
+	public Tirocinio(String rif_utente, String azienda, String dataInizio, String dataFine,
+			String luogo, String tematica, String descizione) {
+		this.rif_utente = rif_utente;
+		this.azienda = azienda;
+		this.dataInizio = dataInizio;
+		this.dataFine = dataFine;
+		this.luogo = luogo;
+		this.tematica = tematica;
+		this.descrizione = descizione;
+	}
+
 	public int getCodiceID() {
 		return codiceID;
 	}
@@ -31,19 +54,19 @@ public class Tirocinio {
 		this.azienda = azienda;
 	}
 
-	public Date getDataInizio() {
+	public String getDataInizio() {
 		return dataInizio;
 	}
 
-	public void setDataInizio(Date dataInizio) {
+	public void setDataInizio(String dataInizio) {
 		this.dataInizio = dataInizio;
 	}
 
-	public Date getDataFine() {
+	public String getDataFine() {
 		return dataFine;
 	}
 
-	public void setDataFine(Date dataFine) {
+	public void setDataFine(String dataFine) {
 		this.dataFine = dataFine;
 	}
 
@@ -63,20 +86,27 @@ public class Tirocinio {
 		this.tematica = tematica;
 	}
 
-	public String getDescizione() {
-		return descizione;
+	public String getDescrizione() {
+		return descrizione;
 	}
 
-	public void setDescizione(String descizione) {
-		this.descizione = descizione;
+	public void setDescrizione(String descrizione) {
+		this.descrizione = descrizione;
 	}
 
-	public Utente getResponsabileAziendale() {
-		return responsabileAziendale;
+	
+	public String getRif_utente() {
+		return rif_utente;
 	}
 
-	public void setResponsabileAziendale(Utente responsabileAziendale) {
-		this.responsabileAziendale = responsabileAziendale;
+	public void setRif_utente(String rif_utente) {
+		this.rif_utente = rif_utente;
+	}
+	
+	public String toString() {
+		return "Tirocinio [codiceID=" + codiceID + ", rif_utente=" + rif_utente + ", azienda=" + azienda
+				+ ", dataInizio=" + dataInizio + ", dataFine=" + dataFine + ", luogo=" + luogo + ", tematica="
+				+ tematica + ", descrizione=" + descrizione + "]";
 	}
 	
 }

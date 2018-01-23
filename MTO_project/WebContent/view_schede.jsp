@@ -14,6 +14,10 @@
 <%@ include file="header.jsp"%>
 
 
+<section class="aggiunta">
+	<buttom><a href="aggiungiTirocinio.jsp">Aggiunti Tirocinio</a></buttom>
+
+	</section>
 
 <section class="container">
 	
@@ -24,25 +28,35 @@
 	<!-- <form action="VisualizzaListaTirocini" method="post"> -->
 			<%
 				ArrayList<Tirocinio> tirocinio = (ArrayList<Tirocinio>) session.getAttribute("tirocinio");
+			    
 				if (tirocinio != null) {
+					
 					for (Tirocinio t : tirocinio) {
 			%>
 			
 		<% 	
-		
-	int codiceTirocinio = t.getCodiceID(); 
-     
-   %>
+     	   int codiceTirocinio = t.getCodiceID(); 
+		 %>
    
    
    
    <table class="view_schede">
    
+   	
+		
+   
    <div class="but_el_tir">
-	<form action="EliminaListaTirocinioServlet" method="post" name="eliminaTirocinio">
-		<input type="hidden" name="codiceID" value="<%=codiceTirocinio%>">
+	<form action="EliminaListaTirocinioServlet" method="post" name="ADD_Tirocinio">
+		<input type="hidden" name="codiceTirocinio" value="<%=codiceTirocinio%>">
   		<input type="submit" value="Elimina tirocinio" >
   	</form>
+	</div>
+	
+	<div class="modifica">
+	  <form name="modif" action="mod_schede.jsp">
+		<input type="hidden" name="codiceTirocinio" value="<%=codiceTirocinio%>">
+		<input type="submit" name="Submit" value="Modifica tirocinio">
+	  </form>
 	</div>
 	
    <tr><td>codice tirocinio :<%=codiceTirocinio%></td></tr>
@@ -75,7 +89,7 @@
 			
 		<tr>
 			<th>Descrizione</th>
-			<td><%=t.getDescizione()%></td>
+			<td><%=t.getDescrizione()%></td>
 		</tr>
 		
 		<!-- 		</form>  -->

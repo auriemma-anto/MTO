@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -50,7 +51,7 @@ public class LoginServlet extends HttpServlet {
 		
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-		
+		String page = "";
 		
 		try {
 			Facade facade = new Facade();
@@ -64,33 +65,37 @@ public class LoginServlet extends HttpServlet {
 			session.setMaxInactiveInterval(60*5);
 			 
 		//	out.println(Response.OK.getValue());
+			System.out.println(tipo);
 			
-			if(tipo.equals("studente") ) {
+			if(tipo.equals("studente")) {
 				//out.println(Response.OK.getValue());
-				response.sendRedirect("studente.jsp");
+				System.out.println(1);
+				page = "studente.jsp";
 				
-			}
-			if(tipo.equals("responsabileAzienda" ) ) {
+			}else if(tipo.equals("responsabileAzienda")) {
 				//out.println(Response.OK.getValue());
-				response.sendRedirect("responsabileAzienda.jsp");
-			}
-			if(tipo.equals("tutorEsterno") ) {
+				System.out.println(2);
+				page = "responsabileAzienda.jsp";
+			}else if(tipo.equals("tutorEsterno")) {
 				//out.println(Response.OK.getValue());
-				response.sendRedirect("tutorEsterno.jsp");
-			}
-			if(tipo.equals("tutorAccademico") ) {
+				System.out.println(3);
+				page = "tutorEsterno.jsp";
+			}else if(tipo.equals("tutorAccademico")) {
 				//out.println(Response.OK.getValue());
-				response.sendRedirect("tutorAccademico.jsp");
+				System.out.println(4);
+				page = "tutorAccademico.jsp";
 			}
 			
 			} else {
-				response.sendRedirect("ERROR_Login.jsp");
+				page = "ERROR_Login.jsp";
 			}
 			
 		}catch (ConnessioneException e) {
-			response.sendRedirect("ERROR.jsp");
+			page = "ERROR.jsp";
 		}
-		
+	
+		RequestDispatcher dd=request.getRequestDispatcher(page);
+		dd.forward(request, response);
 	}
 	
 	enum Response {

@@ -10,7 +10,7 @@
 </head>
 <header>
 
-<div class="logo"><a href="HomePage.jsp"><img src="immagini\LOGO.png" alt="Logo"
+<div class="logo"><a href="Home.jsp"><img src="immagini\LOGO.png" alt="Logo"
 		class="logo"> </a></div>
 
 <%
@@ -53,6 +53,11 @@
    
       <ul>
   <li><a href="#home">Home</a></li>
+  <li><a href="#">
+  	<form action="ListaTirociniServlet" method="post">
+  		<input type="submit" value="Visualizza tirocini" >
+  	</form>
+  </a></li>
   <li><a href="#news">BHO</a></li>
   <li class="dropdown">
     <a href="javascript:void(0)" class="dropbtn">Dropdown</a>
