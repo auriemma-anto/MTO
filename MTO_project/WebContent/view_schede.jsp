@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+ <%@ page import="java.util.*, it.unisa.MTO.common.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -15,25 +16,38 @@
 
 
 <section class="container">
-
-	<button class="accordion"></button>
-		<div class="panel">
-			non ancora
-		</div>
 	
 	
-	<table class="view_schede">
 	
-	<!--
-		<form action="" method="post">
-		
-	 	
-			<%--
-				ArrayList<Tirocinio> tirocinio = (ArrayList<Tirocinio>) session.getAttribute("?");
+	
+	
+	<!-- <form action="VisualizzaListaTirocini" method="post"> -->
+			<%
+				ArrayList<Tirocinio> tirocinio = (ArrayList<Tirocinio>) session.getAttribute("tirocinio");
 				if (tirocinio != null) {
 					for (Tirocinio t : tirocinio) {
 			%>
 			
+		<% 	
+		
+	int codiceTirocinio = t.getCodiceID(); 
+     
+   %>
+   
+   
+   
+   <table class="view_schede">
+   
+   <div class="but_el_tir">
+	<form action="EliminaListaTirocinioServlet" method="post" name="eliminaTirocinio">
+		<input type="hidden" name="codiceID" value="<%=codiceTirocinio%>">
+  		<input type="submit" value="Elimina tirocinio" >
+  	</form>
+	</div>
+	
+   <tr><td>codice tirocinio :<%=codiceTirocinio%></td></tr>
+   
+   
 		<tr> 
 			<th>Azienda</th>
 			<td><%=t.getAzienda()%></td> 
@@ -61,46 +75,15 @@
 			
 		<tr>
 			<th>Descrizione</th>
-			<td><%=t.getDescrizione()--%></td>
+			<td><%=t.getDescizione()%></td>
 		</tr>
 		
-		
-		</form>
+		<!-- 		</form>  -->
 	
-	 -->
-	
-	
-		<tr> 
-			<th>Azienda</th>
-			<td>CIao</td> 
-		</tr>
-		<tr>
-			<th>Data inizio</th>
-			<td>12/12/1254</td>
-		</tr>
-		<tr>
-			<th>Data fine</th>
-			<td>12/12/1254</td>
-		</tr>
-		<tr>	
-			<th>Sede</th>
-			<td>BHO</td>
-		</tr>
-		<tr>
-			<th>Tematica</th>
-			<td>Mangiare</td>
-		</tr>
-			
-		<tr>
-			<th>Descrizione</th>
-			<td>Obiettivi: Realizzazione di una App per l'Osservatorio 
-			Consumo di Suolo in Campania su multipiattaforma.
-			MODALITa' DI SVOLGIMENTO DEL TIROCINIO (Necessità di svolgere il tirocinio in sedi
-specifiche) : Frequenza giornaliera presso la sede di Napoli e/o presso il LabGIS
-			
-			</td>
-		</tr>
-		
+			<%
+				}
+				}
+			%>
 	
 	</table>
 
@@ -109,4 +92,5 @@ specifiche) : Frequenza giornaliera presso la sede di Napoli e/o presso il LabGI
 </section>
 
 </body>
+
 </html>
