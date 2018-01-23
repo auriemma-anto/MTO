@@ -1,6 +1,10 @@
 package it.unisa.MTO.common;
 
-
+/**
+ * Classe di riferimento dell'entità <b>Utente</b> nel <b>DataBase</b>
+ * @author Maurizio
+ *
+ */
 public class Utente {
 	
 	private String username;
@@ -17,6 +21,39 @@ public class Utente {
 	private String azienda;
 	
 	public Utente(){}
+
+	public Utente(String username, String password, String email, UtenteType tipo, String nome, String cognome,
+			String dataNascita, String annoImmatricolazione, int cfu, String universita, String dipartimento,
+			String azienda) {
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		this.tipo = tipo;
+		this.nome = nome;
+		this.cognome = cognome;
+		this.dataNascita = dataNascita;
+		this.annoImmatricolazione = annoImmatricolazione;
+		this.cfu = cfu;
+		this.universita = universita;
+		this.dipartimento = dipartimento;
+		this.azienda = azienda;
+	}
+	
+	public Utente(String username, String password, String email, UtenteType tipo, String nome, String cognome,
+			String dataNascita, String annoImmatricolazione, int cfu, String universita, String dipartimento) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		this.tipo = tipo;
+		this.nome = nome;
+		this.cognome = cognome;
+		this.dataNascita = dataNascita;
+		this.annoImmatricolazione = annoImmatricolazione;
+		this.cfu = cfu;
+		this.universita = universita;
+		this.dipartimento = dipartimento;
+	}
 
 	public String getUsername() {
 		return username;

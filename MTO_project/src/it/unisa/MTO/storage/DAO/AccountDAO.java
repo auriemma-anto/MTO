@@ -1,6 +1,7 @@
 package it.unisa.MTO.storage.DAO;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,6 +11,12 @@ import it.unisa.MTO.storage.connection.AccessoDB;
 import it.unisa.MTO.storage.connection.ConnessioneException;
 import it.unisa.MTO.storage.interfaces.IAccountDAO;
 
+/**
+ * Classe che gestione la connessione con il database relativamente alla tabella 'utente' 
+ * @author Maurizio Peluso
+ * @author Maddalena Napolitano
+ *
+ */
 public class AccountDAO implements IAccountDAO {
 
 	private AccessoDB db;
@@ -20,6 +27,12 @@ public class AccountDAO implements IAccountDAO {
 		conn = db.getConnessione();
 	}
 	
+	/**
+	 * Metodo che controlla se l'username e la password sono giusti
+	 * @param username username dell'utente
+	 * @param password password dell'utente
+	 * @return <b>true</b> se username e password corrispondono con quelle presenti nel db, <b>false</b> altrimenti
+	 */
 	@Override
 	public boolean login(String username, String password) {
 		boolean toReturn = false;
@@ -39,11 +52,43 @@ public class AccountDAO implements IAccountDAO {
 		return toReturn;
 	}
 
+	/**
+	 * Metodo che restituisce il tipo di utente
+	 * @param username username dell'utente
+	 * @param password password dell'utente
+	 * @return restituisce il tipo di utente
+	 */
+	public String trovaTipo(String username, String password) {
+		String queryTipo ="SELECT tipo FROM utente WHERE username ='"+ username + "' AND password = '" + password + "';";
+		
+		String tipo="";
+		
+		try {
+			PreparedStatement pStatement = conn.prepareStatement(queryTipo);
+			ResultSet rs = pStatement.executeQuery(queryTipo);
+			rs.next();
+			tipo = rs.getString("tipo");
+			rs.close();
+			pStatement.close();
+			
+			return tipo;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+				return null;
+	}
+	
+	/**
+	 * Questo metodo registra un utente nel db
+	 * @param utente utente da registrare ({@link Utente})
+	 * @return <b>true</b> se la registrazione è avvenuta con successo, <b>false</b> altrimenti
+	 */
 	@Override
 	public boolean registrazione(Utente utente) {
 		boolean toReturn = false;
-		String query = "INSET INTO utente (username, password, email, tipo, nome, cognome, "
-				+ "data_nascita, annoImmatricolazione, CFU, universita, dipartimento, azienda) "
+		String query = "INSERT INTO utente (username, password, email, tipo, nome, cognome, data_nascita, annoImmatricolazione, CFU, universita, dipartimento, azienda) "
 				+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		try {
@@ -53,8 +98,8 @@ public class AccountDAO implements IAccountDAO {
 			pStatement.setString(3, utente.getEmail());
 			pStatement.setString(4, utente.getTipo().toString());
 			pStatement.setString(5, utente.getNome());
-			pStatement.setString(6, utente.getCognome());
-			//data
+			pStatement.setString(6, utente.getCognome());	
+			pStatement.setString(7, utente.getDataNascita());
 			pStatement.setString(8, utente.getAnnoImmatricolazione());
 			pStatement.setInt(9, utente.getCfu());
 			pStatement.setString(10, utente.getUniversita());
@@ -72,6 +117,12 @@ public class AccountDAO implements IAccountDAO {
 		return toReturn;
 	}
 
+	
+	/**
+	 * Metodo che controlla se l'username dato in input è già presente nel db
+	 * @param username username dell'utente
+	 * @return <b>true</b> se username è già presente nel db, <b>false</b> altrimenti
+	 */
 	@Override
 	public boolean checkUtente(String username) {
 		boolean toReturn = false;

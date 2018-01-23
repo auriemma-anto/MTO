@@ -1,0 +1,113 @@
+@charset "ISO-8859-1";
+
+#form label.error {
+        color: red;
+        font-weight: bold;
+    }
+     
+
+* {
+    box-sizing: border-box;
+}
+
+
+input[type=text], input[type=password], 
+input[type=date], select{
+    outline: none;
+    width: 100%;
+    padding: 12px;
+    border-radius: 4px;
+    border: 1px solid green;
+    box-sizing: border-box ;
+    resize: vertical;
+    background-color: orange;
+    font-family: sans-serif;
+    font-size: 18px;
+    
+}
+
+input[type=text]:focus, input[type=password]:focus, 
+input[type=date]:focus, select:focus{
+    outline: none;
+    background-color: lime;
+    border: 1px solid purple;
+}
+
+label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+}
+
+input[type=submit] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 25px;
+    margin-right: 2%;
+    margin-bottom: 2%;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+    font-size: 21px;
+    font-family: sans-serif;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+.containerReg {
+    border-radius: 5px;
+    background-color: aqua; /*colore sfondo registrazione*/
+    padding: 20px;
+    margin: 5% 15%;
+    font-family: sans-serif;
+    font-size: 20px;
+}
+
+.col-25 {
+    float: left;
+    width: 22%;
+    margin-top: 2%;
+    margin-left: 8%;
+     font-weight: bold;
+}
+
+.col-75 {
+    float: left;
+    width: 52%;
+    margin-top: 2%;
+    margin-left: 8%;
+}
+
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/*checkbox*/
+.condizioni{
+	margin-top: 3%;
+	font-size: 21px;
+	margin-left: 4%;
+	 font-weight: bold;
+}
+
+input[type=checkbox] {
+	width: 25px;
+	height: 25px;
+	position: absolute;
+	margin-left: 1%;
+	padding-bottom: 0px;
+	margin-top: 0px;
+	
+}
+
+#accetto-error{
+	margin-left: 5%;
+	font-size: 18px;
+	padding-top: 0px;
+}
