@@ -16,8 +16,9 @@ import it.unisa.MTO.common.Tirocinio;
 import it.unisa.MTO.common.Utente;
 
 /**
- * Servlet implementation class VisualizzaRichiestaServlet
+ * Servlet che permette il download di un progetto formativo
  */
+
 @WebServlet("/downloadServlet")
 public class VisualizzaRichiestaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

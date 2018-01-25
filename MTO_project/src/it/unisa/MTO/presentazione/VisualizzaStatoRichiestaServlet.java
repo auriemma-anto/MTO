@@ -18,7 +18,7 @@ import it.unisa.MTO.common.Tirocinio;
 import it.unisa.MTO.common.Utente;
 
 /**
- * Servlet implementation class VisualizzaStatoRichiestaServlet
+ * La servlet che permette di visualizzare lo stato di avanzamento di un progetto formativo 
  */
 @WebServlet("/visualizzaStato")
 public class VisualizzaStatoRichiestaServlet extends HttpServlet {

@@ -16,6 +16,13 @@ import it.unisa.MTO.storage.connection.AccessoDB;
 import it.unisa.MTO.storage.connection.ConnessioneException;
 import it.unisa.MTO.storage.interfaces.IGRichiestaTirocinioDAO;
 
+/**
+ * 
+ * Tale classe si interfaccia col database e ha lo scopo di gestire i progetti formativi 
+ *
+ */
+
+
 public class GestioneRichiesteTirocinioDAO implements IGRichiestaTirocinioDAO{
 
 	private AccessoDB db;
@@ -23,6 +30,13 @@ public class GestioneRichiesteTirocinioDAO implements IGRichiestaTirocinioDAO{
 	public GestioneRichiesteTirocinioDAO() throws ConnessioneException {
 		db = new AccessoDB();
 	}
+	
+	/**
+	 * Tale metodo inserisce un nuovo documento nel database 
+	 * @param documento è un oggetto che contiene le informazioni relative ad esso necessarie per interfacciarsi con il database
+	 * @return un booleano di corretto funzionamento del metodo
+	 * @throws SQLExcpetion viene lanciata per errori su operazioni SQL
+	 */
 
 	public boolean setDocument(DocumentoRichiesta documento){
 
@@ -79,9 +93,15 @@ public class GestioneRichiesteTirocinioDAO implements IGRichiestaTirocinioDAO{
 		return false;
 	}
 
-	@Override
+	/**
+	 * Tale metodo serve per ottenere le informazioni su un documento dal database
+	 * @param documento è un oggetto che contiene le informazioni relative ad esso necessarie per interfacciarsi con il database
+	 * @throws SQLExcpetion viene lanciata per errori su operazioni SQL
+	 * @return il documento ottenuto come parametro con l'attributo File, l'inputStream, riempito
+	 */
+	
 	public DocumentoRichiesta getDocument(DocumentoRichiesta doc) {
-		// TODO Auto-generated method stub
+	
 		InputStream inputStream = null;
 		Utente studente = doc.getStudente();
 		String username = studente.getUsername();
@@ -126,10 +146,16 @@ public class GestioneRichiesteTirocinioDAO implements IGRichiestaTirocinioDAO{
 		return doc;
 	}
 
-	@Override
+	/**
+	 * Tale metodo ottiene dal database la lista dei progetti formativi 
+	 * @param Tirocinio è un oggetto che contiene le informazioni relative ad esso necessarie per interfacciarsi con il database
+	 * @param Utente è un oggetto che contiene le informazioni relative ad esso necessarie per interfacciarsi con il database
+	 * @throws SQLExcpetion viene lanciata per errori su operazioni SQL
+	 * @return l'arrayList di DocumentoRichiesta
+	 */
+	
 	public ArrayList<DocumentoRichiesta> getList(Tirocinio tirocinio, Utente studente) {
-		// TODO Auto-generated method stub
-
+		
 		Connection conn = db.getConnessione();
 
 		ArrayList<DocumentoRichiesta> lista = new ArrayList<DocumentoRichiesta>();
@@ -205,6 +231,15 @@ public class GestioneRichiesteTirocinioDAO implements IGRichiestaTirocinioDAO{
 		}
 		return lista;
 	}
+	
+	/**
+	 * Tale metodo permette di registrare nel database una nuova firma
+	 * @param documento è un oggetto che contiene le informazioni relative ad esso necessarie per interfacciarsi con il database
+	 * @param utente  è un oggetto che contiene le informazioni relative ad esso necessarie per interfacciarsi con il database
+	 * @param firma è un booleano che rappresenta il valore della firma inserita
+	 * @throws SQLExcpetion viene lanciata per errori su operazioni SQL
+	 * @return un booleno di corretto funzionamento del metodo
+	 */
 
 	public boolean markDocument(DocumentoRichiesta documento, Utente utente, boolean firma) {
 
@@ -235,6 +270,13 @@ public class GestioneRichiesteTirocinioDAO implements IGRichiestaTirocinioDAO{
 
 		return false;
 	}
+	
+	/**
+	 * Tale metodo permette di registrare nel database una nuova firma
+	 * @param documento è un oggetto che contiene le informazioni relative ad esso necessarie per interfacciarsi con il database
+	 * @throws SQLExcpetion viene lanciata per errori su operazioni SQL
+	 * @return il documento ricevuto come parametro con il campo firma riempito
+	 */
 
 	public DocumentoRichiesta checkDocState(DocumentoRichiesta documento) {
 

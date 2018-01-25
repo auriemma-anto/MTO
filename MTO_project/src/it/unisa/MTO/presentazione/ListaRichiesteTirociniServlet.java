@@ -16,8 +16,9 @@ import it.unisa.MTO.common.DocumentoRichiesta;
 import it.unisa.MTO.common.Tirocinio;
 
 /**
- * Servlet implementation class ListaRichiesteTirociniServlet
+ * La servlet che permette di ottenere la lista dei progetti formativi 
  */
+
 @WebServlet("/listaRichieste")
 public class ListaRichiesteTirociniServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

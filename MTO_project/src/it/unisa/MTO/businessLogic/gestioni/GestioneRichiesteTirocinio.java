@@ -12,10 +12,23 @@ import it.unisa.MTO.storage.DAO.GestioneRichiesteTirocinioDAO;
 import it.unisa.MTO.storage.connection.ConnessioneException;
 import it.unisa.MTO.storage.interfaces.IGRichiestaTirocinioDAO;
 
+/**
+ * Tale classe descrive le operazioni inerenti alla gestione delle richieste di tirocinio, richiamando le funzioni del DAO.
+ */
+
 public class GestioneRichiesteTirocinio {
 
 	public GestioneRichiesteTirocinio(){}
 
+	/**
+	 * Tale metodo richiama una funzione del DAO per ottenere la lista dei progetti formativi presentati passandogli i parametri ricevuti
+	 * @param tirocinio è un oggetto che contiene le informazioni relative ad esso necessarie per interfacciarsi con il database
+	 * @param studente  è un oggetto che contiene le informazioni relative ad esso necessarie per interfacciarsi con il database
+	 * @throws ConnessioneException viene lanciata per errori di connessione con il database
+	 * @return ArrayList di documentoRichiesta
+	 * 
+	 */
+	
 	public ArrayList<DocumentoRichiesta> visualizzaLista(Tirocinio tirocinio, Utente studente){
 		IGRichiestaTirocinioDAO grtDAO;
 		try {
@@ -27,7 +40,13 @@ public class GestioneRichiesteTirocinio {
 		}
 		return null;
 	}
-
+	
+	/**
+	 * Tale metodo richiama una funzione del DAO per l'aggiunta di un nuovo progetto formativo passandogli i parametri ricevuti
+	 * @param documento è un oggetto che contiene le informazioni relative ad esso necessarie per interfacciarsi con il database
+	 * @return un booleano di corretto funzionamento del metodo
+	 * @throws ConnessioneException viene lanciata per errori di connessione con il database
+	 */
 
 	public boolean aggiungiRichiesta(DocumentoRichiesta documento){
 		IGRichiestaTirocinioDAO grtDAO;
@@ -40,6 +59,15 @@ public class GestioneRichiesteTirocinio {
 		}
 		return false;
 	}
+	
+	/**
+	 * Tale metodo richiama una funzione del DAO per il download di un progetto formativo, ricevendo da quest'ultimo il file come inpuStream necessario per ottenere i byte da mandare sull'outputstream
+	 * @param documento è un oggetto che contiene le informazioni relative ad esso necessarie per interfacciarsi con il database
+	 * @param outputStream è l'outputStream con cui inviare i byte del file
+	 * @return un booleano di corretto funzionamento del metodo
+	 * @throws ConnessioneException viene lanciata per errori di connessione con il database
+	 * @throws IOException viene lanciata per errori di in/out
+	 */
 
 	public boolean visualizzaRichiesta(DocumentoRichiesta doc, OutputStream out){
 		IGRichiestaTirocinioDAO grtDAO;
@@ -66,6 +94,15 @@ public class GestioneRichiesteTirocinio {
 
 		return true;
 	}
+	
+	/**
+	 * Tale metodo richiama una funzione del DAO per l'aggiunta di una firma ad un determinato progetto formativo
+	 * @param documento è un oggetto che contiene le informazioni relative ad esso necessarie per interfacciarsi con il database
+	 * @param utente è un oggetto che contiene le informazioni relative ad esso necessarie per interfacciarsi con il database
+	 * @param firma è un boolean che rappresenta se il documento è stato accettato o rifiutato
+	 * @return un booleano di corretto funzionamento del metodo
+	 * @throws ConnessioneException viene lanciata per errori di connessione con il database
+	 */
 
 	public boolean firma(DocumentoRichiesta documento, Utente utente, boolean firma){
 		IGRichiestaTirocinioDAO grtDAO;
@@ -79,6 +116,13 @@ public class GestioneRichiesteTirocinio {
 		return false;
 	}
 
+	/**
+	 * Tale metodo richiama una funzione del DAO per la visualizzazione dello stato di avanzamento di un progetto formativo
+	 * @param documento è un oggetto che contiene le informazioni relative ad esso necessarie per interfacciarsi con il database
+	 * @return il documento passato come parametro con l'attributo firma completo
+	 * @throws ConnessioneException viene lanciata per errori di connessione con il database
+	 */
+	
 	public DocumentoRichiesta visualizzaStato(DocumentoRichiesta documento){
 		IGRichiestaTirocinioDAO grtDAO;
 		try{

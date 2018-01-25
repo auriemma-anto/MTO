@@ -13,6 +13,12 @@ import it.unisa.MTO.businessLogic.Facade;
 import it.unisa.MTO.common.DocumentoRichiesta;
 import it.unisa.MTO.common.Utente;
 
+/**
+ * 
+ * La servlet che permette di apportare una firma ad un progetto formativo
+ *
+ */
+
 @WebServlet("/firmaRichiesta")
 public class FirmaRichiestaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
