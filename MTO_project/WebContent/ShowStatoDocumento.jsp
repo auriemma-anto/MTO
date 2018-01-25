@@ -16,6 +16,7 @@
 <title>Stato domande - MTO.unisa.it</title>
 <link type="text/css" rel="stylesheet" href="css/header.css">
 <link type="text/css" rel="stylesheet" href="css/domandaTirocinio.css">
+<link type="text/css" rel="stylesheet" href="css/common.css">
 </head>
 <body>
 

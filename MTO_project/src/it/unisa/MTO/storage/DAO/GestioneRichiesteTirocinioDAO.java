@@ -136,6 +136,7 @@ public class GestioneRichiesteTirocinioDAO implements IGRichiestaTirocinioDAO{
 
 		String query = null;
 
+
 		try {
 
 			if(tirocinio.getCodiceID()>0){
@@ -152,25 +153,36 @@ public class GestioneRichiesteTirocinioDAO implements IGRichiestaTirocinioDAO{
 			PreparedStatement statement = conn.prepareStatement(query);
 			ResultSet res = statement.executeQuery(query);
 
-			System.out.println(""+statement);
+			System.out.println("DAO: "+statement);
 
 			while(res.next()) {
 				DocumentoRichiesta doc = new DocumentoRichiesta();
 				doc.setCodiceID(res.getInt("codiceID"));
-				
-				// Per avere unicamente i documenti non ancora firmati la query è: 
-				/*	String s = "SELECT * FROM documento WHERE (NOT EXISTS "
-						+ "(SELECT * FROM firma WHERE rif_utente = '"+utente.getUsername()+"' AND rif_documento = "+doc.getCodiceID()+"));";
-				 */
-
 				doc.setNome(res.getString("nome"));
 
 				Tirocinio tir = new Tirocinio();
 				tir.setCodiceID(res.getInt("rif_tirocinio"));
 				doc.setTirocinio(tir);
-
+				
 				Utente st = new Utente();
 				st.setUsername(res.getString("rif_utente"));
+
+				String selectStudente = "SELECT * FROM utente WHERE username='"+res.getString("rif_utente")+"';";
+
+				PreparedStatement statement2 = conn.prepareStatement(selectStudente);					
+				ResultSet rs = statement2.executeQuery(selectStudente);
+
+				System.out.println("DAO: "+statement2);
+				
+				if(rs.next()){
+					st.setNome(rs.getString("nome"));
+					st.setCognome(rs.getString("cognome"));
+					st.setEmail(rs.getString("email"));
+					st.setCfu(rs.getInt("CFU"));
+					st.setUniversita(rs.getString("universita"));
+					st.setUsername(rs.getString("username"));
+				}
+				
 				doc.setStudente(st);
 				lista.add(doc);
 				System.out.println("DAO: "+doc.getCodiceID());
@@ -194,13 +206,6 @@ public class GestioneRichiesteTirocinioDAO implements IGRichiestaTirocinioDAO{
 		return lista;
 	}
 
-	@Override
-	public boolean delDocument(String utenteUsername, String nomeFile, Integer codiceTirocinio) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
 	public boolean markDocument(DocumentoRichiesta documento, Utente utente, boolean firma) {
 
 		Connection conn = db.getConnessione(); 
@@ -231,7 +236,6 @@ public class GestioneRichiesteTirocinioDAO implements IGRichiestaTirocinioDAO{
 		return false;
 	}
 
-	@Override
 	public DocumentoRichiesta checkDocState(DocumentoRichiesta documento) {
 
 		System.out.println("CheckDocState");

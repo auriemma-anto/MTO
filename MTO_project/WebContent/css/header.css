@@ -1,4 +1,5 @@
 header {
+	margin-left: -0.8%;
 	overflow: hidden;
 	position: fixed;
 	background-color: #fff;
@@ -6,19 +7,14 @@ header {
 	top: 0;
 }
 
-h1 {
-	padding-top: 1%;
-	text-align: center;
-	font-family: serif;
-	font-style: italic;
-}
-
 .navbar {
 	overflow: hidden;
 	background-color: #cfeefc;
 	position: fixed;
+	margin-left: -0.6%;
 	top: 130px;
-	width: 100%;
+	width: 150%;
+	box-shadow: 0 3px 5px 0 rgba(0, 1, 0, 0.35);
 }
 
 .navbar a {

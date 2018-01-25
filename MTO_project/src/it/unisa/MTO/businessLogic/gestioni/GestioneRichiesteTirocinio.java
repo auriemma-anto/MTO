@@ -67,18 +67,6 @@ public class GestioneRichiesteTirocinio {
 		return true;
 	}
 
-	public void eliminaRichiesta(String aziendaUsername, String studenteUsername){
-		GestioneRichiesteTirocinioDAO grtDAO;
-		try {
-			grtDAO = new GestioneRichiesteTirocinioDAO();
-
-		} catch (ConnessioneException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	}
-
 	public boolean firma(DocumentoRichiesta documento, Utente utente, boolean firma){
 		IGRichiestaTirocinioDAO grtDAO;
 		try{

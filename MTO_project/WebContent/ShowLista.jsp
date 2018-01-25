@@ -7,10 +7,9 @@
 	if (documents == null) {
 		response.sendRedirect("./listaRichieste");
 	}
-	
+
 	Utente loggedUser = new Utente();
 	loggedUser.setUsername((String) request.getSession().getAttribute("loggedUser"));
-	
 %>
 
 <!DOCTYPE html>
@@ -20,47 +19,88 @@
 <title>Domande di Tirocinio - MTO.unisa.it</title>
 <link type="text/css" rel="stylesheet" href="css/header.css">
 <link type="text/css" rel="stylesheet" href="css/domandaTirocinio.css">
+<link type="text/css" rel="stylesheet" href="css/common.css">
 </head>
 <body>
+
+
+	<script>
+			function showDiv(id) {
+				var s = "richiesta"+id;
+				var table = document.getElementById(s);
+				if(table.getAttribute("hidden") !== "hidden"){
+					table.setAttribute("hidden", "hidden");
+				}
+				else{
+					table.removeAttribute("hidden");
+				}
+			}
+		</script>
+
+
 	<%@ include file="html/_header.html"%>
 	<%@ include file="html/_navbar.html"%>
-	<h1>RICHIESTE:</h1>
+	<h2>Elenco richieste di tirocinio:</h2>
 	<div class="container">
-		<h2>Lista Richieste:</h2>
+
+		<%
+			if (documents != null && documents.size() > 0) {
+				int i = 0;
+				Iterator<?> it = documents.iterator();
+				while (it.hasNext()) {
+					i++;
+					DocumentoRichiesta docR = (DocumentoRichiesta) it.next();
+		%>
+		<div>
+			<div class="divShowHidden">
+				<p style="float: left;">
+					Richiesta n°<%=i%>: &emsp; &emsp; &emsp; <input
+						class="btnShowHidden" type="button" value="Visualizza/Nascondi"
+						onClick="showDiv(<%=docR.getCodiceID()%>)">
+				</p>
+			</div>
+
+			<table id="richiesta<%=docR.getCodiceID()%>" class="docTable"
+				hidden="hidden">
+				<tr>
+					<th>Informazioni studente:</th>
+					<th>Scarica domanda:</th>
+				</tr>
+				<tr>
+					<td style="text-align: center;">Nome: <%=docR.getStudente().getNome()%><br>
+						Cognome: <%=docR.getStudente().getCognome()%><br> Università:
+						<%=docR.getStudente().getUniversita()%><br> Email: <%=docR.getStudente().getEmail()%><br>
+						CFU: <%=docR.getStudente().getCfu()%><br></td>
+					<td style="text-align: center;"><a
+						href="./downloadServlet?username=<%=docR.getStudente().getUsername()%>&tirocinio=<%=docR.getTirocinio().getCodiceID()%>"
+						class="button">Scarica Qui</a></td>
+
+				</tr>
+				<tr>
+					<th colspan="2">Firma:</th>
+				</tr>
+				<tr>
+					<td colspan="2" style="text-align: center;"><a class="button"
+						href="./firmaRichiesta?username=<%=loggedUser.getUsername()%>&firma=true&documento=<%=docR.getCodiceID()%>">Accetta</a>
+						&emsp; &emsp; <a class="button"
+						href="./firmaRichiesta?username=<%=loggedUser.getUsername()%>&firma=false&documento=<%=docR.getCodiceID()%>">Rifiuta</a></td>
+				</tr>
+			</table>
+		</div>
+		<%
+			}
+			} else {
+		%>
 
 		<table class="docTable">
 			<tr>
-				<th>Username utente:</th>
-				<th>Firma:</th>
-				<th>Download:</th>
+				<td colspan="2">Nessuna richiesta da visualizzare</td>
 			</tr>
-
-			<%
-				if (documents != null && documents.size() > 0) {
-					Iterator<?> it = documents.iterator();
-					while (it.hasNext()) {
-						DocumentoRichiesta docR = (DocumentoRichiesta) it.next();
-			%>
-
-			<tr>
-				<td style="text-align: center;"><%=docR.getStudente().getUsername()%></td>
-				<td style="text-align: center;"><a class="button"
-					href="./firmaRichiesta?username=<%=loggedUser.getUsername()%>&firma=true&documento=<%=docR.getCodiceID()%>">Accetta</a>
-					<br> <br> <a class="button"
-					href="./firmaRichiesta?username=<%=loggedUser.getUsername()%>&firma=false&documento=<%=docR.getCodiceID()%>">Rifiuta</a></td>
-				<td style="text-align: center;"><a
-					href="./downloadServlet?username=<%=docR.getStudente().getUsername()%>&tirocinio=<%=docR.getTirocinio().getCodiceID()%>"
-					class="button">Scarica Qui</a></td>
-			</tr>
-
-
-			<%
-				}
-				}
-			%>
 		</table>
 
-
+		<%
+			}
+		%>
 	</div>
 </body>
 </html>

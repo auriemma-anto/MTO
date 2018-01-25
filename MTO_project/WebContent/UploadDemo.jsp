@@ -5,11 +5,18 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link type="text/css" rel="stylesheet" href="css/header.css">
+<link type="text/css" rel="stylesheet" href="css/domandaTirocinio.css">
+<link type="text/css" rel="stylesheet" href="css/common.css">
 <title>File Upload to Database Demo</title>
 </head>
 <body>
-	<center>
-		<h1>File Upload to Database Demo</h1>
+
+	<%@ include file="html/_header.html"%>
+	<%@ include file="html/_navbar.html"%>
+
+	<h2>File Upload to Database Demo</h2>
+	<div class="container">
 		<form method="post" action="uploadServlet"
 			enctype="multipart/form-data" name="upload">
 
@@ -38,30 +45,30 @@
 									return true;
 								});
 			</script>
-
-			<span id="lblError" style="color: red;"></span>
-
-			<table border="0">
-				<tr>
-					<td>Username:</td>
-					<td><input type="text" name="username" size="50" /></td>
-				</tr>
-				<tr>
-					<td>ID Tirocinio:</td>
-					<td><input type="text" name="tirocinio" size="50" /></td>
-				</tr>
-				<tr>
-					<td>Documento:</td>
-					<td><input type="file" id="fileUpload" name="documento"
-						size="50" accept="application/pdf" /></td>
-				</tr>
-				<tr>
-					<td colspan="2"><input type="submit" id="btnUpload"
-						value="Upload"></td>
-				</tr>
-			</table>
+			<center>
+			<br><br>
+				<table border="0">
+					<tr>
+						<td>Username:</td>
+						<td><input type="text" name="username" size="50" /></td>
+					</tr>
+					<tr>
+						<td>ID Tirocinio:</td>
+						<td><input type="text" name="tirocinio" size="50" /></td>
+					</tr>
+					<tr>
+						<td>Documento:</td>
+						<td><input type="file" id="fileUpload" name="documento"
+							size="50" accept="application/pdf" /></td>
+					</tr>
+					<tr>
+						<td colspan="2"><input type="submit" id="btnUpload"
+							value="Upload"></td>
+					</tr>
+				</table>
+				<span id="lblError" style="color: red;"></span>
+			</center>
 		</form>
-
-	</center>
+	</div>
 </body>
 </html>

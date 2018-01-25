@@ -1,90 +1,60 @@
-body {
-	margin-top: 200px;
-}
-
-h2 {
-	text-align: center;
-	width: 100%;
-}
-
-a.button{
-	-webkit-appearance: button;
-    -moz-appearance: button;
-    appearance: button;
-
-	padding: 1.5%;
-    text-decoration: none;
-    color: initial;
-    height: 20px;
-    width: 80px;
-}
-
-a.button:link {
-	text-decoration: none;
-	color: #000;
-}
-
-a.button:visited {
-	text-decoration: none;
-	color: #000;
-}
-
-a.button:hover {
-	text-decoration: none;
-	color: #800000;
-}
-
-div.container {
-	margin-left: 23%;
-	margin-right: 23%;
-	text-align: center;
-	height: 300px;
-	width: 700px;
-	border-style: solid;
-	border-width: 1px;
-	border-color: black;
-	overflow-y: scroll;
-}
-
-::-webkit-scrollbar {
-	width: 0px;
-}
-
-::-webkit-scrollbar-track-piece {
-	background-color: transparent;
-	-webkit-border-radius: 6px;
-}
-
 table.docTable {
 	width: 100%;
+	border-collapse: collapse;
+	border-spacing: 0;
+	border-color: #ccc;
+	border-collapse: collapse;
 }
 
-table.docTable td, table.docTable th {
-	border: 1px solid #FFFFFF;
-	padding: 3px 4px;
+table.docTable td {
+	background-color: #f9f9f9;
+	font-family: Georgia, serif !important;
+	vertical-align: top;
+	font-size: 14px;
+	padding: 10px 5px;
+	border-style: solid;
+	border-width: 0px;
+	overflow: hidden;
+	word-break: normal;
+	border-color: #ccc;
+	color: #333;
+	border-top-width: 1px;
+	border-bottom-width: 1px;
 }
 
-table.docTable tbody td {
-	font-size: 13px;
-}
-
-table.docTable td:nth-child(even) {
-	background: #EBEBEB;
-}
-
-table.docTable thead {
-	background: #FFFFFF;
-	border-bottom: 4px solid #CFEEFC;
-}
-
-table.docTable thead th {
-	font-size: 15px;
+table.docTable th, div.divShowHidden {
+	font-family: Georgia, serif !important;
 	font-weight: bold;
-	color: #333333;
-	text-align: center;
-	border-left: 2px solid #CFEEFC;
+	font-style: italic;
+	padding: 10px 5px;
+	border-style: solid;
+	border-width: 0px;
+	overflow: hidden;
+	word-break: normal;
+	border-color: #ccc;
+	color: #333;
+	background-color: #f0f0f0;
+	border-top-width: 1px;
+	border-bottom-width: 1px;
+	vertical-align: top;
+	font-size: 14px;
 }
 
-table.docTable thead th:first-child {
-	border-left: none;
+.btnShowHidden, a.button, a.button:link, a.button:visited {
+	box-shadow: rgb(255, 255, 255) 0px 1px 0px 0px inset;
+	background: linear-gradient(rgb(255, 255, 255) 5%, rgb(246, 246, 246)
+		100%) rgb(255, 255, 255);
+	border: 1px solid rgb(220, 220, 220);
+	display: inline-block;
+	cursor: pointer;
+	color: rgb(102, 102, 102);
+	font-family: Georgia, serif !important;
+	font-size: 13px;
+	font-weight: bold;
+	padding: 6px 12px;
+	text-decoration: none;
+}
+
+div.divShowHidden {
+	padding: 0 10% 0 10%;
 }

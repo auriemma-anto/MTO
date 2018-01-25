@@ -66,11 +66,7 @@ public class Facade {
 	public boolean aggiungiDomandaRichiesta(DocumentoRichiesta documento){
 		return gestioneRichiesteTirocinio.aggiungiRichiesta(documento);
 	}
-	
-	public void eliminaDomandaRichiesta(){
-		gestioneRichiesteTirocinio.eliminaRichiesta(null, null);
-	}
-	
+
 	public boolean firmaDomandaRichiesta(DocumentoRichiesta documento, Utente utente, boolean firma){
 		return gestioneRichiesteTirocinio.firma(documento, utente, firma);
 	}
