@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import it.unisa.MTO.businessLogic.Facade;
 import it.unisa.MTO.common.DocumentoRichiesta;
-import it.unisa.MTO.common.Tirocinio;
+import it.unisa.MTO.common.Utente;
 
 /**
  * La servlet che permette di ottenere la lista dei progetti formativi 
@@ -30,20 +30,14 @@ public class ListaRichiesteTirociniServlet extends HttpServlet {
 		String loggedUser = "ericsson.resp";	
 		request.getSession().setAttribute("loggedUser", loggedUser);
 
-		int idTirocinio = 1;
-		//request.getSession().setAttribute("idTirocinio", idTirocinio);
-
-		Tirocinio tirocinio = new Tirocinio();
-		//int codiceID = Integer.parseInt((String) request.getSession().getAttribute("idTirocinio"));
-		//tirocinio.setCodiceID(codiceID);
-		tirocinio.setCodiceID(idTirocinio);
-
+		Utente user = new Utente();
+		user.setUsername(loggedUser);
 		Facade f = new Facade();
-		ArrayList<DocumentoRichiesta> docs = f.listaDomandeRichiesta(tirocinio, null);
+		ArrayList<DocumentoRichiesta> docs = f.listaDomandeRichiesta(user);
 		Iterator<?> it = docs.iterator();
 		System.out.println("DOCSIZE: " + docs.size());
-		
-		
+
+
 		while(it.hasNext()){
 			DocumentoRichiesta d = f.statoDomandaRichiesta((DocumentoRichiesta) it.next());
 			for(int i=0; i<d.getFirma().size(); i++){
@@ -52,7 +46,7 @@ public class ListaRichiesteTirociniServlet extends HttpServlet {
 				}
 			}
 		}
-		
+
 		request.removeAttribute("documenti");
 		request.setAttribute("documenti", docs);
 
