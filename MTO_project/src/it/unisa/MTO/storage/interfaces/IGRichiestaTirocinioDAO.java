@@ -13,3 +13,4 @@ public interface IGRichiestaTirocinioDAO {
 	public DocumentoRichiesta checkDocState(DocumentoRichiesta documento);
 
 }
+

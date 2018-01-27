@@ -1,3 +1,4 @@
+
 package it.unisa.MTO.common;
 
 import java.io.InputStream;
@@ -58,3 +59,4 @@ public class DocumentoRichiesta {
 	}
 		
 }
+
