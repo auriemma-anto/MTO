@@ -1,5 +1,5 @@
 
-package it.unisa.MTO.presentazione;
+package it.unisa.MTO.presentazione.gestioneRichiesteTirocinio;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -29,12 +29,11 @@ public class AggiungiRichiestaServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		// gets values of text fields
 		Utente studente = new Utente();
-		studente.setUsername(request.getParameter("username"));
+		studente.setUsername((String) request.getSession().getAttribute("username"));
 
 		Tirocinio tirocinio = new Tirocinio();
-		tirocinio.setCodiceID(Integer.parseInt(request.getParameter("tirocinio")));
+		tirocinio.setCodiceID(Integer.parseInt(request.getParameter("codiceTirocinio")));
 
 		DocumentoRichiesta documento = new DocumentoRichiesta();
 

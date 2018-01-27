@@ -1,4 +1,4 @@
-package it.unisa.MTO.presentazione;
+package it.unisa.MTO.presentazione.gestioneRichiesteTirocinio;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -25,14 +25,8 @@ public class VisualizzaStatoRichiestaServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		// Dichiarazioni di prova: stringa loggedUser 
-
-		String loggedUser = "r.napo12";	
-		//request.getSession().setAttribute("loggedUser", loggedUser);
-
 		Utente user = new Utente();
-		//String username = (String) request.getSession().getAttribute("loggedUser");
-		user.setUsername(loggedUser);
+		user.setUsername((String) request.getSession().getAttribute("username"));
 
 		Facade f = new Facade();
 
@@ -42,10 +36,6 @@ public class VisualizzaStatoRichiestaServlet extends HttpServlet {
 
 		while(it.hasNext()){
 			DocumentoRichiesta doc = (DocumentoRichiesta) it.next();
-
-			/*Tirocinio tirocinio = new Tirocinio;
-			 *f.getTirocinio(doc.getTirocinio().getCodiceID());
-			 *doc.setTirocinio(tirocinio);*/
 
 			ArrayList<Firma> listaFirme = f.statoDomandaRichiesta(doc).getFirma();			
 			doc.setFirma(listaFirme);

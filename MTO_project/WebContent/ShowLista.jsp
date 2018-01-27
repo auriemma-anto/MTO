@@ -1,5 +1,5 @@
 <%@page import="it.unisa.MTO.common.*"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="UTF-8" import="java.util.*"%>
 
 <%
@@ -9,15 +9,14 @@
 	}
 
 	Utente loggedUser = new Utente();
-	loggedUser.setUsername((String) request.getSession().getAttribute("loggedUser"));
+	loggedUser.setUsername((String) request.getSession().getAttribute("username"));
 %>
 
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Domande di Tirocinio - MTO.unisa.it</title>
-<link type="text/css" rel="stylesheet" href="css/header.css">
 <link type="text/css" rel="stylesheet" href="css/domandaTirocinio.css">
 <link type="text/css" rel="stylesheet" href="css/common.css">
 </head>
@@ -38,8 +37,7 @@
 		</script>
 
 
-	<%@ include file="html/_header.html"%>
-	<%@ include file="html/_navbar.html"%>
+	<%@ include file="header.jsp"%>
 	<h2>Elenco richieste di tirocinio:</h2>
 	<div class="container">
 

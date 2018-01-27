@@ -107,8 +107,9 @@ public class TirociniDAO implements ITirociniDAO {
 	@Override
 	public boolean addTirocinio(Tirocinio tirocinio) {
 		boolean toReturn = false;
+		String selectUsername = "(SELECT username FROM utente WHERE username = ?)";
 		String query = "INSERT INTO tirocinio (rif_utente, rif_TA, rif_TE, azienda, data_inizio, data_fine, luogo, tematica, descrizione)"
-				+ " values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				+ " values (?, "+selectUsername+", "+selectUsername+", ?, ?, ?, ?, ?, ?)";
 		
 		try {
 			PreparedStatement statement = conn.prepareStatement(query);

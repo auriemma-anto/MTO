@@ -1,4 +1,4 @@
-package it.unisa.MTO.presentazione;
+package it.unisa.MTO.presentazione.gestioneRichiesteTirocinio;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -25,13 +25,8 @@ public class ListaRichiesteTirociniServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		// Dichiarazioni di prova: stringa loggedUser & int codiceID 
-
-		String loggedUser = "ericsson.resp";	
-		request.getSession().setAttribute("loggedUser", loggedUser);
-
 		Utente user = new Utente();
-		user.setUsername(loggedUser);
+		user.setUsername((String) request.getSession().getAttribute("username"));
 		Facade f = new Facade();
 		ArrayList<DocumentoRichiesta> docs = f.listaDomandeRichiesta(user);
 		Iterator<?> it = docs.iterator();
@@ -41,7 +36,7 @@ public class ListaRichiesteTirociniServlet extends HttpServlet {
 		while(it.hasNext()){
 			DocumentoRichiesta d = f.statoDomandaRichiesta((DocumentoRichiesta) it.next());
 			for(int i=0; i<d.getFirma().size(); i++){
-				if(d.getFirma().get(i).getUtente().getUsername().equals(loggedUser)){
+				if(d.getFirma().get(i).getUtente().getUsername().equals(user.getUsername())){
 					it.remove();
 				}
 			}

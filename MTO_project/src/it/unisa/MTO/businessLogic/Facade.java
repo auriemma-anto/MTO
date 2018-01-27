@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import it.unisa.MTO.businessLogic.gestioni.*;
 import it.unisa.MTO.common.*;
+import it.unisa.MTO.storage.connection.ConnessioneException;
 
 public class Facade {
 	private GestioneAccount gestioneAccount;

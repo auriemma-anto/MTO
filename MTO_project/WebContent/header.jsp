@@ -10,7 +10,7 @@
 </head>
 <header>
 
-<div class="logo"><a href="Home.jsp"><img src="immagini\LOGO.png" alt="Logo"
+<div class="logo"><a href="login.jsp"><img src="immagini\LOGO.png" alt="Logo"
 		class="logo"> </a></div>
 
 <%

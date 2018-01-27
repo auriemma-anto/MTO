@@ -38,8 +38,7 @@
 	System.out.println("Hidden field Value :"+codiceTirocinio);
 	
 	Facade facade = new Facade();
-	Tirocinio tir = new Tirocinio();
-	tir = facade.getTirocinio(codiceTirocinio);
+	Tirocinio tir = facade.getTirocinio(codiceTirocinio);
 	
 	//String codice_id = (String) session.getAttribute("codice_id"); 
 	

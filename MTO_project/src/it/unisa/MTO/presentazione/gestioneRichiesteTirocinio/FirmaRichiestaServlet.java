@@ -1,4 +1,4 @@
-package it.unisa.MTO.presentazione;
+package it.unisa.MTO.presentazione.gestioneRichiesteTirocinio;
 
 import java.io.IOException;
 

@@ -1,5 +1,5 @@
 <%@page import="it.unisa.MTO.common.*"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="UTF-8" import="java.util.*"%>
 
 <%
@@ -14,14 +14,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Stato domande - MTO.unisa.it</title>
-<link type="text/css" rel="stylesheet" href="css/header.css">
 <link type="text/css" rel="stylesheet" href="css/domandaTirocinio.css">
 <link type="text/css" rel="stylesheet" href="css/common.css">
 </head>
 <body>
 
-	<%@ include file="html/_header.html"%>
-	<%@ include file="html/_navbar.html"%>
+	<%@ include file="header.jsp"%>
 
 	<h2>Visualizza lo stato della tua domanda</h2>
 	<div class="container">
