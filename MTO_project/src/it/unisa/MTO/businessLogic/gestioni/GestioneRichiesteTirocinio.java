@@ -7,7 +7,6 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 
 import it.unisa.MTO.common.DocumentoRichiesta;
-import it.unisa.MTO.common.Tirocinio;
 import it.unisa.MTO.common.Utente;
 import it.unisa.MTO.storage.DAO.GestioneRichiesteTirocinioDAO;
 import it.unisa.MTO.storage.connection.ConnessioneException;
@@ -23,18 +22,17 @@ public class GestioneRichiesteTirocinio {
 
 	/**
 	 * Tale metodo richiama una funzione del DAO per ottenere la lista dei progetti formativi presentati passandogli i parametri ricevuti
-	 * @param tirocinio è un oggetto che contiene le informazioni relative ad esso necessarie per interfacciarsi con il database
-	 * @param studente  è un oggetto che contiene le informazioni relative ad esso necessarie per interfacciarsi con il database
+	 * @param utente è un oggetto che contiene le informazioni relative ad esso necessarie per interfacciarsi con il database
 	 * @throws ConnessioneException viene lanciata per errori di connessione con il database
 	 * @return ArrayList di documentoRichiesta
 	 * 
 	 */
 	
-	public ArrayList<DocumentoRichiesta> visualizzaLista(Tirocinio tirocinio, Utente studente){
+	public ArrayList<DocumentoRichiesta> visualizzaLista(Utente utente){
 		IGRichiestaTirocinioDAO grtDAO;
 		try {
 			grtDAO = new GestioneRichiesteTirocinioDAO();
-			return grtDAO.getList(tirocinio, studente);
+			return grtDAO.getList(utente);
 		} catch (ConnessioneException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

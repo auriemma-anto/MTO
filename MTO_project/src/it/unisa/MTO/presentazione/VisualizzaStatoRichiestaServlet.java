@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 import it.unisa.MTO.businessLogic.Facade;
 import it.unisa.MTO.common.DocumentoRichiesta;
 import it.unisa.MTO.common.Firma;
-import it.unisa.MTO.common.Tirocinio;
 import it.unisa.MTO.common.Utente;
 
 /**
@@ -26,29 +25,28 @@ public class VisualizzaStatoRichiestaServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
 		// Dichiarazioni di prova: stringa loggedUser 
-		
-		String loggedUser = "c.desantis";	
-		request.getSession().setAttribute("loggedUser", loggedUser);
+
+		String loggedUser = "r.napo12";	
+		//request.getSession().setAttribute("loggedUser", loggedUser);
 
 		Utente user = new Utente();
-		String username = (String) request.getSession().getAttribute("loggedUser");
-		user.setUsername(username);
-		
+		//String username = (String) request.getSession().getAttribute("loggedUser");
+		user.setUsername(loggedUser);
+
 		Facade f = new Facade();
 
-		ArrayList<DocumentoRichiesta> documenti = f.listaDomandeRichiesta(new Tirocinio(), user);
+		ArrayList<DocumentoRichiesta> documenti = f.listaDomandeRichiesta(user);
 		Iterator<?> it = documenti.iterator();
 		ArrayList<DocumentoRichiesta> docFirmati = new ArrayList<DocumentoRichiesta>();		
-		
+
 		while(it.hasNext()){
 			DocumentoRichiesta doc = (DocumentoRichiesta) it.next();
-			
+
 			/*Tirocinio tirocinio = new Tirocinio;
 			 *f.getTirocinio(doc.getTirocinio().getCodiceID());
 			 *doc.setTirocinio(tirocinio);*/
-			
+
 			ArrayList<Firma> listaFirme = f.statoDomandaRichiesta(doc).getFirma();			
 			doc.setFirma(listaFirme);
 			docFirmati.add(doc);

@@ -116,13 +116,12 @@ public class Facade {
 	
 	/**
 	 * Metodo che richiama la funzione della classe GestioneRichiesteTirocinio.java per ottenere la lista dei progetti formativi passandogli i parametri ricevuti dalla Servlet
-	 * @param tirocinio è un oggetto che contiene le informazioni relative ad esso necessarie per interfacciarsi con il database
-	 * @param studente è un oggetto che contiene le informazioni relative ad esso necessarie per interfacciarsi con il database
+	 * @param utente è un oggetto che contiene le informazioni relative ad esso necessarie per interfacciarsi con il database
 	 * @return ArrayList di documentoRichiesta
 	 */
 	
-	public ArrayList<DocumentoRichiesta> listaDomandeRichiesta(Tirocinio tirocinio, Utente studente){
-		return gestioneRichiesteTirocinio.visualizzaLista(tirocinio, studente);
+	public ArrayList<DocumentoRichiesta> listaDomandeRichiesta(Utente utente){
+		return gestioneRichiesteTirocinio.visualizzaLista(utente);
 	}
 	
 	/**

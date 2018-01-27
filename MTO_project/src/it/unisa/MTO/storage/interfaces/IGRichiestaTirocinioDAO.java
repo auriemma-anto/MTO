@@ -9,7 +9,7 @@ public interface IGRichiestaTirocinioDAO {
 	
 	public boolean setDocument(DocumentoRichiesta documento);
 	public DocumentoRichiesta getDocument(DocumentoRichiesta doc);
-	public ArrayList<DocumentoRichiesta> getList(Tirocinio tirocinio, Utente studente);
+	public ArrayList<DocumentoRichiesta> getList(Utente utente);
 	public boolean markDocument(DocumentoRichiesta documento, Utente utente, boolean firma);
 	public DocumentoRichiesta checkDocState(DocumentoRichiesta documento);
 

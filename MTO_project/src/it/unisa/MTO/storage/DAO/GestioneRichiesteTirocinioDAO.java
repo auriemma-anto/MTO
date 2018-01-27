@@ -30,7 +30,7 @@ public class GestioneRichiesteTirocinioDAO implements IGRichiestaTirocinioDAO{
 	public GestioneRichiesteTirocinioDAO() throws ConnessioneException {
 		db = new AccessoDB();
 	}
-	
+
 	/**
 	 * Tale metodo inserisce un nuovo documento nel database 
 	 * @param documento è un oggetto che contiene le informazioni relative ad esso necessarie per interfacciarsi con il database
@@ -99,9 +99,9 @@ public class GestioneRichiesteTirocinioDAO implements IGRichiestaTirocinioDAO{
 	 * @throws SQLExcpetion viene lanciata per errori su operazioni SQL
 	 * @return il documento ottenuto come parametro con l'attributo File, l'inputStream, riempito
 	 */
-	
+
 	public DocumentoRichiesta getDocument(DocumentoRichiesta doc) {
-	
+
 		InputStream inputStream = null;
 		Utente studente = doc.getStudente();
 		String username = studente.getUsername();
@@ -148,33 +148,26 @@ public class GestioneRichiesteTirocinioDAO implements IGRichiestaTirocinioDAO{
 
 	/**
 	 * Tale metodo ottiene dal database la lista dei progetti formativi 
-	 * @param Tirocinio è un oggetto che contiene le informazioni relative ad esso necessarie per interfacciarsi con il database
 	 * @param Utente è un oggetto che contiene le informazioni relative ad esso necessarie per interfacciarsi con il database
 	 * @throws SQLExcpetion viene lanciata per errori su operazioni SQL
 	 * @return l'arrayList di DocumentoRichiesta
 	 */
-	
-	public ArrayList<DocumentoRichiesta> getList(Tirocinio tirocinio, Utente studente) {
-		
+
+	public ArrayList<DocumentoRichiesta> getList(Utente utente) {
+
 		Connection conn = db.getConnessione();
 
 		ArrayList<DocumentoRichiesta> lista = new ArrayList<DocumentoRichiesta>();
 
 		String query = null;
 
-
 		try {
 
-			if(tirocinio.getCodiceID()>0){
-				int codiceID = tirocinio.getCodiceID();
-				query = "SELECT * FROM documento WHERE rif_tirocinio="+codiceID+";";
-			}
+			String username = utente.getUsername();
 
-			else if(!studente.getUsername().isEmpty()){
-				String username = studente.getUsername();
-				query = "SELECT * FROM documento WHERE rif_utente='"+username+"';";
+			String queryIdTirocinio = "SELECT codiceID FROM tirocinio WHERE (rif_utente='"+username+"' OR rif_TE='"+username+"' OR rif_TA='"+username+"')";
 
-			}
+			query = "SELECT * FROM documento WHERE rif_tirocinio IN ("+queryIdTirocinio+") OR rif_utente='"+username+"';";
 
 			PreparedStatement statement = conn.prepareStatement(query);
 			ResultSet res = statement.executeQuery(query);
@@ -189,27 +182,27 @@ public class GestioneRichiesteTirocinioDAO implements IGRichiestaTirocinioDAO{
 				Tirocinio tir = new Tirocinio();
 				tir.setCodiceID(res.getInt("rif_tirocinio"));
 				doc.setTirocinio(tir);
-				
-				Utente st = new Utente();
-				st.setUsername(res.getString("rif_utente"));
+
+				Utente ut = new Utente();
+				ut.setUsername(res.getString("rif_utente"));
 
 				String selectStudente = "SELECT * FROM utente WHERE username='"+res.getString("rif_utente")+"';";
 
 				PreparedStatement statement2 = conn.prepareStatement(selectStudente);					
-				ResultSet rs = statement2.executeQuery(selectStudente);
+				ResultSet rs2 = statement2.executeQuery(selectStudente);
 
 				System.out.println("DAO: "+statement2);
-				
-				if(rs.next()){
-					st.setNome(rs.getString("nome"));
-					st.setCognome(rs.getString("cognome"));
-					st.setEmail(rs.getString("email"));
-					st.setCfu(rs.getInt("CFU"));
-					st.setUniversita(rs.getString("universita"));
-					st.setUsername(rs.getString("username"));
+
+				if(rs2.next()){
+					ut.setNome(rs2.getString("nome"));
+					ut.setCognome(rs2.getString("cognome"));
+					ut.setEmail(rs2.getString("email"));
+					ut.setCfu(rs2.getInt("CFU"));
+					ut.setUniversita(rs2.getString("universita"));
+					ut.setUsername(rs2.getString("username"));
 				}
-				
-				doc.setStudente(st);
+
+				doc.setStudente(ut);
 				lista.add(doc);
 				System.out.println("DAO: "+doc.getCodiceID());
 				System.out.println("DAO: "+doc.getNome());
@@ -217,7 +210,7 @@ public class GestioneRichiesteTirocinioDAO implements IGRichiestaTirocinioDAO{
 				System.out.println("DAO: "+doc.getStudente().getUsername());
 			}
 
-		} catch (SQLException ex) {
+		}catch (SQLException ex) {
 			if (conn != null) {
 				// closes the database connection
 				try {
@@ -231,7 +224,7 @@ public class GestioneRichiesteTirocinioDAO implements IGRichiestaTirocinioDAO{
 		}
 		return lista;
 	}
-	
+
 	/**
 	 * Tale metodo permette di registrare nel database una nuova firma
 	 * @param documento è un oggetto che contiene le informazioni relative ad esso necessarie per interfacciarsi con il database
@@ -270,7 +263,7 @@ public class GestioneRichiesteTirocinioDAO implements IGRichiestaTirocinioDAO{
 
 		return false;
 	}
-	
+
 	/**
 	 * Tale metodo permette di registrare nel database una nuova firma
 	 * @param documento è un oggetto che contiene le informazioni relative ad esso necessarie per interfacciarsi con il database
