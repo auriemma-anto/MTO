@@ -1,1 +1,89 @@
 @charset "ISO-8859-1";
+
+/******** Aggiungi tirocinio********/
+
+.aggiunta{
+	
+	
+}
+
+
+.butt_ADD{
+	float: right;
+	background-color: lime;
+	margin-top: 4%;
+	margin-right: 10%;
+	padding: 10px 15px;
+	
+}
+
+
+
+/******* CONTENITORE TABELLA*********/
+.container{
+	margin: 7% 10%;
+}
+
+/*** TABELLA***/
+.view_schede{
+	margin-bottom: 4%;
+}
+
+.riga{
+	
+}
+
+
+.tipo{
+	
+}
+
+.dato{}
+
+
+/*** SCRITTA TIROCINIO ***/
+
+.tiro{
+	display: inline-block;
+	background-color: fuchsia;
+	width: 100%;
+	
+}
+
+.titoloT{
+	display: inline-block;
+}
+
+
+/******** BOTTONE MODIFICA***********/
+.modifica{
+	display: inline-block;
+	float:right;
+	border: none;
+	
+}
+
+.modify{
+	border: none;
+	height:100%;
+	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+
+/******** BOTTONE ELIMINA **********/
+.but_el_tir{
+	display: inline-block;
+	float:right;
+	border: none;
+	height:100%;
+	
+}
+
+.delet {
+	border: none;
+	height:100%;
+	background-color: red;
+	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+	
+}
+

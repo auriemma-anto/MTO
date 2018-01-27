@@ -4,9 +4,19 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>M.T.O.-ERRORE</title>
+
+<link rel="stylesheet" href="css/error.css" type="text/css" media="all">
+
 </head>
 <body>
-ciao hai sbagliato. complimenti
+
+<%@ include file="header.jsp"%>
+<div class="Error_page">
+<b>Si è verificato un errore!</b>
+<br>
+<b>Riprovare!</b>
+
+</div>
 </body>
 </html>

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>M.T.O.-Login</title>
+<title>M.T.O.- Login</title>
  
  <!--Ultima versione di jQuery (minified) -->
   <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
@@ -13,7 +13,6 @@
   <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
  
 
-<link rel="stylesheet" href="css/nav.css" type="text/css" media="all">
 <link rel="stylesheet" href="css/login.css" type="text/css" media="all">
 </head>
 <body>
@@ -44,7 +43,7 @@
     </div>
        
          <div class="row">
-         <input type="submit" value="Login" id="submitLogin"class="submit">
+         <input type="submit" value="Login" class="type_submit" id="submitLogin"class="submit">
       </div>
     </form>
  

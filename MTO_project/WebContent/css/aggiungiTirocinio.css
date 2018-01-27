@@ -1,0 +1,97 @@
+@charset "ISO-8859-1";
+
+#form label.error {
+        color: red;
+        font-weight: bold;
+    }
+    
+
+
+/*** INPUT ***/
+input[type=text], input[type=password], 
+input[type=date], textarea{
+    outline: none;
+    width: 100%;
+    padding: 12px;
+    border-radius: 4px;
+    border: 1px solid green;
+    box-sizing: border-box ;
+    resize: vertical;
+    background-color: orange;
+    font-family: sans-serif;
+    font-size: 18px;
+    
+}
+
+textarea{
+	height: 160px;
+}
+
+input[type=text]:focus, input[type=password]:focus, 
+input[type=date]:focus, textarea:focus{
+    outline: none;
+    background-color: lime;
+    border: 1px solid purple;
+}
+
+label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+}
+
+input[type=submit] {
+    background-color: fuchsia;
+    color: white;
+    padding: 15px 25px;
+    margin-right: 2%;
+    margin-top: 4%;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+    font-size: 18px;
+    font-family: sans-serif;
+}
+
+input[type=submit]:hover {
+    background-color: green;
+}
+
+
+.container{
+	margin: 6% 10%;
+	font-size: 18px;
+	font-family: sans-serif;
+	
+}
+
+.titolo{
+	font-size: 24px;
+	font-family: sans-serif;
+	font-weight: bold;
+	text-align: center; 
+}
+
+.div_titolo{
+	text-align: center;
+	padding-bottom: 5%;
+}
+.row{}
+
+.col-name{
+	 float: left;
+    width: 22%;
+    margin-top: 2%;
+    margin-left: 8%;
+     font-weight: bold;
+}
+
+.col-input{
+	float: left;
+    width: 52%;
+    margin-top: 2%;
+    margin-left: 8%;
+}
+
+
+

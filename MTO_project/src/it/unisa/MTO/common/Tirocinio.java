@@ -1,11 +1,17 @@
 package it.unisa.MTO.common;
 
-import java.sql.Date;
 
+/**
+ * Classe di riferimento dell'entità <b>Tirocinio</b> nel <b>DataBase</b>.
+ * @author Maurizio
+ *
+ */
 public class Tirocinio {
 
 	private int codiceID;
 	private String rif_utente;
+	private String rif_TA;
+	private String rif_TE;
 	private String azienda;
 	private String dataInizio;
 	private String dataFine;
@@ -15,10 +21,12 @@ public class Tirocinio {
 	
 	public Tirocinio(){}
 	
-	public Tirocinio(int codiceID, String rif_utente, String azienda, String dataInizio, String dataFine,
+	public Tirocinio(int codiceID, String rif_utente, String rif_TA, String rif_TE, String azienda, String dataInizio, String dataFine,
 			String luogo, String tematica, String descizione) {
 		this.codiceID = codiceID;
 		this.rif_utente = rif_utente;
+		this.rif_TA = rif_TA;
+		this.rif_TE = rif_TE;
 		this.azienda = azienda;
 		this.dataInizio = dataInizio;
 		this.dataFine = dataFine;
@@ -27,9 +35,11 @@ public class Tirocinio {
 		this.descrizione = descizione;
 	}
 
-	public Tirocinio(String rif_utente, String azienda, String dataInizio, String dataFine,
+	public Tirocinio(String rif_utente, String rif_TA, String rif_TE, String azienda, String dataInizio, String dataFine,
 			String luogo, String tematica, String descizione) {
 		this.rif_utente = rif_utente;
+		this.rif_TA = rif_TA;
+		this.rif_TE = rif_TE;
 		this.azienda = azienda;
 		this.dataInizio = dataInizio;
 		this.dataFine = dataFine;
@@ -94,19 +104,35 @@ public class Tirocinio {
 		this.descrizione = descrizione;
 	}
 
-	
 	public String getRif_utente() {
 		return rif_utente;
 	}
 
-	public void setRif_utente(String rif_utente) {
-		this.rif_utente = rif_utente;
+	public void setRif_utente(String responsabileAziendale) {
+		this.rif_utente = responsabileAziendale;
 	}
 	
+	public String getRif_TA() {
+		return rif_TA;
+	}
+
+	public void setRif_TA(String rif_TA) {
+		this.rif_TA = rif_TA;
+	}
+	
+	public String getRif_TE() {
+		return rif_TE;
+	}
+
+	public void setRif_TE(String rif_TE) {
+		this.rif_TE = rif_TE;
+	}
+	
+	@Override
 	public String toString() {
-		return "Tirocinio [codiceID=" + codiceID + ", rif_utente=" + rif_utente + ", azienda=" + azienda
-				+ ", dataInizio=" + dataInizio + ", dataFine=" + dataFine + ", luogo=" + luogo + ", tematica="
-				+ tematica + ", descrizione=" + descrizione + "]";
+		return "Tirocinio [codiceID=" + codiceID + ", rif_utente=" + rif_utente + ", rif_TA=" + rif_TA + ", rif_TE="
+				+ rif_TE + ", azienda=" + azienda + ", dataInizio=" + dataInizio + ", dataFine=" + dataFine + ", luogo="
+				+ luogo + ", tematica=" + tematica + ", descrizione=" + descrizione + "]";
 	}
 	
 }

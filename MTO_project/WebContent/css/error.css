@@ -1,0 +1,12 @@
+@charset "ISO-8859-1";
+
+.Error_page{
+	width: 50%;
+	margin: 8% 24%;
+	text-align: center;
+	background-color: olive;
+	color: red;
+	font-family: sans-serif;
+	font-size: x-large;
+	font-weight: bold;
+}

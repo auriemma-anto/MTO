@@ -6,10 +6,6 @@
     }
      
 
-* {
-    box-sizing: border-box;
-}
-
 
 input[type=text], input[type=password], 
 input[type=date], select{
@@ -73,6 +69,28 @@ input[type=submit]:hover {
      font-weight: bold;
 }
 
+.annoImm{
+	display: inline-block;
+	width: 52%;
+}
+
+#annoI1, #annoI2{
+	width: 20%;
+} 
+
+.slash{
+	font-size: 28px;
+	padding: 1%;
+}
+
+#EMAIL{
+	width: 35%;
+}
+
+.em_sud{
+	font-size: 20px;
+	padding-left: 1%;
+}
 .col-75 {
     float: left;
     width: 52%;
@@ -81,7 +99,7 @@ input[type=submit]:hover {
 }
 
 
-/* Clear floats after the columns */
+/** Clear floats after the columns **/
 .row:after {
     content: "";
     display: table;

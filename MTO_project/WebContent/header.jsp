@@ -16,26 +16,24 @@
 <%
       String username = (String) session.getAttribute("username");
      if (username != null) {
+    	 
     %>
-	<%-- Welcome: <%=name%> --%>
-
-	<!-- <form action="Logout" method="post" class="Login">
-
-     <input type="submit" value="logout" onclick="myFunction()">
-     </form>  -->
+	
    <ul>
 		<li>
 			<div class="down">
+				
 				<button onclick="myFunct()" class="btn">
-					<!-- <img class="im_login" src="immagini/user.png" alt="utente" /> -->
 				</button>
+				
 				<div id="mydown" class="down-cont">
 				<a href="#" class="welcome">Welcome : <%=username%> </a>
-					<!--  <a href="cliente.jsp">Opzioni</a>-->
+					
 					<form action="LogoutServlet" method="post" class="Login">
 						<a href="#"><input type="submit" class="logout" value="Logout" onclick="myFunction()"></a>
 					</form>
 				</div>
+				
 			</div>
 		</li>
 	</ul>
@@ -53,13 +51,29 @@
    
       <ul>
   <li><a href="#home">Home</a></li>
-  <li><a href="#">
-  	<form action="ListaTirociniServlet" method="post">
-  		<input type="submit" value="Visualizza tirocini" >
-  	</form>
-  </a></li>
+	<%
+		String tipo = (String) session.getAttribute("tipo");
+		if (username != null && tipo.equals("responsabileAzienda")) {
+    %>
+			<li class="list_tir">
+				<form action="ListaTirociniServlet" method="post">
+					<input type="submit" class="list_tir" value="Tirocini" >
+				</form>
+			</li>
+			
+	<%	} else if(username != null && tipo.equals("studente")) { %>
+
+			<li class="list_tir">
+				<form action="RicercaTirocinioServlet" method="post">
+					<input type="submit" class="list_tir" value="Tirocini" >
+				</form>
+			</li>
+  
+	<%	} %>
+  
   <li><a href="#news">BHO</a></li>
-  <li class="dropdown">
+ 
+    <li class="dropdown">
     <a href="javascript:void(0)" class="dropbtn">Dropdown</a>
     <div class="dropdown-content">
       <a href="#">Link 1</a>

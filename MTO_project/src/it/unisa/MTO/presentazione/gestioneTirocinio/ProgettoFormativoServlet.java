@@ -1,5 +1,6 @@
-package it.unisa.MTO.presentazione.account;
+package it.unisa.MTO.presentazione.gestioneTirocinio;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -8,20 +9,18 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class LogoutServlet
+ * Servlet implementation class ProgettoFormativoServlet
  */
-@WebServlet("/LogoutServlet")
-public class LogoutServlet extends HttpServlet {
-	
+@WebServlet("/ProgettoFormativoServlet")
+public class ProgettoFormativoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LogoutServlet() {
+    public ProgettoFormativoServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,15 +37,23 @@ public class LogoutServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html");  
-        PrintWriter out=response.getWriter();  
-             if(request.getSession() != null){
-        HttpSession session=request.getSession(false);  
-		session.setAttribute("username", null);
-		session.invalidate();
-		response.sendRedirect("login.jsp");
-             }
-	    out.close();  
+
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
+		String path = "C:\\Users\\Maurizio\\javaWork\\MTOcondiviso\\MTO\\MTO_project\\WebContent\\document\\progetto_formativo.pdf";
+		
+		response.setContentType("APPLICATION/PDF");
+		response.setHeader("Scarica: ", "ProgettoForamtivo");
+		
+		FileInputStream file = new FileInputStream(path);
+		int i;
+		while((i = file.read()) != -1)
+			out.write(i);
+		
+		file.close();
+		out.close();
+		
+		
 	}
 
 }

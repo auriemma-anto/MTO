@@ -51,6 +51,8 @@ public class AggiungiTirocinioServlet extends HttpServlet {
 		
 		
 		Tirocinio tirocinio = new Tirocinio(username,
+											request.getParameter("TA"),
+											request.getParameter("TE"),
 											request.getParameter("azienda"),
 											request.getParameter("data_inizio"),
 											request.getParameter("data_fine"),
@@ -74,6 +76,7 @@ public class AggiungiTirocinioServlet extends HttpServlet {
 				page = "ERROR.jsp";
 			}
 		}catch (ConnessioneException e) {
+			
 			e.printStackTrace();
 			page = "ERROR.jsp";
 		}

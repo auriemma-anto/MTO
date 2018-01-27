@@ -59,6 +59,8 @@ public class ModificaTirocinioServlet extends HttpServlet {
 		Tirocinio tirocinio = new Tirocinio(
 				codiceTirocinio,
 				username,
+				request.getParameter("rif_TA"),
+				request.getParameter("rif_TE"),
 				request.getParameter("azienda"),
 				request.getParameter("dataInizio"),
 				request.getParameter("dataFine"),
@@ -69,7 +71,7 @@ public class ModificaTirocinioServlet extends HttpServlet {
 		
 		String page = "ERROR.jsp";
 		
-		System.out.println(tirocinio.getDataInizio());
+		System.out.println(tirocinio.toString());
 		try {
 			Facade facade = new Facade();
 			boolean res = facade.modificaTirocinio(tirocinio);
@@ -83,6 +85,7 @@ public class ModificaTirocinioServlet extends HttpServlet {
 			}
 		}catch (ConnessioneException e) {
 			e.printStackTrace();
+			
 			page = "ERROR.jsp";
 		}
 		
