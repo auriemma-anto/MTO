@@ -9,6 +9,7 @@ import it.unisa.MTO.storage.connection.ConnessioneException;
 
 public class Client {
 
+	
 	public static void main(String[] args) throws ConnessioneException, ParseException {
 		// TODO Auto-generated method stub
 		Facade f = new Facade();

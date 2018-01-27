@@ -5,7 +5,7 @@ import it.unisa.MTO.common.Utente;
 public interface IAccountDAO {
 
 	/**
-	 * Metodo che controlla se l'username dato in input è già presente nel db
+	 * Metodo che controlla se l'username dato in input è già presente nel db.
 	 * @param username username dell'utente
 	 * @return <b>true</b> se username è già presente nel db, <b>false</b> altrimenti
 	 */

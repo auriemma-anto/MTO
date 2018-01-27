@@ -19,8 +19,8 @@ public class Facade {
 		gestioneTirocinio = new GestioneTirocinio();
 		gestioneRichiesteTirocinio = new GestioneRichiesteTirocinio();
 	}
-	//----------GESTIONE ACCOUNT
 	
+	//----------GESTIONE ACCOUNT
 	/**
 	 * Metodo che controlla se l'username e la password sono giusti
 	 * @param username username dell'utente

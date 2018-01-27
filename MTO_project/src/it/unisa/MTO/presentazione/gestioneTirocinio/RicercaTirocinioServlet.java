@@ -71,6 +71,7 @@ public class RicercaTirocinioServlet extends HttpServlet {
 			}*/
 		} catch (ConnessioneException e) {
 			e.printStackTrace();
+			
 			page = "ERROR.jsp";
 		}
 		

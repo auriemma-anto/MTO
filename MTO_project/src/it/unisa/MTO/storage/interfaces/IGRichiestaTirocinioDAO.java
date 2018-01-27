@@ -11,4 +11,5 @@ public interface IGRichiestaTirocinioDAO {
 	public boolean markDocument(String utenteUsername, String nomeFile, Integer codiceTirocinio);
 	public boolean checkDocState(String utenteUsername);
 
+	
 }

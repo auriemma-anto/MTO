@@ -8,6 +8,7 @@ public class DocumentoRichiesta {
 	private Tirocinio tirocinio;
 	private Utente studente;
 	
+	
 	public DocumentoRichiesta(){}
 	
 	public int getCodiceID() {

@@ -42,7 +42,7 @@ public interface ITirociniDAO {
 	public boolean modifyTirocinio(Tirocinio tirocinio);
 	
 	/**
-	 * Restituisce la lista filtrata dei <b>Tirocini</b> presente nel <b>Database</b>
+	 * Restituisce la lista filtrata dei <b>Tirocini</b> presente nel <b>Database</b>.
 	 * @param type tipo di filtro da applicare alla ricerca ({@link ParamType})
 	 * @param param parametro
 	 * @return restituisce un {@link java.util.ArrayList} di {@link Tirocinio}

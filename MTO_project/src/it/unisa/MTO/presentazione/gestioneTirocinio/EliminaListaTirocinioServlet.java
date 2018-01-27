@@ -70,6 +70,7 @@ public class EliminaListaTirocinioServlet extends HttpServlet {
 			
 		}catch(ConnessioneException e){
 			e.printStackTrace();
+			
 			response.sendRedirect("ERROR.jsp");
 		}
 		

@@ -1,7 +1,7 @@
 package it.unisa.MTO.common;
 
 /**
- * Tipologia di filtro da applicare per le ricerche di {@link Tirocinio}
+ * Tipologia di filtro da applicare per le ricerche di {@link Tirocinio}.
  * @author Maurizio
  *
  */

@@ -2,7 +2,7 @@ package it.unisa.MTO.common;
 
 
 /**
- * Classe di riferimento dell'entità <b>Tirocinio</b> nel <b>DataBase</b>
+ * Classe di riferimento dell'entità <b>Tirocinio</b> nel <b>DataBase</b>.
  * @author Maurizio
  *
  */

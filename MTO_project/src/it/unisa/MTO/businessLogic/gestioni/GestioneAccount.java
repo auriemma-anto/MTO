@@ -23,6 +23,7 @@ public class GestioneAccount {
 		return connection.login(username, password);
 	}
 	
+	
 	/**
 	 * Metodo che restituisce il tipo di utente
 	 * @param username username dell'utente

@@ -60,6 +60,7 @@ public class ListaTirociniServlet extends HttpServlet {
 			}*/
 		} catch (ConnessioneException e) {
 			e.printStackTrace();
+			
 			page = "ERROR.jsp";
 		}
 		

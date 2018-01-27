@@ -11,7 +11,7 @@ import it.unisa.MTO.storage.connection.ConnessioneException;
 import it.unisa.MTO.storage.interfaces.IAccountDAO;
 
 /**
- * Classe che gestione la connessione con il database relativamente alla tabella 'utente' 
+ * Classe che gestione la connessione con il database relativamente alla tabella 'utente'. 
  * @author Maurizio Peluso
  * @author Maddalena Napolitano
  *

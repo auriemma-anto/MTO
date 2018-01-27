@@ -1,7 +1,7 @@
 package it.unisa.MTO.common;
 
 /**
- * Classe di riferimento dell'entità <b>Utente</b> nel <b>DataBase</b>
+ * Classe di riferimento dell'entità <b>Utente</b> nel <b>DataBase</b>.
  * @author Maurizio
  *
  */

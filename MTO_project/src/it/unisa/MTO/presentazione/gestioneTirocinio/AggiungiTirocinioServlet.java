@@ -76,6 +76,7 @@ public class AggiungiTirocinioServlet extends HttpServlet {
 				page = "ERROR.jsp";
 			}
 		}catch (ConnessioneException e) {
+			
 			e.printStackTrace();
 			page = "ERROR.jsp";
 		}

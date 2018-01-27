@@ -23,6 +23,7 @@ public class GestioneTirocinio {
 		return connection.modifyTirocinio(tirocinio);
 	}
 	
+	
 	/**
 	 * Metodo che aggiunge un <b>Tirocinio</b> nel <b>DataBase</b>
 	 * @param tirocinio {@link Tirocinio} da aggiungere

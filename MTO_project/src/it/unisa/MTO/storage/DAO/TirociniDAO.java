@@ -14,9 +14,9 @@ import it.unisa.MTO.storage.connection.ConnessioneException;
 import it.unisa.MTO.storage.interfaces.ITirociniDAO;
 
 /**
- * Classe che si occupa della connessione ad <b>DataBase</b> relativamente alle azioni eseguite sull'entità <b>Tirocinio</b>
+ * Classe che si occupa della connessione ad <b>DataBase</b> relativamente alle azioni eseguite sull'entità <b>Tirocinio</b>.
  * 
- * @author Maurizio
+ *  @author Maurizio
  *
  */
 public class TirociniDAO implements ITirociniDAO {

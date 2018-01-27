@@ -24,6 +24,7 @@ import it.unisa.MTO.storage.connection.ConnessioneException;
  */
 @WebServlet("/RegistrazioneServlet")
 public class RegistrazioneServlet extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
        
     /**
