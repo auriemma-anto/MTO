@@ -4,25 +4,34 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Registrazione</title>
+<title>M.T.O.-Registrazione Studente</title>
+
+
 <!--Ultima versione di jQuery (minified) -->
   <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
- 
   <!-- Ultima versione di jquery.validate (minfied) -->
   <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
-
-<link rel="stylesheet" href="css/registrazione.css" type="text/css" media="all">
+  
+  
+  
+  <link rel="stylesheet" href="css/registrazione.css" type="text/css" media="all">
+  
+  
 
 </head>
 <body>
 
+
 <%@ include file="header.jsp"%>
+
 
 <div class="containerReg">
 
 <!-- action="RegistrazioneServlet" method="post" -->
-  <form action="RegistrazioneServlet" method="post"  name="modulo" id="form" onsubmit="return invio()">
+  <form action="RegistrazioneServlet" method="post"  name="modulo" id="form" onsubmit="return invio()"> <!--   onsubmit="return invio()"-->
+ 
   
+           
     <div class="row">
       <div class="col-25">
         <label for="username">Username</label>
@@ -52,14 +61,15 @@
     
     <div class="row">
       <div class="col-25">
-        <label for="email">E-mail</label>
+        <label for="EMAIL">E-mail</label>
       </div>
       <div class="col-75">
-        <input type="text" id="email" name="email" placeholder="E-mail" >
+        <input type="text" class="EMAIL" id="EMAIL" name="EMAIL" placeholder="E-mail" >
+        <b class="em_sud">@studenti.unisa.it</b>
       </div>
     </div>
      
-          
+        
     <div class="row">
       <div class="col-25">
         <label for="nome">Nome</label>
@@ -68,7 +78,7 @@
         <input type="text" id="nome" name="nome" placeholder="Nome">
       </div>
     </div>
-    
+
     <div class="row">
       <div class="col-25">
         <label for="cognome">Cognome</label>
@@ -77,7 +87,7 @@
         <input type="text" id="cognome" name="cognome" placeholder="Cognome">
       </div>
     </div>
-    
+         
      <div class="row">
       <div class="col-25">
         <label for="dataNascita">Data di nascita</label>
@@ -86,16 +96,18 @@
         <input type="date" id="dataNascita" name="dataNascita" placeholder="dd-mm-aaaa">
       </div>
     </div>
-    
+  
       <div class="row">
       <div class="col-25">
-        <label for="annoImmatricolazione">Anno di immatricolazione</label>
+        <label for="anno">Anno di immatricolazione</label>
       </div>
       <div class="col-75">
-        <input type="text" id="annoImmatricolazione" name="annoImmatricolazione" placeholder="2015/16">
+        <input type="text" id="annoI1" name="annoI1" placeholder="2018">
+        <b class="slash">/</b>
+        <input type="text" id="annoI2" name="annoI2" placeholder="19">
       </div>
     </div>
-    
+     
     <div class="row">
       <div class="col-25">
         <label for="cfu">CFU</label>
@@ -105,13 +117,13 @@
       </div>
     </div>
    
-
+  
      <div class="row">
       <div class="col-25">
         <label for="universita">Università</label>
       </div>
       <div class="col-75">
-        <input type="text" id="universita" name="universita" placeholder="UNISA">
+        <input type="text" id="universita" name="universita" placeholder="UNISA" value="UNISA">
       </div>
     </div>
 
@@ -123,14 +135,14 @@
         <input type="text" id="dipartimento" name="dipartimento" placeholder="Informatica">
       </div>
     </div>
-    
+   
     <div class="condizioni">
         <span>Accetti i termini del servizio?</span>
     	<input type="checkbox" id="accetto" name="accetto">
 	</div>
 
     <div class="row">
-      <input type="submit" value="Invia" class="submit" onClick="Modulo()">
+      <input type="submit" value="Invia" class="submit"  onClick="Modulo()" > 
     </div>
    
     
@@ -138,6 +150,131 @@
   </form>
 </div>
 
+
+</body>
+
+
+<script>
+
+$().ready(function() {
+    // Selezione form e definizione dei metodi di validazione
+    $("#form").validate({
+        // Definiamo le nostre regole di validazione
+        rules : {
+            username : { 
+            	required : true,
+            	minlength : 5,
+            	maxlength : 15
+            	},
+            password : {
+                required : true,
+                minlength : 8,
+                maxlength : 25
+            }, 
+            conferma : { 
+            	required : true,
+            	equalTo: "#password"
+            	},
+            EMAIL : { required : true },
+            nome : { 
+            	required : true,
+            	maxlength : 25
+            	},
+            cognome : { 
+            	required : true,
+            	maxlength : 25
+            	},
+            dataNascita : { required : true },
+            annoI1 : {
+            	required : true,
+            	digits:true, 
+            	minlength : 4,
+            	maxlength : 5
+            	},
+            annoI2 : {
+            	required : true,
+            	digits:true, 
+            	minlength : 2,
+            	maxlength : 3
+            	
+            	},
+            cfu : {
+            	required : true,
+            	digits:true,
+            	maxlength : 3
+            	},
+            universita : { 
+            	required : true,
+            	maxlength : 50
+            	},
+            dipartimento : { 
+            	required : true,
+            	maxlength : 45
+            	},
+            accetto : { required : true }
+        },
+        // Personalizzimao i mesasggi di errore
+        messages: {
+        	username : {
+        		required :" * Inserire la username!",
+        		minlength: " * L'username  deve essere di minimo 5 caratteri!",
+        		maxlength :" * L'username  contiene troppi caratteri!"
+        	},
+        	password: {
+                required: " * Inserire una password! ",
+                minlength: " * La password deve essere lunga minimo 8 caratteri!",
+                maxlength :" * Password troppo lunga!"
+           		},
+        	conferma : " * La password non corrisponde!",
+        	EMAIL: {
+            	required:" * Inserire l'username universitario! (la passwod sarà: username@studenti.unisa.it)"
+            	},
+            nome : {
+                required: " * Inserire il nome!",
+                maxlength : " * Il numero massimo di caratteri è 25!"
+            },
+            cognome : {
+                required:" * Inserire il cognome!",
+            	maxlength : " * Il numero massimo di caratteri è 25!"
+            },	
+            dataNascita : " * Inserisci la data di nascita!",
+            annoI1 : {
+            	required:" * Inserire!",
+            	digits: " * Inserire cifre!",
+            	minlength: " * I caratteri devono essere 4!",
+            	maxlength : " * I caratteri devono essere 4!"
+           		
+        	},
+        	annoI2 : {
+        		required:"  * Inserire!",
+        		digits: " * Inserire cifre!",
+        		minlength: " * I caratteri devono essere 2!",
+        		maxlength : " * I caratteri devono essere 2!"
+        		
+        	},
+            cfu : {
+            	required: " * Inserire i cfu!",
+            	digits: " * Inserire cifre!",
+            	maxlength : " * Il numero massimo di caratteri è 3 !"
+            },
+            universita : {
+            	required:" * Inserire l'universita",
+            	maxlength : " * Il numero massimo di caratteri è 50 !"
+            },            	
+            dipartimento : {
+            	required:" * Inserire il dipartimento",
+            	maxlength :" * Il numero massimo di caratteri è 45 !"
+            },		
+            accetto : " * Accetta le condizioni!"
+        },
+        // Settiamo il submit handler per la form
+        /*submitHandler: function(form) {
+            form.submit();
+        }*/
+    });
+});
+
+</script>
 
 <script type="text/javascript">
 
@@ -151,11 +288,12 @@ function invio() {
 			username :  $('#username').val(),
 			password :  $('#password').val(),
 			conferma :  $('#conferma').val(),
-			email :  $('#email').val(),
+			EMAIL :  $('#EMAIL').val(),
 			nome :  $('#nome').val(),
 			cognome :  $('#cognome').val(),
 			dataNascita :  $('#dataNascita').val(),
-			annoImmatricolazione :  $('#annoImmatricolazione').val(),
+			annoI1 :  $('#annoI1').val(),
+			annoI2 :  $('#annoI2').val(),
 			cfu :  $('#cfu').val(),
 			universita :  $('#dipartimento').val(),
 			dipartimento :  $('#dipartimento').val()
@@ -179,77 +317,5 @@ function invio() {
 
 
 </script> 
-
-
-</body>
-
-
-
-
-<script type="text/javascript">
-
-//funzione per mostrare i essaggi di errore
-$().ready(function() {
-    // Selezione form e definizione dei metodi di validazione
-    $("#form").validate({
-        // Definiamo le nostre regole di validazione
-        rules : {
-            
-            username : { required: true, },
-    		password : { required: true },
-    		conferma:{
-                required: true,
-                equalTo: "#password"
-            },
-    		email: {
-                required: true,
-                email: true
-            },
-    		nome : { required: true },
-    		cognome : { required: true },
-    		dataNascita : { required: true },
-    		annoImmatricolazione : { required: true },
-    		cfu : { required: true, digits:true },
-    		universita : { required: true },
-    		dipartimento : { required: true },
-    		accetto : { required: true }
-            },
-            
-            
-        // Personalizzimao i mesasggi di errore
-         messages:
-        {
-        	username : " * Inserire l'username.",
-     		password : " * Inserire la password.",
-            conferma: " * Le password non corrispondono!",
-            email: {
-            	required:" * Inserisci un indirizzo email valido!",
-            	email: " * L'email deve essere nel formato name@studenti.unisa.it"
-            	},
-    		nome : " * Inserisci il tuo nome.",
-    		cognome : " * Inserisci il tuo cognome.",
-    		dataNascita : " * Inserisci la data di nascita.",
-    		annoImmatricolazione : " * Inserisci l'anno di immatricolazione.",
-    		cfu : { 
-    			required:" * Inserisci i CFU.",
-    			digits: " * Inserire cifre."
-    			},
-    		universita : " * Inserisci il nome dell'università a cui sei regolarmente iscritto.",
-    		dipartimento : " * Inserisci il dipartimento.",
-    		azienda : " * Inserisci l'azienda presso cui lavori.",
-            accetto: " * Non hai accettato i termini del servizio!"
-        },
-        // Settiamo il submit handler per la form
-      
-	submitHandler : function(form) {
-		alert('I dati sono stati inseriti correttamente');
-	//	form.submit();
-	},
-	invalidHandler : function() {
-		alert('I dati inseriti non sono corretti, ricontrollali....');
-	}
- });
-});
-</script>
 
 </html>

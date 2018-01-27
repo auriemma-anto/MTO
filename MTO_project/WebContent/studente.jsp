@@ -8,7 +8,7 @@
 </head>
 <body>
 
-studente
+
 
 <%@ include file="header.jsp"%>
 </body>

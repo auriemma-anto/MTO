@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-responsabile azienda
+
 <%@ include file="header.jsp"%>
 
 </body>

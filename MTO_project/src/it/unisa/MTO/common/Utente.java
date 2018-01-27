@@ -1,6 +1,10 @@
 package it.unisa.MTO.common;
 
-
+/**
+ * Classe di riferimento dell'entità <b>Utente</b> nel <b>DataBase</b>
+ * @author Maurizio
+ *
+ */
 public class Utente {
 	
 	private String username;
@@ -16,11 +20,11 @@ public class Utente {
 	private String dipartimento;
 	private String azienda;
 	
-	public Utente(String username, String password, String email, UtenteType tipo,
-			      String nome, String cognome, String dataNascita,
-			      String annoImmatricolazione, int cfu, String universita, 
-			      String dipartimento){
-		
+	public Utente(){}
+
+	public Utente(String username, String password, String email, UtenteType tipo, String nome, String cognome,
+			String dataNascita, String annoImmatricolazione, int cfu, String universita, String dipartimento,
+			String azienda) {
 		this.username = username;
 		this.password = password;
 		this.email = email;
@@ -32,11 +36,23 @@ public class Utente {
 		this.cfu = cfu;
 		this.universita = universita;
 		this.dipartimento = dipartimento;
-		
+		this.azienda = azienda;
 	}
-
-	public Utente() {
-		// TODO Auto-generated constructor stub
+	
+	public Utente(String username, String password, String email, UtenteType tipo, String nome, String cognome,
+			String dataNascita, String annoImmatricolazione, int cfu, String universita, String dipartimento) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		this.tipo = tipo;
+		this.nome = nome;
+		this.cognome = cognome;
+		this.dataNascita = dataNascita;
+		this.annoImmatricolazione = annoImmatricolazione;
+		this.cfu = cfu;
+		this.universita = universita;
+		this.dipartimento = dipartimento;
 	}
 
 	public String getUsername() {
@@ -133,14 +149,6 @@ public class Utente {
 
 	public void setAzienda(String azienda) {
 		this.azienda = azienda;
-	}
-
-	@Override
-	public String toString() {
-		return "Utente [username=" + username + ", password=" + password + ", email=" + email + ", tipo=" + tipo
-				+ ", nome=" + nome + ", cognome=" + cognome + ", dataNascita=" + dataNascita + ", annoImmatricolazione="
-				+ annoImmatricolazione + ", cfu=" + cfu + ", universita=" + universita + ", dipartimento="
-				+ dipartimento + ", azienda=" + azienda + "]";
 	}
 	
 	

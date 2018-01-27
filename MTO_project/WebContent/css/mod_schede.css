@@ -1,13 +1,23 @@
 @charset "ISO-8859-1";
 
-input[type=text], select, textarea{
+input[type=text], input[type=date], select, textarea{
     width: 100%;
     padding: 12px;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
     resize: vertical;
+    font-family: sans-serif;
+    font-size: 18px;
 }
+
+
+input[type=text]:focus, input[type=date]:focus, select:focus{
+    outline: none;
+    background-color: lime;
+    border: 1px solid purple;
+}
+
 
 label {
     padding: 12px 12px 12px 0;
@@ -22,28 +32,53 @@ input[type=submit] {
     border-radius: 4px;
     cursor: pointer;
     float: right;
+    margin-top: 6%;
+    margin-bottom: 2%;
+    margin-right: 2%;
+    font-family: sans-serif;
+    font-size: 18px;
 }
 
 input[type=submit]:hover {
     background-color: #45a049;
 }
 
+.div_titolo{
+	text-align: center;
+	margin-top: 7%;
+	margin-left: 36%;
+	margin-right: 36%;
+	padding-left: 2%;
+	padding-right: 2%;
+	background-color: yellow;
+}
+.titolo{
+	font-size: 24px;
+	font-family: sans-serif;
+	font-weight: bold;
+	 
+}
+
 .contenitore {
     border-radius: 5px;
     background-color: #f2f2f2;
     padding: 20px;
+    margin: 0 11%;
+    font-family: sans-serif;
+    font-size: 18px;
 }
 
 .col-title {
     float: left;
-    width: 25%;
-    margin-top: 6px;
+    width: 30%;
+    margin-top: 2%;
+    padding-left: 5%;	
 }
 
 .col-insert {
     float: left;
-    width: 75%;
-    margin-top: 6px;
+    width: 60%;
+    margin-top: 2%;
 }
 
 /* Clear floats after the columns */

@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 
-<%@ page
-	import="java.util.*, it.unisa.MTO.common.*, it.unisa.MTO.businessLogic.*"%>
+<%@ page import="java.util.*, it.unisa.MTO.common.*, it.unisa.MTO.businessLogic.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -22,14 +21,14 @@
 </head>
 <body>
 
-
+<%@ include file="header.jsp"%>
 
 	<div class="contenitore">
 
 
 
 
-		<form action="ModificaTirocinioServlet" method="post" name="form_mod" id="form_mod">
+		<form action="ModificaTirocinioServlet" method="post" name="form_mod" id="form_mod" onsubmit="return invio()">
 
 
 			<%
@@ -67,8 +66,7 @@
 					<label for="rif_TA">Tutor Accademico</label>
 				</div>
 				<div class="col-insert">
-					<input type="text" class="rif_TA" name="rif_TA" id="rif_TA"
-						value="<%=rif_TA %>">
+					<input type="text" class="rif_TA" name="rif_TA" id="rif_TA" value="<%=rif_TA %>">
 				</div>
 			</div>
 
@@ -77,8 +75,7 @@
 					<label for="rif_TE">Tutor Esterno</label>
 				</div>
 				<div class="col-insert">
-					<input type="text" class="rif_TE" name="rif_TE" id="rif_TE"
-						value="<%=rif_TE %>">
+					<input type="text" class="rif_TE" name="rif_TE" id="rif_TE"	value="<%=rif_TE %>">
 				</div>
 			</div>
 
@@ -145,7 +142,7 @@
 			</div>
 
 			<div class="row">
-				<input type="submit" value="Modifica">
+				<input type="submit" value="Invia" class="submit"  onClick="Modulo()" > 
 			</div>
 
 		</form>
@@ -163,75 +160,26 @@ $().ready(function() {
     $("#form_mod").validate({
         // Definiamo le nostre regole di validazione
         rules : {
-        	rif_TA : { 
-            	required : true,
-            	minlength : 5,
-            	maxlength : 15
-            	},
-            rif_TE : { 
-               	required : true,
-               	minlength : 5,
-               	maxlength : 15
+        	rif_TA : {
+              required : true
             },
-            azienda  : { 
-               	required : true,
-               	maxlength : 20
+            rif_TE : {
+                required : true
             },
-            dataInizio : { required : true }, 
-            dataFine : { required : true }, 
-            luogo : { 
-            	required : true,
-            	maxlength : 25
-            	},
-            tematica : { 
-            	required : true,
-            	maxlength : 50
-            	},
-            	descrizione : { 
-               	required : true,
-               	maxlength : 150
+            azienda : {
+                required : true
             }
-            	
-           
         },
         // Personalizzimao i mesasggi di errore
         messages: {
-        	
-         	rif_TA : { 
-         		required :" * Inserire l'username del tutor accademico!",
-        		minlength: " * L'username  deve essere di minimo 5 caratteri!",
-        		maxlength :" * L'username  contiene troppi caratteri!"
-            	},
-            rif_TE : { 
-            	required :" * Inserire l'username del tutor esterno!",
-        		minlength: " * L'username  deve essere di minimo 5 caratteri!",
-        		maxlength :" * L'username  contiene troppi caratteri!"
-            },
-            azienda  : { 
-               	required :" * Inserire l'azienda!",
-               	maxlength : 20
-            },
-            dataInizio : { required :" * Inserire la data di inizio del tirocinio!" }, 
-            dataFine : { required :" * Inserire la data di fine del tirocinio!" }, 
-            luogo : { 
-            	required :" * Inserire la sede dove si svolgerà il tirocinio!",
-            	maxlength : " * Hai inserito troppi caratteri!"
-            	},
-            tematica : { 
-            	required :" * Inserire la tematica del tirocinio!",
-            	maxlength : " * Hai inserito troppi caratteri!"
-            	},
-            descrizione : { 
-               	required :" * Inserire una breve descrizione del tirocinio!",
-               	maxlength : " * Hai inserito troppi caratteri!"
-            }
-        	
-     
-        },
-        // Settiamo il submit handler per la form
-        /*submitHandler: function(form) {
+        	rif_TA : "Inserisci la login",
+        	rif_TE : "Inserisci la login",
+        	azienda : "Inserisci la login"
+        },   
+        submitHandler: function(form) {
             form.submit();
-        }*/
+        
+        }
     });
 });
 

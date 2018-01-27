@@ -17,16 +17,16 @@ import it.unisa.MTO.common.Tirocinio;
 import it.unisa.MTO.storage.connection.ConnessioneException;
 
 /**
- * Servlet implementation class ModificaTirocinioServlet
+ * Servlet implementation class RicercaTirocinioServlet
  */
-@WebServlet("/ModificaTirocinioServlet")
-public class ModificaTirocinioServlet extends HttpServlet {
+@WebServlet("/RicercaTirocinioServlet")
+public class RicercaTirocinioServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ModificaTirocinioServlet() {
+    public RicercaTirocinioServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -43,53 +43,40 @@ public class ModificaTirocinioServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 		doGet(request, response);
-		
 		HttpSession session=request.getSession(true);
 		String username = (String) session.getAttribute("username");
-		System.out.println("usernam=" +username);
+		String tipo = (String) session.getAttribute("tipo");
 		
-		int codiceTirocinio = Integer.parseInt(request.getParameter("codiceTirocinio")); 
-		
-		
-		System.out.println("usernam=" +username);
-		System.out.println("codice=" +codiceTirocinio);
-		
-		Tirocinio tirocinio = new Tirocinio(
-				codiceTirocinio,
-				username,
-				request.getParameter("rif_TA"),
-				request.getParameter("rif_TE"),
-				request.getParameter("azienda"),
-				request.getParameter("dataInizio"),
-				request.getParameter("dataFine"),
-				request.getParameter("luogo"),
-				request.getParameter("tematica"),
-				request.getParameter("descrizione")
-				);
 		
 		String page = "ERROR.jsp";
-		
-		System.out.println(tirocinio.toString());
+		String parametro = request.getParameter("paramType");
+		String inserimento = request.getParameter("paramText");
+		ParamType param;
+		if(parametro == "" || parametro == null || inserimento == "" || inserimento == null){
+			param = ParamType.none;
+			inserimento = "";
+		} else {
+			param = ParamType.valueOf(parametro);
+		}
+		System.out.println(param + " " + inserimento);
 		try {
+			if (tipo.equals("studente")) {
 			Facade facade = new Facade();
-			boolean res = facade.modificaTirocinio(tirocinio);
-			
-			if (res == true) {
-				ArrayList<Tirocinio> lista = facade.ricercaTirociniPerParametri(ParamType.nomeResponsabileAzienda, username);
-				session.setAttribute("tirocinio", lista);
-				page = "view_schede.jsp";
-			}else {
+			ArrayList<Tirocinio> lista = facade.ricercaTirociniPerParametri( param, inserimento);
+			session.setAttribute("tirocinio", lista);
+			page = "ric_tirocinio.jsp";
+			}/*else {
 				page = "ERROR.jsp";
-			}
-		}catch (ConnessioneException e) {
+			}*/
+		} catch (ConnessioneException e) {
 			e.printStackTrace();
 			page = "ERROR.jsp";
 		}
 		
 		RequestDispatcher dd=request.getRequestDispatcher(page);
 		dd.forward(request, response);
+	
 	}
 
 }

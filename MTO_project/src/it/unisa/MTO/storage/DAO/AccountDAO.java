@@ -1,7 +1,6 @@
 package it.unisa.MTO.storage.DAO;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -31,7 +30,7 @@ public class AccountDAO implements IAccountDAO {
 	 * Metodo che controlla se l'username e la password sono giusti
 	 * @param username username dell'utente
 	 * @param password password dell'utente
-	 * @return 'true' se username e password corrispondono con quelle presenti nel db, 'false' altrimenti
+	 * @return <b>true</b> se username e password corrispondono con quelle presenti nel db, <b>false</b> altrimenti
 	 */
 	@Override
 	public boolean login(String username, String password) {
@@ -51,7 +50,13 @@ public class AccountDAO implements IAccountDAO {
 		
 		return toReturn;
 	}
-	
+
+	/**
+	 * Metodo che restituisce il tipo di utente
+	 * @param username username dell'utente
+	 * @param password password dell'utente
+	 * @return restituisce il tipo di utente
+	 */
 	public String trovaTipo(String username, String password) {
 		String queryTipo ="SELECT tipo FROM utente WHERE username ='"+ username + "' AND password = '" + password + "';";
 		
@@ -73,12 +78,11 @@ public class AccountDAO implements IAccountDAO {
 		
 				return null;
 	}
-
-
+	
 	/**
 	 * Questo metodo registra un utente nel db
-	 * @param utente utente da registrare
-	 * @return 'true' se la registrazione è avvenuta con successo, 'false' altrimenti
+	 * @param utente utente da registrare ({@link Utente})
+	 * @return <b>true</b> se la registrazione è avvenuta con successo, <b>false</b> altrimenti
 	 */
 	@Override
 	public boolean registrazione(Utente utente) {
@@ -116,7 +120,7 @@ public class AccountDAO implements IAccountDAO {
 	/**
 	 * Metodo che controlla se l'username dato in input è già presente nel db
 	 * @param username username dell'utente
-	 * @return 'true' se username è già presente nel db, 'false' altrimenti
+	 * @return <b>true</b> se username è già presente nel db, <b>false</b> altrimenti
 	 */
 	@Override
 	public boolean checkUtente(String username) {
@@ -137,6 +141,4 @@ public class AccountDAO implements IAccountDAO {
 		return toReturn;
 	}
 
-
-	
 }

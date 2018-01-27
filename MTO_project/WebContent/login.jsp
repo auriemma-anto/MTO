@@ -13,7 +13,6 @@
   <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
  
 
-<link rel="stylesheet" href="css/nav.css" type="text/css" media="all">
 <link rel="stylesheet" href="css/login.css" type="text/css" media="all">
 </head>
 <body>
@@ -44,7 +43,7 @@
     </div>
        
          <div class="row">
-         <input type="submit" value="Login" id="submitLogin"class="submit">
+         <input type="submit" value="Login" class="type_submit" id="submitLogin"class="submit">
       </div>
     </form>
  

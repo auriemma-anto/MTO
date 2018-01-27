@@ -5,6 +5,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>M.T.O.-Aggiungi Tirocinio</title>
+
+<link rel="stylesheet" href="css/aggiungiTirocinio.css" type="text/css" media="all">
 </head>
 <body>
 
@@ -12,11 +14,36 @@
 
 
 <div class="container">
+
+	<div class="div_titolo">
+		<label class="titolo"> Aggiunta Tirocinio </label>
+	</div>
+
   <form action="AggiungiTirocinioServlet" method="post">
    
    <%
       String username1 = (String) session.getAttribute("username");
     %>
+    
+    <div class="row">
+      <div class="col-name">
+        <label for="TA">Tutor Accademico</label>
+      </div>
+      <div class="col-input">
+        <input type="text" id="TA" name="TA" placeholder="Inserire l'username del tutor aziendale.">
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-name">
+        <label for="TE">Tutor Esterno</label>
+      </div>
+      <div class="col-input">
+        <input type="text" id="TE" name="TE" placeholder="Inserire l'username del tutor esterno.">
+      </div>
+    </div>
+    
+    
     <div class="row">
       <div class="col-name">
         <label for="azienda">Azienda</label>
