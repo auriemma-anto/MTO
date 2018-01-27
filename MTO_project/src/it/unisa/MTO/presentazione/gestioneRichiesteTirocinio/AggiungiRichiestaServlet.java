@@ -66,7 +66,7 @@ public class AggiungiRichiestaServlet extends HttpServlet {
 
 		}
 		
-		RequestDispatcher redispatcher = getServletContext().getRequestDispatcher("/UploadDemo.jsp");
+		RequestDispatcher redispatcher = getServletContext().getRequestDispatcher("/ShowStatoDocumento.jsp");
 		redispatcher.forward(request, response);
 
 	}

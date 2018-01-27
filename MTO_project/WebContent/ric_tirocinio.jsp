@@ -68,7 +68,7 @@
    		<label class="titoloT">TIROCINIO</label>
    
 		<div class="but_caricaRichiesta">
-			<form action="uploadServlet" method="post" name="ADD_Tirocinio" class="carica">
+			<form action="Upload.jsp" name="ADD_Tirocinio" class="carica">
 				<input type="hidden" name="codiceTirocinio" value="<%=codiceTirocinio%>">
 		  		<input type="submit"class="carica"  value="Carica Richiesta" >
 		  	</form>

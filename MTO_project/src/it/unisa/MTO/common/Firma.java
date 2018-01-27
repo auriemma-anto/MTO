@@ -5,7 +5,9 @@ public class Firma {
 	private Utente utente; 
 	private boolean valore;
 	
-	public Firma() {}
+	public Firma(){
+		
+	}
 	
 	public Utente getUtente() {
 		return utente;

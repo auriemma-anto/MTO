@@ -50,7 +50,7 @@ public class ListaTirociniServlet extends HttpServlet {
 		
 		String page = "ERROR.jsp";
 		try {
-			if (tipo.equals("responsabileAzienda")) {
+			if (tipo.equals("Responsabile Azienda")) {
 			Facade facade = new Facade();
 			ArrayList<Tirocinio> lista = facade.ricercaTirociniPerParametri(ParamType.nomeResponsabileAzienda, username);
 			session.setAttribute("tirocinio", lista);

@@ -40,7 +40,7 @@ public class ProgettoFormativoServlet extends HttpServlet {
 
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-		String path = "C:\\Users\\Maurizio\\javaWork\\MTOcondiviso\\MTO\\MTO_project\\WebContent\\document\\progetto_formativo.pdf";
+		String path = getServletContext().getRealPath("document/progetto_formativo.pdf");
 		
 		response.setContentType("APPLICATION/PDF");
 		response.setHeader("Scarica: ", "ProgettoForamtivo");

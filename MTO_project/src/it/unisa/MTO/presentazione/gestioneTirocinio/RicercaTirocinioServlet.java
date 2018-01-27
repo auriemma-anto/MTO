@@ -61,7 +61,7 @@ public class RicercaTirocinioServlet extends HttpServlet {
 		}
 		System.out.println(param + " " + inserimento);
 		try {
-			if (tipo.equals("studente")) {
+			if (tipo.equalsIgnoreCase("Studente")) {
 			Facade facade = new Facade();
 			ArrayList<Tirocinio> lista = facade.ricercaTirociniPerParametri( param, inserimento);
 			session.setAttribute("tirocinio", lista);
