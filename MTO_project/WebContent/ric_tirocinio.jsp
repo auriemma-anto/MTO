@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>M.T.O.-Lista Tirocinio</title>
+<title>M.T.O.- Lista Tirocinio</title>
 
 <!--Ultima versione di jQuery (minified) -->
   <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>

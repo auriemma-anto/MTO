@@ -8,6 +8,7 @@
 <title>M.T.O-Tirocini</title>
 
 <link rel="stylesheet" href="css/view_schede.css" type="text/css" media="all">
+
 </head>
 <body>
 

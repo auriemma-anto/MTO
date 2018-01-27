@@ -99,7 +99,7 @@ input[type=submit]:hover {
 }
 
 
-/* Clear floats after the columns */
+/** Clear floats after the columns **/
 .row:after {
     content: "";
     display: table;

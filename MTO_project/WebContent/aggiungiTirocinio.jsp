@@ -7,6 +7,7 @@
 <title>M.T.O.-Aggiungi Tirocinio</title>
 
 <link rel="stylesheet" href="css/aggiungiTirocinio.css" type="text/css" media="all">
+
 </head>
 <body>
 
