@@ -46,20 +46,18 @@ public class EliminaListaTirocinioServlet extends HttpServlet {
 		
 		
 		response.setContentType("text/html");
-		String cod =request.getParameter("codiceID");
 		HttpSession session=request.getSession(true);
 		String username = (String) session.getAttribute("username");
 		
-		int codiceID = Integer.parseInt(request.getParameter("codiceID"));
+		int codiceTirocinio = Integer.parseInt(request.getParameter("codiceTirocinio"));
 		
 		System.out.println("usernam=" +username);
-		System.out.println("cod=" +cod);
-		System.out.println("codice=" +codiceID);
+		System.out.println("codice=" +codiceTirocinio);
 		
 		try {
 			Facade facade = new Facade();
 			
-			boolean res = facade.eliminaTirocinio(codiceID);
+			boolean res = facade.eliminaTirocinio(codiceTirocinio);
 			
 			
 			if (res == true ) {

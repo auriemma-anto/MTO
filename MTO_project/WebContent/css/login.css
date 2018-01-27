@@ -31,7 +31,8 @@ label {
    
 }
 
-input[type=submit] {
+/*** INPUT SIBMIT***/
+.type_submit {
     background-color: silver;
     color: black;
     padding: 12px 20px;
@@ -44,11 +45,11 @@ input[type=submit] {
     font-size: 18px;
 }
 
-.row input[type=submit]{
+.row .type_submit{
 	margin-right: 10%;
 }
 
-input[type=submit]:hover {
+.type_submit:hover {
     background-color: red;
     color: white;
 }

@@ -1,0 +1,59 @@
+@charset "ISO-8859-1";
+
+
+
+.container_ricerca{
+	margin: 6% 10%;
+	font-size: 18px;
+	font-family: sans-serif;
+	
+}
+
+.titolo_lista{
+	font-size: 24px;
+	font-family: sans-serif;
+	font-weight: bold;
+	text-align: center; 
+}
+
+.div_lista{
+	text-align: center;
+	padding-bottom: 5%;
+}
+
+/******* CONTENITORE TABELLA*********/
+.container{
+	margin: 7% 10%;
+}
+
+/*** TABELLA***/
+.view_schede{
+	margin-bottom: 4%;
+}
+
+.riga{
+	
+}
+
+
+.tipo{
+	
+}
+
+.dato{}
+
+
+/*** SCRITTA TIROCINIO ***/
+
+.tiro{
+	display: inline-block;
+	background-color: fuchsia;
+	width: 100%;
+	
+}
+
+.titoloT{
+	display: inline-block;
+}
+
+

@@ -47,12 +47,14 @@ public class TirociniDAO implements ITirociniDAO {
 			
 			tirocinio.setCodiceID(res.getInt(1));
 			tirocinio.setRif_utente(res.getString(2));
-			tirocinio.setAzienda(res.getString(3));
-			tirocinio.setDataInizio(res.getString(4));
-			tirocinio.setDataFine(res.getString(5));
-			tirocinio.setLuogo(res.getString(6));
-			tirocinio.setTematica(res.getString(7));
-			tirocinio.setDescrizione(res.getString(8));
+			tirocinio.setRif_TA(res.getString(3));
+			tirocinio.setRif_TE(res.getString(4));
+			tirocinio.setAzienda(res.getString(5));
+			tirocinio.setDataInizio(res.getString(6));
+			tirocinio.setDataFine(res.getString(7));
+			tirocinio.setLuogo(res.getString(8));
+			tirocinio.setTematica(res.getString(9));
+			tirocinio.setDescrizione(res.getString(10));
 			
 			res.close();
 			statement.close();
@@ -105,19 +107,21 @@ public class TirociniDAO implements ITirociniDAO {
 	@Override
 	public boolean addTirocinio(Tirocinio tirocinio) {
 		boolean toReturn = false;
-		String query = "INSERT INTO tirocinio (rif_utente, azienda, data_inizio, data_fine, luogo, tematica, descrizione)"
-				+ " values (?, ?, ?, ?, ?, ?, ?)";
+		String query = "INSERT INTO tirocinio (rif_utente, rif_TA, rif_TE, azienda, data_inizio, data_fine, luogo, tematica, descrizione)"
+				+ " values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		try {
 			PreparedStatement statement = conn.prepareStatement(query);
 			
 			statement.setString(1, tirocinio.getRif_utente());
-			statement.setString(2, tirocinio.getAzienda());
-			statement.setString(3, tirocinio.getDataInizio());
-			statement.setString(4, tirocinio.getDataFine());
-			statement.setString(5, tirocinio.getLuogo());
-			statement.setString(6, tirocinio.getTematica());
-			statement.setString(7, tirocinio.getDescrizione());
+			statement.setString(2, tirocinio.getRif_TA());
+			statement.setString(3, tirocinio.getRif_TE());
+			statement.setString(4, tirocinio.getAzienda());
+			statement.setString(5, tirocinio.getDataInizio());
+			statement.setString(6, tirocinio.getDataFine());
+			statement.setString(7, tirocinio.getLuogo());
+			statement.setString(8, tirocinio.getTematica());
+			statement.setString(9, tirocinio.getDescrizione());
 			
 			int res = statement.executeUpdate();
 			toReturn = res > 0;
@@ -127,7 +131,6 @@ public class TirociniDAO implements ITirociniDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		
 		return toReturn;
 	}
@@ -140,19 +143,22 @@ public class TirociniDAO implements ITirociniDAO {
 	@Override
 	public boolean modifyTirocinio(Tirocinio tirocinio) {
 		boolean toReturn = false;
-		String query = "UPDATE tirocinio SET rif_utente = ?, azienda = ?, data_inizio = ?, "
-				+ "data_fine = ?, luogo = ?, tematica = ?, descrizione = ?)";
+		String query = "UPDATE tirocinio SET rif_utente = ?, rif_TA = ?, rif_TE = ?, azienda = ?, data_inizio = ?, "
+				+ "data_fine = ?, luogo = ?, tematica = ?, descrizione = ? WHERE codiceID = ?";
 		
 		try {
 			PreparedStatement statement = conn.prepareStatement(query);
 			
 			statement.setString(1, tirocinio.getRif_utente());
-			statement.setString(2, tirocinio.getAzienda());
-			statement.setString(3, tirocinio.getDataInizio());
-			statement.setString(4, tirocinio.getDataFine());
-			statement.setString(5, tirocinio.getLuogo());
-			statement.setString(6, tirocinio.getTematica());
-			statement.setString(7, tirocinio.getDescrizione());
+			statement.setString(2, tirocinio.getRif_TA());
+			statement.setString(3, tirocinio.getRif_TE());
+			statement.setString(4, tirocinio.getAzienda());
+			statement.setString(5, tirocinio.getDataInizio());
+			statement.setString(6, tirocinio.getDataFine());
+			statement.setString(7, tirocinio.getLuogo());
+			statement.setString(8, tirocinio.getTematica());
+			statement.setString(9, tirocinio.getDescrizione());
+			statement.setInt(10, tirocinio.getCodiceID());
 			
 			int res = statement.executeUpdate();
 			toReturn = res > 0;
@@ -200,12 +206,14 @@ public class TirociniDAO implements ITirociniDAO {
 				Tirocinio tirocinio = new Tirocinio();
 				tirocinio.setCodiceID(res.getInt(1));
 				tirocinio.setRif_utente(res.getString(2));
-				tirocinio.setAzienda(res.getString(3));
-				tirocinio.setDataInizio(res.getString(4));
-				tirocinio.setDataFine(res.getString(5));
-				tirocinio.setLuogo(res.getString(6));
-				tirocinio.setTematica(res.getString(7));
-				tirocinio.setDescrizione(res.getString(8));
+				tirocinio.setRif_TA(res.getString(3));
+				tirocinio.setRif_TE(res.getString(4));
+				tirocinio.setAzienda(res.getString(5));
+				tirocinio.setDataInizio(res.getString(6));
+				tirocinio.setDataFine(res.getString(7));
+				tirocinio.setLuogo(res.getString(8));
+				tirocinio.setTematica(res.getString(9));
+				tirocinio.setDescrizione(res.getString(10));
 				
 				toReturn.add(tirocinio);
 			}

@@ -53,12 +53,12 @@ public class RegistrazioneServlet extends HttpServlet {
 		
 		Utente utente = new Utente(request.getParameter("username"),
 								   request.getParameter("password"), 
-								   request.getParameter("email"),
+								   request.getParameter("email") + "@studenti.unisa.it",
  /*imposta il tipo studente*/      UtenteType.studente,
 								   request.getParameter("nome"),
 								   request.getParameter("cognome"),
 								   request.getParameter("dataNascita"),
-								   request.getParameter("annoImmatricolazione"),
+								   request.getParameter("annoI1") + "/" + request.getParameter("annoI2"),
 								   Integer.parseInt(request.getParameter("cfu")),
 								   request.getParameter("universita"),
 								   request.getParameter("dipartimento"));
@@ -66,7 +66,12 @@ public class RegistrazioneServlet extends HttpServlet {
 	//System.out.println("Reg"+utente.toString());	
 	
 	Response result = Response.KO;
-	String description = "Username esistente!";
+	String description;
+	if(utente.getUsername() !=null){
+		description = "Username esistente!";
+	}else{
+		description = "i campi non sono inseriti correttamente!";
+	}
 	JSONObject json = new JSONObject();
 	
 	

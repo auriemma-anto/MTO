@@ -1,26 +1,49 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
- <%@ page import="java.util.*, it.unisa.MTO.common.*"%>
+    <%@ page import="java.util.*, it.unisa.MTO.common.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>M.T.O-Tirocini</title>
+<title>M.T.O.-Lista Tirocinio</title>
 
-<link rel="stylesheet" href="css/view_schede.css" type="text/css" media="all">
+<!--Ultima versione di jQuery (minified) -->
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <!-- Ultima versione di jquery.validate (minfied) -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
+  
+
+<link rel="stylesheet" href="css/ric_tirocinio.css" type="text/css" media="all">
+
 </head>
+
 <body>
 
 <%@ include file="header.jsp"%>
 
 
-<section class="aggiunta">
-	<buttom class="butt_ADD"><a href="aggiungiTirocinio.jsp">Aggiunti Tirocinio</a></buttom>
+	<div class="div_lista">
+			<label class="titolo_lista"> Lista Tirocini </label>
+		</div>
+<form action="ProgettoFormativoServlet" method="post" name="form_dowload">
+	<div>
+		<input type="submit" name="Dowload" value="Scarica Progetto formativo">
+	</div>
+</form>
+	
+<form action="RicercaTirocinioServlet" method="post" name="form_Params">	
+	<div class="div_Params">
+		<select name="paramType">
+			<option value="nomeAzienda">Nome azienda</option>
+			<option value="luogo">Luogo</option>
+			<option value="data">Data</option>
+		</select>
+		<input type="text" name="paramText">
+		<input type="submit" name="ricerca" value="ricerca">
+	</div>
+</form>
 
-	</section>
-
-
-<section class="container">
+<section class="container_ricerca">
 	
 	
 	
@@ -43,26 +66,15 @@
    
    	<div class="tiro">
    		<label class="titoloT">TIROCINIO</label>
-   		
-  
-		
    
-   <div class="but_el_tir">
-	<form action="EliminaListaTirocinioServlet" method="post" name="ADD_Tirocinio" class="delet">
-		<input type="hidden" name="codiceTirocinio" value="<%=codiceTirocinio%>">
-  		<input type="submit"class="delet"  value="Elimina tirocinio" >
-  	</form>
-	</div>
+		<div class="but_caricaRichiesta">
+			<form action="CaricaServlet (DA CAMBIARE)" method="post" name="ADD_Tirocinio" class="carica">
+				<input type="hidden" name="codiceTirocinio" value="<%=codiceTirocinio%>">
+		  		<input type="submit"class="carica"  value="Carica Richiesta" >
+		  	</form>
+		</div>
 	
-	<div class="modifica">
-	  <form name="modif" action="mod_schede.jsp" class="modify">
-		<input type="hidden" name="codiceTirocinio" value="<%=codiceTirocinio%>">
-		<input type="submit" name="Submit" class="modify" value="Modifica tirocinio">
-	  </form>
-	</div>
-	
-	
-	 	</div> <!-- END DIV TIRO -->
+ 	</div> <!-- END DIV TIRO -->
 	 	
 	 	
   <!--   <tr><td>codice tirocinio :<%=codiceTirocinio%></td></tr>  -->
@@ -111,6 +123,6 @@
 
 </section>
 
-</body>
 
+</body>
 </html>

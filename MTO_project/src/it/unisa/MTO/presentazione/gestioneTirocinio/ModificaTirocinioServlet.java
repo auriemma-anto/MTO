@@ -17,16 +17,16 @@ import it.unisa.MTO.common.Tirocinio;
 import it.unisa.MTO.storage.connection.ConnessioneException;
 
 /**
- * Servlet implementation class AggiungiTirocinioServlet
+ * Servlet implementation class ModificaTirocinioServlet
  */
-@WebServlet("/AggiungiTirocinioServlet")
-public class AggiungiTirocinioServlet extends HttpServlet {
+@WebServlet("/ModificaTirocinioServlet")
+public class ModificaTirocinioServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AggiungiTirocinioServlet() {
+    public ModificaTirocinioServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -43,30 +43,38 @@ public class AggiungiTirocinioServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		doGet(request, response);
 		
-		response.setContentType("text/html");
 		HttpSession session=request.getSession(true);
 		String username = (String) session.getAttribute("username");
+		System.out.println("usernam=" +username);
+		
+		int codiceTirocinio = Integer.parseInt(request.getParameter("codiceTirocinio")); 
 		
 		
-		Tirocinio tirocinio = new Tirocinio(username,
-											request.getParameter("TA"),
-											request.getParameter("TE"),
-											request.getParameter("azienda"),
-											request.getParameter("data_inizio"),
-											request.getParameter("data_fine"),
-											request.getParameter("luogo"),
-											request.getParameter("tematica"),
-											request.getParameter("descrizione")
-											);
+		System.out.println("usernam=" +username);
+		System.out.println("codice=" +codiceTirocinio);
 		
-		//System.out.println(tirocinio.toString());
+		Tirocinio tirocinio = new Tirocinio(
+				codiceTirocinio,
+				username,
+				request.getParameter("rif_TA"),
+				request.getParameter("rif_TE"),
+				request.getParameter("azienda"),
+				request.getParameter("dataInizio"),
+				request.getParameter("dataFine"),
+				request.getParameter("luogo"),
+				request.getParameter("tematica"),
+				request.getParameter("descrizione")
+				);
 		
 		String page = "ERROR.jsp";
+		
+		System.out.println(tirocinio.toString());
 		try {
 			Facade facade = new Facade();
-			boolean res = facade.aggiungiTirocinio(tirocinio);
+			boolean res = facade.modificaTirocinio(tirocinio);
 			
 			if (res == true) {
 				ArrayList<Tirocinio> lista = facade.ricercaTirociniPerParametri(ParamType.nomeResponsabileAzienda, username);
@@ -82,7 +90,6 @@ public class AggiungiTirocinioServlet extends HttpServlet {
 		
 		RequestDispatcher dd=request.getRequestDispatcher(page);
 		dd.forward(request, response);
-		
 	}
 
 }

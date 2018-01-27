@@ -73,12 +73,13 @@ header{
 .btn {
     border: none;
     cursor: pointer;
-     background: rgba(190, 214, 243, 0.1);
-     background-image:url("../immagini/icone/user.png");
-     background-repeat: no-repeat;
-     width: 30px;
+     background-color: orange;
+    /* background-image:url("..immagini/user.png");
+     background-repeat: no-repeat;*/
+     width: 50px;
    height: 30px;
-   margin-left: 35%; 
+  
+  
 }
 
 .btn:hover, .dropbtn:focus {
@@ -88,6 +89,7 @@ header{
     float: right;
     position: relative;
     display: inline-block;
+     margin-right: 1%;
     
 }
 
@@ -188,6 +190,22 @@ nav li.dropdown {
 
 .dropdown:hover .dropdown-content {
     display: block;
+}
+
+
+/****** LISTA TIROCINI*******/
+.list_tir{
+	border: none;
+	text-align: center;
+    text-decoration: none;
+    margin: 0%;
+    padding: 0%;
+    float: none;
+    font-family: sans-serif;
+    font-size: 20px;
+    color: white;
+    background-color: lime;
+    
 }
 
 /*********************************** NAV INFERIORE-FINE ***************************************/

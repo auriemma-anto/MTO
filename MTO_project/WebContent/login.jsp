@@ -44,7 +44,7 @@
     </div>
        
          <div class="row">
-         <input type="submit" value="Login" id="submitLogin"class="submit">
+         <input type="submit" value="Login" class="type_submit" id="submitLogin"class="submit">
       </div>
     </form>
  
