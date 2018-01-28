@@ -16,8 +16,10 @@ ul li {
 	list-style: none;
 }
 
+
+ /** nav superiore**/
 header{
-	background-color:aqua;
+	background-color:white; /*background-color:#a9efd9;*/
 	display: inline-block;
 	width: 100%;
 }
@@ -115,11 +117,23 @@ header{
 
 .show {display:block;}
 
-
+div .logo{
+		width: 50px;
+}
 .logo{
-	width: 20%;
+
 	height: 20%;
 	float: left;
+	margin-left: 1%;
+	margin-top: 3px;
+	margin-bottom: 3px;
+}
+
+.MTO{
+	padding-left: 1%;
+	padding-top: 30px;
+	width: 25%;
+	
 }
 
 .login{
@@ -141,7 +155,8 @@ nav ul {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: lime;
+    background-color:#a9efd9; /*
+    background-color: #1f1fe0; /*colore nav inferiore*/
     text-align: center;
     font-family: sans-serif;
     font-size: 20px;
@@ -155,14 +170,15 @@ nav li {
 
 nav li a, .dropbtn {
     display: inline-block;
-    color: white;
+    color: #1f1fe0;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
 }
 
 nav li a:hover, .dropdown:hover .dropbtn {
-    background-color: red;
+    background-color: #0c0c5a;
+    color: white;
 }
 
 nav li.dropdown {
@@ -172,7 +188,7 @@ nav li.dropdown {
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: green;
+    background-color: #0c0c5a;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
@@ -186,7 +202,7 @@ nav li.dropdown {
     text-align: left;
 }
 
-.dropdown-content a:hover {background-color: fuchsia;}
+.dropdown-content a:hover {background-color: #a9efd9; color:#1f1fe0; }
 
 .dropdown:hover .dropdown-content {
     display: block;

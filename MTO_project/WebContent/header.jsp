@@ -10,8 +10,8 @@
 </head>
 <header>
 
-<div class="logo"><a href="login.jsp"><img src="immagini\LOGO.png" alt="Logo"
-		class="logo"> </a></div>
+<div class="logo"><a href="login.jsp"><img src="immagini\LOGO1.png" alt="Logo"
+		class="logo"> <img src="immagini\MTO.png" alt="Logo" class="MTO"> </a></div>
 
 <%
       String username = (String) session.getAttribute("username");
@@ -39,8 +39,7 @@
 	</ul>
 
 	<%	} else { %>
-	<div class="login"><a href="login.jsp"><img class="im_login" src="immagini/user.png"
-			alt="utente" /></a></div>
+	<div class="login"><a href="login.jsp"><img class="im_login" src="immagini/user.png" alt="utente" /></a></div>
 	<%
   }
  %>
