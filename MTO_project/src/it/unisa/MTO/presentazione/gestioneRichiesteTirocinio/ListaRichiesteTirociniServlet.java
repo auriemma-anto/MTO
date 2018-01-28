@@ -23,7 +23,7 @@ import it.unisa.MTO.common.Utente;
 public class ListaRichiesteTirociniServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		Utente user = new Utente();
 		user.setUsername((String) request.getSession().getAttribute("username"));
@@ -52,7 +52,7 @@ public class ListaRichiesteTirociniServlet extends HttpServlet {
 			System.out.println("Servlet: "+docs.get(i).getTirocinio().getCodiceID());
 		}
 
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ShowLista.jsp");
+		RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/ShowLista.jsp");
 		dispatcher.forward(request, response);
 	}
 
