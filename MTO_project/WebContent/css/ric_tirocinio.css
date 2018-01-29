@@ -1,11 +1,25 @@
 @charset "ISO-8859-1";
 
-
+.but_caricaRichiesta{
+	box-shadow: rgb(255, 255, 255) 0px 1px 0px 0px inset;
+	background: linear-gradient(rgb(255, 255, 255) 5%, rgb(246, 246, 246)
+		100%) rgb(255, 255, 255);
+	border: 1px solid rgb(220, 220, 220);
+	display: inline-block;
+	cursor: pointer;
+	color: rgb(102, 102, 102);
+	font-family: Georgia, serif !important;
+	font-size: 13px;
+	font-weight: bold;
+	padding: 6px 12px;
+	text-decoration: none;
+}
 
 .container_ricerca{
-	margin: 6% 10%;
+	margin: 3% 10%;
 	font-size: 18px;
 	font-family: sans-serif;
+	background: #fff;
 	
 }
 
@@ -43,17 +57,22 @@
 .dato{}
 
 
-/**** SCRITTA TIROCINIO ****/
+/*** SCRITTA TIROCINIO ***/
 
 .tiro{
 	display: inline-block;
-	background-color: fuchsia;
+	background-color: #a9efd9;
 	width: 100%;
 	
 }
 
 .titoloT{
-	display: inline-block;
+	padding: 5%;
+	font-size: 30px;
+	text-align: center;
+	font-family: serif;
+	font-style: italic;
+	font-weight: bold;
 }
 
 

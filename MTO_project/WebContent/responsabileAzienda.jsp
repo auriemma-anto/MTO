@@ -4,10 +4,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>M.T.o.- Responsabile azienda</title>
+<link rel="stylesheet" href="css/common.css" type="text/css" media="all">
+<title>Responsabile Azienda - MTO.unisa.it</title>
 </head>
 <body>
-
 <%@ include file="header.jsp"%>
 
 </body>

@@ -6,24 +6,22 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
 <link rel="stylesheet" href="css/nav.css" type="text/css" media="all">
-
 </head>
 <header>
 
-<div class="logo"><a href="login.jsp"><img src="immagini\LOGO.png" alt="Logo"
-		class="logo"> </a></div>
+<div class="logo"><a href="login.jsp"><img src="immagini\LOGO1.png" alt="Logo"
+		class="logo"> <img src="immagini\MTO.png" alt="Logo" class="MTO"> </a></div>
 
 <%
       String username = (String) session.getAttribute("username");
      if (username != null) {
-    	 
     %>
 	
    <ul>
 		<li>
 			<div class="down">
 				
-				<button onclick="myFunct()" class="btn">
+				<button onclick="myFunct()" class="btn" value="Menu">Menu
 				</button>
 				
 				<div id="mydown" class="down-cont">
@@ -50,7 +48,6 @@
 <nav>
    
       <ul>
-  <li><a href="#home">Home</a></li>
 	<%
 		String tipo = (String) session.getAttribute("tipo");
 		if (username != null && tipo.equals("responsabileAzienda")) {
@@ -60,6 +57,7 @@
 					<input type="submit" class="list_tir" value="Tirocini" >
 				</form>
 			</li>
+			<li><a href="ShowLista.jsp">Lista Richieste</a></li>
 			
 	<%	} else if(username != null && tipo.equals("studente")) { %>
 
@@ -69,18 +67,8 @@
 				</form>
 			</li>
   
+  		<li><a href="ShowStatoDocumento.jsp">Lista Richieste</a></li>
 	<%	} %>
-  
-  <li><a href="#news">BHO</a></li>
- 
-    <li class="dropdown">
-    <a href="javascript:void(0)" class="dropbtn">Dropdown</a>
-    <div class="dropdown-content">
-      <a href="#">Link 1</a>
-      <a href="#">Link 2</a>
-      <a href="#">Link 3</a>
-    </div>
-  </li>
 </ul>
     
   </nav>

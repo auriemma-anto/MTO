@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>M.T.O.- Modifica schede</title>
+<title>M.T.O.-Modifica schede</title>
 
 
 <!--Ultima versione di jQuery (minified) -->
@@ -19,9 +19,11 @@
 
 <link rel="stylesheet" href="css/mod_schede.css" type="text/css"
 	media="all">
+	<link rel="stylesheet" href="css/common.css" type="text/css" media="all">
 </head>
 <body>
 
+<%@ include file="header.jsp"%>
 
 
 	<div class="contenitore">
@@ -38,7 +40,8 @@
 	System.out.println("Hidden field Value :"+codiceTirocinio);
 	
 	Facade facade = new Facade();
-	Tirocinio tir = facade.getTirocinio(codiceTirocinio);
+	Tirocinio tir = new Tirocinio();
+	tir = facade.getTirocinio(codiceTirocinio);
 	
 	//String codice_id = (String) session.getAttribute("codice_id"); 
 	
@@ -144,7 +147,7 @@
 			</div>
 
 			<div class="row">
-				<input type="submit" value="Modifica">
+				<input type="submit" value="Modifica" class="Modifica">
 			</div>
 
 		</form>

@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>M.T.O.- Studente</title>
+<link rel="stylesheet" href="css/common.css" type="text/css" media="all">
+<title>M.T.O.-Studente</title>
 </head>
 <body>
 

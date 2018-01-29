@@ -2,8 +2,6 @@ package it.unisa.MTO.presentazione.account;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Date;
-import java.text.ParseException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

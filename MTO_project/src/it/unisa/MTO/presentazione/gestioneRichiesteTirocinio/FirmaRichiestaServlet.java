@@ -3,6 +3,8 @@ package it.unisa.MTO.presentazione.gestioneRichiesteTirocinio;
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,9 +24,16 @@ import it.unisa.MTO.common.Utente;
 @WebServlet("/firmaRichiesta")
 public class FirmaRichiestaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	public FirmaRichiestaServlet() {
+		super();
+	}
+	
+	public void init(ServletConfig config) throws ServletException{
+		super.init(config);
+	}
 
-
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		boolean firma = Boolean.parseBoolean(request.getParameter("firma"));
 
@@ -41,7 +50,8 @@ public class FirmaRichiestaServlet extends HttpServlet {
 
 		f1.firmaDomandaRichiesta(documento, user, firma);
 
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ShowLista.jsp");
+		ServletContext context = request.getServletContext();
+		RequestDispatcher dispatcher = context.getRequestDispatcher("/ShowLista.jsp");
 		dispatcher.forward(request, response);	
 
 	}

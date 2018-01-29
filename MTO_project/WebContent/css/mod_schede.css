@@ -7,78 +7,57 @@ input[type=text], input[type=date], select, textarea{
     border-radius: 4px;
     box-sizing: border-box;
     resize: vertical;
-    font-family: sans-serif;
-    font-size: 18px;
 }
-
-
-input[type=text]:focus, input[type=date]:focus, select:focus{
-    outline: none;
-    background-color: lime;
-    border: 1px solid purple;
-}
-
 
 label {
     padding: 12px 12px 12px 0;
     display: inline-block;
 }
 
-input[type=submit] {
-    background-color: #4CAF50;
+.Modifica {
+    background-color: #1f1fe0;
     color: white;
     padding: 12px 20px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     float: right;
-    margin-top: 6%;
-    margin-bottom: 2%;
-    margin-right: 2%;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    margin-top: 3%;
+    margin-right: 4%;
     font-family: sans-serif;
-    font-size: 18px;
+    font-size: 16px;
 }
 
-input[type=submit]:hover {
-    background-color: #45a049;
-}
-
-.div_titolo{
-	text-align: center;
-	margin-top: 7%;
-	margin-left: 36%;
-	margin-right: 36%;
-	padding-left: 2%;
-	padding-right: 2%;
-	background-color: yellow;
-}
-.titolo{
-	font-size: 24px;
-	font-family: sans-serif;
-	font-weight: bold;
-	 
+.Modifica:hover {
+     background-color: white;
+    color: #1f1fe0;
 }
 
 .contenitore {
     border-radius: 5px;
     background-color: #f2f2f2;
     padding: 20px;
-    margin: 0 11%;
-    font-family: sans-serif;
-    font-size: 18px;
+    margin: 3% 10%;
+    
 }
 
 .col-title {
     float: left;
-    width: 30%;
-    margin-top: 2%;
-    padding-left: 5%;	
+    width: 25%;
+    margin-top: 1%;
+    font-family: sans-serif;
+    font-size: 16px;
+    margin-left: 5%;
+    
 }
 
 .col-insert {
     float: left;
-    width: 60%;
+    width: 55%;
     margin-top: 2%;
+     font-family: sans-serif;
+    font-size: 16px;
 }
 
 /* Clear floats after the columns */
@@ -88,7 +67,7 @@ input[type=submit]:hover {
     clear: both;
 }
 
-/** Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
 @media (max-width: 600px) {
     .col-title, .col-insert, input[type=submit] {
         width: 100%;

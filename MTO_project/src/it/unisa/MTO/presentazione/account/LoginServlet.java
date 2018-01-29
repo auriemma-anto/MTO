@@ -68,20 +68,20 @@ public class LoginServlet extends HttpServlet {
 		//	out.println(Response.OK.getValue());
 			System.out.println(tipo);
 			
-			if(tipo.equals("Studente")) {
+			if(tipo.equals("studente")) {
 				//out.println(Response.OK.getValue());
 				System.out.println(1);
 				page = "studente.jsp";
 				
-			}else if(tipo.equals("Responsabile Azienda")) {
+			}else if(tipo.equals("responsabileAzienda")) {
 				//out.println(Response.OK.getValue());
 				System.out.println(2);
 				page = "responsabileAzienda.jsp";
-			}else if(tipo.equals("Tutor Esterno")) {
+			}else if(tipo.equals("tutorEsterno")) {
 				//out.println(Response.OK.getValue());
 				System.out.println(3);
 				page = "tutorEsterno.jsp";
-			}else if(tipo.equals("Tutor Interno")) {
+			}else if(tipo.equals("tutorAccademico")) {
 				//out.println(Response.OK.getValue());
 				System.out.println(4);
 				page = "tutorAccademico.jsp";

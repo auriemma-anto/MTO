@@ -1,117 +1,127 @@
-@charset "ISO-8859-1";
-
-#form label.error {
-        color: red;
-        font-weight: bold;
-    }
-     
-
-
-input[type=text], input[type=password], 
-input[type=date], select{
-    outline: none;
-    width: 100%;
-    padding: 12px;
-    border-radius: 4px;
-    border: 1px solid green;
-    box-sizing: border-box ;
-    resize: vertical;
-    background-color: orange;
-    font-family: sans-serif;
-    font-size: 18px;
-    
+body{
+	background-image: url("../img/unisa.jpg");
+	height: 100%;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-size: cover;
+	/* for IE9+, Safari 4.1+, Chrome 3.0+, Firefox 3.6+ */
+	-webkit-background-size: cover;
+	/* for Safari 3.0 - 4.0 , Chrome 1.0 - 3.0 */
+	-moz-background-size: cover; /* optional for Firefox 3.6 */
+	-o-background-size: cover; /* for Opera 9.5 */
+	margin: 0; /* to remove the default white margin of body */
+	padding: 0; /* to remove the default white margin of body */
 }
 
-input[type=text]:focus, input[type=password]:focus, 
-input[type=date]:focus, select:focus{
-    outline: none;
-    background-color: lime;
-    border: 1px solid purple;
+#form label.error {
+	color: red;
+	font-weight: bold;
+}
+
+input[type=text], input[type=password], input[type=date], select {
+	outline: none;
+	width: 100%;
+	padding: 12px;
+	border-radius: 4px;
+	border: 1px solid green;
+	box-sizing: border-box;
+	resize: vertical;
+	background-color: #a3eaed;
+	font-family: sans-serif;
+	font-size: 18px;
+}
+
+input[type=text]:focus, input[type=password]:focus, input[type=date]:focus,
+	select:focus {
+	outline: none;
+	background-color: lime;
+	border: 1px solid purple;
 }
 
 label {
-    padding: 12px 12px 12px 0;
-    display: inline-block;
+	padding: 12px 12px 12px 0;
+	display: inline-block;
 }
 
 input[type=submit] {
-    background-color: #4CAF50;
-    color: white;
-    padding: 15px 25px;
-    margin-right: 2%;
-    margin-bottom: 2%;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    float: right;
-    font-size: 21px;
-    font-family: sans-serif;
+	background-color: #4CAF50;
+	color: white;
+	padding: 15px 25px;
+	margin-right: 2%;
+	margin-bottom: 2%;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	float: right;
+	font-size: 21px;
+	font-family: sans-serif;
 }
 
 input[type=submit]:hover {
-    background-color: #45a049;
+	background-color: #45a049;
 }
 
 .containerReg {
-    border-radius: 5px;
-    background-color: aqua; /*colore sfondo registrazione*/
-    padding: 20px;
-    margin: 5% 15%;
-    font-family: sans-serif;
-    font-size: 20px;
+	border-radius: 5px;
+	background-color: aqua; /*colore sfondo registrazione*/
+	padding: 20px;
+	margin: 5% 15%;
+	font-family: sans-serif;
+	font-size: 20px;
 }
 
 .col-25 {
-    float: left;
-    width: 22%;
-    margin-top: 2%;
-    margin-left: 8%;
-     font-weight: bold;
+	float: left;
+	width: 22%;
+	margin-top: 2%;
+	margin-left: 8%;
+	font-weight: bold;
 }
 
-.annoImm{
+.annoImm {
 	display: inline-block;
 	width: 52%;
 }
 
-#annoI1, #annoI2{
+#annoI1, #annoI2 {
 	width: 20%;
-} 
+}
 
-.slash{
+.slash {
 	font-size: 28px;
 	padding: 1%;
 }
 
-#EMAIL{
+#EMAIL {
 	width: 35%;
 }
 
-.em_sud{
+.em_sud {
 	font-size: 20px;
 	padding-left: 1%;
 }
+
 .col-75 {
-    float: left;
-    width: 52%;
-    margin-top: 2%;
-    margin-left: 8%;
+	float: left;
+	width: 52%;
+	margin-top: 2%;
+	margin-left: 8%;
 }
 
-
-/** Clear floats after the columns **/
+/* Clear floats after the columns */
 .row:after {
-    content: "";
-    display: table;
-    clear: both;
+	content: "";
+	display: table;
+	clear: both;
 }
 
 /*checkbox*/
-.condizioni{
+.condizioni {
 	margin-top: 3%;
 	font-size: 21px;
 	margin-left: 4%;
-	 font-weight: bold;
+	font-weight: bold;
 }
 
 input[type=checkbox] {
@@ -121,10 +131,9 @@ input[type=checkbox] {
 	margin-left: 1%;
 	padding-bottom: 0px;
 	margin-top: 0px;
-	
 }
 
-#accetto-error{
+#accetto-error {
 	margin-left: 5%;
 	font-size: 18px;
 	padding-top: 0px;

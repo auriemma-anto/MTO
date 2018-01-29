@@ -6,9 +6,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>M.T.O-Tirocini</title>
-
+<link rel="stylesheet" href="css/common.css" type="text/css" media="all">
 <link rel="stylesheet" href="css/view_schede.css" type="text/css" media="all">
-
 </head>
 <body>
 
@@ -49,14 +48,14 @@
 		
    
    <div class="but_el_tir">
-	<form action="EliminaListaTirocinioServlet" method="post" name="ADD_Tirocinio" class="delet">
+	<form action="EliminaListaTirocinioServlet" method="post" name="ADD_Tirocinio" >
 		<input type="hidden" name="codiceTirocinio" value="<%=codiceTirocinio%>">
   		<input type="submit"class="delet"  value="Elimina tirocinio" >
   	</form>
 	</div>
 	
 	<div class="modifica">
-	  <form name="modif" action="mod_schede.jsp" class="modify">
+	  <form name="modif" action="mod_schede.jsp" >
 		<input type="hidden" name="codiceTirocinio" value="<%=codiceTirocinio%>">
 		<input type="submit" name="Submit" class="modify" value="Modifica tirocinio">
 	  </form>
